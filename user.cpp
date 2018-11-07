@@ -15,6 +15,9 @@ IDCode=_IDCode;
 password=_password;
 name=_name;
 }
+User::~User(){
+
+}
 void User::SetIDCode(string _IDCode){
     IDCode=_IDCode;
 }

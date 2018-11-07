@@ -8,11 +8,13 @@ using namespace std;
 class FDP : public Resource
 {
 private:
-
+    string idstudent;
 public:
     FDP();
-    FDP(string _name, string _status, string _ID);
+    FDP(string _name, string _status, string _ID, string _idstudent);
     ~FDP();
+    string Getidstudent();
+    void Setidstudent(string _idstudent);
 };
 
 #endif // FDP_H
