@@ -14,7 +14,7 @@ Seminar::Seminar(string _name, string _status, string _ID, int _maxSeats, Date _
     status=_status;
     ID=_ID;
     maxSeats=_maxSeats;
-    date=_date;
+
 };
 Seminar::~Seminar(){};
 int Seminar::GetmaxSeats(){

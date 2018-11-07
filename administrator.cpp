@@ -12,6 +12,8 @@ Administrator::Administrator(string _IDCode, string _password, string _name) : U
 
 }
 
+Administrator::~Administrator(){}
+
 int Administrator::menu(){
     int op=1;
     do{

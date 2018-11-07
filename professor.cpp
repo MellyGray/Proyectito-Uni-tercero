@@ -9,4 +9,5 @@ Professor::Professor(string _IDCode, string _password, string _name) : User (IDC
 {
 
 }
+Professor::~Professor(){}
 
