@@ -8,4 +8,6 @@ Student::Student(string _IDCode, string _password, string _name) : User(IDCode, 
 {
 }
 
+Student::~Student(){
 
+}
