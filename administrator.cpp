@@ -7,9 +7,11 @@ Administrator::Administrator()
   list= new Listares;
 
 };
-Administrator::Administrator(string _IDCode, string _password, string _name) : User (IDCode,password,name)
+Administrator::Administrator(string _IDCode, string _password, string _name)
 {
-
+    IDCode=_IDCode;
+    password=_password;
+    name=_name;
 }
 
 Administrator::~Administrator(){}

@@ -35,3 +35,7 @@ int Date::GetMonth(){
 int Date::GetYear(){
     return (year);
 }
+
+void Date::DisplayDate(){
+    cout<<day<<" "<<month<<" "<<year;
+}

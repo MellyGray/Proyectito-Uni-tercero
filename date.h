@@ -19,6 +19,7 @@ public:
     int GetDay();
     int GetMonth();
     int GetYear();
+    void DisplayDate();
     ~Date();
 };
 

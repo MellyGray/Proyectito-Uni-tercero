@@ -9,16 +9,17 @@ class Seminar : public Resource
 {
 private:
     int maxSeats;
-    Date date;
+    Date *date;
 
 public:
     Seminar();
-    Seminar(string _name, string _status, string _ID, int _maxSeats, Date _date);
+    Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date);
     ~Seminar();
     int GetmaxSeats();
     void SetmaxSeats(int _maxSeats);
     Date Getdate();
-    void Setdate(Date _date);
+    void Setdate(Date *_date);
+    void DisplayDate();
 };
 
 #endif // SEMINAR_H
