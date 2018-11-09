@@ -20,12 +20,7 @@ Resource::~Resource(){}
 void datasaving(){
 
 }
-void Resource::datasaving( ofstream &writte){//Aqui hay que defeinfir un txt en donde se llame esta función
-   writte<<ID<<"\n";
-   writte<<status<<"\n";
-   writte<<name<<"\n";
 
-};
 string Resource::GetID(){
     return (ID);
 };
@@ -47,15 +42,21 @@ void Resource::SetStatus(string _status){
 
 string Resource::toString(){
     stringstream s;
-    s<< "ID_______"<< ID<<endl;
-    s<< "Status---"<< status<<endl;
-    s<<"Name------"<< name<<endl;
+    s<< "Name_______"<<name<<endl;
+    s<< "Status_____"<< status<<endl;
+    s<< "ID_________"<<ID<<endl;
     return s.str();
 };
-Resource *Resource::readTxt(istream &read){
+void Resource::datasaving( ofstream &write){
+   write<<ID<<"\n";
+   write<<status<<"\n";
+   write<<name<<"\n";
+
+};
+Resource *Resource::readTxt(ifstream &read){
     string _name, _status,_ID;
     read>>_ID;
     read>>_status;
     read>>_name;
-    return (new Resource(_name,_status,_ID));//CAMBIAR ORDEN PARAMETROS DE STATUS ID Y TAL
+    return (new Resource(_name,_status,_ID));
 };

@@ -20,6 +20,7 @@ private:
 public:
     VirtualCampus();
     ~VirtualCampus();
+    //void start();
 };
 
 #endif // VIRTUALCAMPUS_H

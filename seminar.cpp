@@ -6,7 +6,6 @@ Seminar::Seminar()
     status="";
     ID="";
     maxSeats=0;
-    //date=_date; Como se haría?
 };
 Seminar::Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date)
 {

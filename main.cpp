@@ -6,12 +6,17 @@ using namespace std;
 
 int main()
 {
+        /*For this milestone, there are some atributes of the classes missing(as degree, lectures, tutors of FDPs,...).
+        This is because the plan is to have them on lists and if we had included them on this milestone, the project
+        would had been almost finished. So we considered that was not what was asked for this date. We only coded
+        the atributes that do not have connections with other classes. The only list currently on the program
+        is the list of Resources that was necessary for the funcionalities of the administrator.*/
 
         cout<<"MILESTONE 1.Test of constructors, getters and setters and administrator funcionalities."<<endl;
         cout<<"---------------------------------------------------------------------------------------"<<endl;
         cout<<"Course Class"<<endl;
         Course c1("Computing Systems I","created", "Kjf3968",6,"Mohammed","Jorge"),c2;
-        cout<<"The course "<<c1.GetName()<<" has the status "<<c1.Getstatus()<<", its number of credits is "<<c1.Getcredits()<<","<<endl;
+        cout<<"The course "<<c1.GetName()<<" has the status "<<c1.Getstatus()<<", its number of credits are "<<c1.Getcredits()<<","<<endl;
         cout<<"its ID is "<<c1.GetID()<<" and the proffesors are "<<c1.Getprofessor1id()<<" and "<<c1.Getprofessor2id()<<endl;
         c2.SetName("Analog Electronics I");
         c2.SetStatus("created");
@@ -19,13 +24,13 @@ int main()
         c2.Setcredits(6);
         c2.Setprofessor1id("Fulanito");
         c2.Setprofessor2id("Menganito");
-        cout<<"The course "<<c2.GetName()<<" has the status "<<c2.Getstatus()<<", its number of credits is "<<c2.Getcredits()<<","<<endl;
+        cout<<"The course "<<c2.GetName()<<" has the status "<<c2.Getstatus()<<", its number of credits are "<<c2.Getcredits()<<","<<endl;
         cout<<"its ID is "<<c2.GetID()<<" and the proffesors are "<<c2.Getprofessor1id()<<" and "<<c2.Getprofessor2id()<<endl;
 
         cout<<"---------------------------------------------------------------------------------------"<<endl;
         cout<<"FDP Class"<<endl;
-        FDP f1("Algo super guay","in progress", "KSJ3059","2049503"),f2;
-        f2.SetName("Que rollo poner nombres");
+        FDP f1("Something really cool","in_progress", "KSJ3059","2049503"),f2;
+        f2.SetName("Not imagination for names");
         f2.SetStatus("created");
         f2.SetID("LDJ1029");
         f2.Setidstudent("9462948");
@@ -37,9 +42,9 @@ int main()
         cout<<"---------------------------------------------------------------------------------------"<<endl;
         cout<<"Seminar Class"<<endl;
         Date d1(8,11,2018),d2(14,11,2018),d3;
-        Seminar se1("Seminario","created", "UGm3029", 100,&d1),se2;
-        se2.SetName("Seminario electronica");
-        se2.SetStatus("in progress");
+        Seminar se1("Seminar Whatever ","created", "UGm3029", 100,&d1),se2;
+        se2.SetName("Electronics Seminar");
+        se2.SetStatus("in_progress");
         se2.SetID("Sgk6789");
         se2.SetmaxSeats(150);
         se2.Setdate(&d2);
@@ -80,6 +85,15 @@ int main()
         cout<<"The administrator "<<admin2.GetName()<<" with the ID "<<admin2.GetIDCode()<<" has the password "<<admin2.GetPassword()<<endl;
 
         cout<<"---------------------------------------------------------------------------------------"<<endl;
+        char a;
+        cout<<"PRESS 'Y' TO SEE ADMINISTRATOR FUNCIONALITIES"<<endl;
+        cin>>a;
+        if(a==('Y' | 'y')){
+            Administrator *admin= new Administrator;
+            admin->administrate();
+            delete admin;
+        }
+
 
     return 0;
 }

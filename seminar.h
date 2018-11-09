@@ -12,13 +12,16 @@ private:
     Date *date;
 
 public:
+    //Constructors
     Seminar();
     Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date);
     ~Seminar();
+    //Getters and setters
     int GetmaxSeats();
     void SetmaxSeats(int _maxSeats);
     Date Getdate();
     void Setdate(Date *_date);
+    //To display the date all together
     void DisplayDate();
 };
 
