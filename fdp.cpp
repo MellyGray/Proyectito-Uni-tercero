@@ -9,11 +9,8 @@ FDP::FDP()
     ID="_ID";
     idstudent="_idstudent";
 };
-FDP::FDP(string _name, string _status, string _ID, string _idstudent)
+FDP::FDP(string _name, string _status, string _ID, string _idstudent):Resource (_name,_status,_ID)
 {
-    name=_name;
-    status=_status;
-    ID=_ID;
     idstudent=_idstudent;
 };
 FDP::~FDP(){};

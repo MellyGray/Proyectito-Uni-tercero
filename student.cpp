@@ -4,11 +4,8 @@ using namespace std;
 
 Student::Student() : User(){
 }
-Student::Student(string _IDCode, string _password, string _name)
+Student::Student(string _IDCode, string _password, string _name): User(_IDCode,_password,_name)
 {
-    IDCode=_IDCode;
-    password=_password;
-    name=_name;
 }
 
 Student::~Student(){

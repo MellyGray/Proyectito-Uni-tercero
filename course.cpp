@@ -4,11 +4,8 @@ using namespace std;
 
 Course::Course(){}
 
-Course::Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id)
+Course::Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id):Resource (_name,_status,_ID)
 {
-    name=_name;
-    status=_status;
-    ID=_ID;
     credits=_credits;
     professor1id=_professor1id;
     professor2id=_professor2id;

@@ -7,11 +7,8 @@ Seminar::Seminar()
     ID="";
     maxSeats=0;
 };
-Seminar::Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date)
+Seminar::Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date):Resource (_name,_status,_ID)
 {
-    name=_name;
-    status=_status;
-    ID=_ID;
     maxSeats=_maxSeats;
     date=_date;
 
