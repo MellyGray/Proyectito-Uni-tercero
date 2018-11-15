@@ -1,4 +1,5 @@
 #include <iostream>
+#include "virtualcampus.h"
 
 
 using namespace std;
@@ -6,6 +7,8 @@ using namespace std;
 int main()
 {
 
-    cout << "Hello World!" << endl;
+            Administrator *admin= new Administrator;
+            admin->administrate();
+            delete admin;
     return 0;
 }
