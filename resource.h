@@ -16,7 +16,7 @@ class Resource
 public:
     Resource();
     Resource(string _name, string _status, string _ID);
-    ~Resource();
+   virtual ~Resource();
     //Getters & Setters
    string GetName();
    void SetName(string _name);
@@ -26,13 +26,11 @@ public:
    void SetID(string _ID);
 
    //To print the atributes of the resource
-   string toString();
+   virtual string toString()=0;
 
    //To save the atributes of the resource on a text file
-   void datasaving( ofstream &);
+   virtual void datasaving( ofstream &)=0;
 
-   //To read the data on a text file that corresponds to one resource
-   Resource *readTxt(ifstream &);
 };
 
 #endif // RESOURCE_H

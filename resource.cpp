@@ -39,24 +39,3 @@ void Resource::SetName(string _name){
 void Resource::SetStatus(string _status){
     status=_status;
 };
-
-string Resource::toString(){
-    stringstream s;
-    s<< "Name_______"<<name<<endl;
-    s<< "Status_____"<< status<<endl;
-    s<< "ID_________"<<ID<<endl;
-    return s.str();
-};
-void Resource::datasaving( ofstream &write){
-   write<<ID<<"\n";
-   write<<status<<"\n";
-   write<<name<<"\n";
-
-};
-Resource *Resource::readTxt(ifstream &read){
-    string _name, _status,_ID;
-    read>>_ID;
-    read>>_status;
-    read>>_name;
-    return (new Resource(_name,_status,_ID));
-};

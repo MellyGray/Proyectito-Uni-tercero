@@ -17,6 +17,15 @@ public:
     //Get and set of the student SIN
     string Getidstudent();
     void Setidstudent(string _idstudent);
+    //To print the atributes of the resource
+    string toString();
+
+    //To save the atributes of the resource on a text file
+    void datasaving( ofstream &);
+
+    //To read the data on a text file that corresponds to one resource
+    FDP *readTxt(ifstream &);
+
 };
 
 #endif // FDP_H

@@ -14,7 +14,7 @@ private:
 public:
     //Constructors
     Seminar();
-    Seminar(string _name, string _status, string _ID, int _maxSeats, Date *_date);
+    Seminar(string _name, string _status, string _ID, int _maxSeats);
     ~Seminar();
     //Getters and setters
     int GetmaxSeats();
@@ -23,6 +23,15 @@ public:
     void Setdate(Date *_date);
     //To display the date all together
     void DisplayDate();
+    //To print the atributes of the resource
+    string toString();
+
+    //To save the atributes of the resource on a text file
+    void datasaving( ofstream &);
+
+    //To read the data on a text file that corresponds to one resource
+    Seminar *readTxt(ifstream &);
+
 };
 
 #endif // SEMINAR_H
