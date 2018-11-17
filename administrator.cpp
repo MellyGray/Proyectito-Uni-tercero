@@ -34,7 +34,7 @@ int Administrator::menu(){
         cout<<"2). Modify"<<endl;
         cout<<"3). Delete"<<endl;
         cout<<"4). Exit"<<endl;
-        cout<<"Insert the number of the option"<<endl;
+        cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
         case 0: DisplayResources();
@@ -51,30 +51,99 @@ int Administrator::menu(){
 };
 
 void Administrator::CreateResource(){
-    system("cls");
-    string _name,_status,_ID,_professor1id,_professor2id;
-    int _credits;
-    Resource *res,*aux;
-    cout<<"Type the name: ";
-    cin>>_name;
-    cout<<"Type the status: ";
-    cin>>_status;
-    cout<<"Type the ID: ";
-    cin>>_ID;
-    cout<<"Type the number of credits: ";
-    cin>>_credits;
-    cout<<"Type the Professor 1 ID: ";
-    cin>>_professor1id;
-    cout<<"Type the Professor 2 ID: ";
-    cin>>_professor2id;
-    res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
-    if(res==NULL){
-        list->selectresource(aux= new Course(_name,_status,_ID,_credits,_professor1id,_professor2id));//Adds the resource to the list
-    }else{
-        cout<<"\n";
-        cout<<"The resource already exists. INVALID OPTION."<<endl;
-    system("pause");
-    }
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent;
+    int _credits,op=1,_maxSeats;
+    Resource *res;
+    Course cour;
+    FDP fdp;
+    Seminar sem;
+    do{
+        system("cls");
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
+            cout<<" Only numerical values"<<endl;
+        }
+        if (op!=1&&op!=2&&op!=3){
+            cout<<"Select a possible option"<<endl;
+            cout<<"\n";
+        }
+
+        cout<<"-----------RESOURCES--------------"<<endl;
+        cout<<"1). Course"<<endl;
+        cout<<"2). FDP"<<endl;
+        cout<<"3). Seminar"<<endl;
+        cout<<"Type the number of the option"<<endl;
+        cin>>op;
+        switch (op) {
+        case 1:
+            res=&cour;
+            cout<<"Type the name: ";
+            cin>>_name;
+            cout<<"Type the status: ";
+            cin>>_status;
+            cout<<"Type the ID: ";
+            cin>>_ID;
+            cout<<"Type the number of credits: ";
+            cin>>_credits;
+            cout<<"Type the Professor 1 ID: ";
+            cin>>_professor1id;
+            cout<<"Type the Professor 2 ID: ";
+            cin>>_professor2id;
+            res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
+            if(res==NULL){
+                list->selectresource(new Course(_name,_status,_ID,_credits,_professor1id,_professor2id));//Adds the resource to the list
+                list->IncrementCour();
+            }else{
+                cout<<"\n";
+                cout<<"The resource already exists. INVALID OPTION."<<endl;
+            system("pause");
+            }
+            break;
+        case 2:
+            res=&fdp;
+            cout<<"Type the name: ";
+            cin>>_name;
+            cout<<"Type the status: ";
+            cin>>_status;
+            cout<<"Type the ID: ";
+            cin>>_ID;
+            cout<<"Type the student SIN: ";
+            cin>>_idstudent;
+            res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
+            if(res==NULL){
+                list->selectresource(new FDP(_name,_status,_ID,_idstudent));//Adds the resource to the list
+                list->IncrementFDP();
+            }else{
+                cout<<"\n";
+                cout<<"The resource already exists. INVALID OPTION."<<endl;
+            system("pause");
+            }
+            break;
+        case 3:
+            res=&sem;
+            cout<<"Type the name: ";
+            cin>>_name;
+            cout<<"Type the status: ";
+            cin>>_status;
+            cout<<"Type the ID: ";
+            cin>>_ID;
+            cout<<"Type the maximum number of seats: ";
+            cin>>_maxSeats;
+            res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
+            if(res==NULL){
+                list->selectresource(new Seminar(_name,_status,_ID,_maxSeats));//Adds the resource to the list
+                list->IncrementSeminar();
+            }else{
+                cout<<"\n";
+                cout<<"The resource already exists. INVALID OPTION."<<endl;
+            system("pause");
+            }
+
+            break;
+        }
+    }while(op!=4);
+
 
 }
 void Administrator::DeleteResource(){
