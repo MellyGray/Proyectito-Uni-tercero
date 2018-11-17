@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
+    Administrator *admin= new Administrator;
+               admin->administrate();
+               delete admin;
 
-            Administrator *admin= new Administrator;
-            admin->administrate();
-            delete admin;
     return 0;
 }

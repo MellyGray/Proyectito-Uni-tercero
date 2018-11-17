@@ -2,6 +2,8 @@
 #define LISTARES_H
 #include "nodores.h"
 #include "course.h"
+#include "fdp.h"
+#include "seminar.h"
 #include <iostream>
 using namespace std;
 
@@ -29,6 +31,9 @@ public:
 
 private:
     Nodores *actual;
+    int num_cour;
+    int num_fdp;
+    int num_sem;
 };
 
 #endif // LISTARES_H

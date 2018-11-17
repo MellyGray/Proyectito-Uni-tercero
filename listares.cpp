@@ -31,8 +31,8 @@ Listares::~Listares(){
 };
 void Listares::keepresource(){
     Nodores *get=actual;
-    Course cour;
-    Resource *res=&cour;
+    FDP fdp;
+    Resource *res=&fdp;
     ofstream write("Resources.txt", ios::out);
     while (get!=NULL){
         res= get->Getresource();
@@ -43,13 +43,37 @@ void Listares::keepresource(){
 };
 void Listares::chargeresource(){
     ifstream read("Resources.txt", ios::in);
-    Course aux,cour;
-    Resource *res=&cour;
-    res=aux.readTxt(read);
-    while(!read.eof()){
+    Course cour_aux,cour;
+    FDP fdp_aux,fdp;
+    Seminar sem_aux,sem;
+    Resource *res;
+    read>>num_cour;
+    read>>num_fdp;
+    read>>num_sem;
+    res=&cour;
+    res=cour_aux.readTxt(read);
+    for (int i=0;i<num_cour;i++){
         selectresource(res);
-        res=aux.readTxt(read);
-    }
+        res=cour_aux.readTxt(read);
+   }
+    selectresource(res);
+        res=&fdp;
+        res=fdp_aux.readTxt(read);
+            for (int j=0;j<num_fdp;j++)
+            {
+                    selectresource(res);
+                    res=fdp_aux.readTxt(read);
+                }
+            selectresource(res);
+            res=&sem;
+            res=sem_aux.readTxt(read);
+                for (int k=0;k<num_sem;k++)
+                {
+                        selectresource(res);
+                        res=sem_aux.readTxt(read);
+                    }
+                selectresource(res);
+
     read.close();
 }
 Resource *Listares::ResourcesOnList(string _ID){
