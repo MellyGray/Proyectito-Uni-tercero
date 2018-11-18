@@ -30,6 +30,8 @@ public:
 
    //To save the atributes of the resource on a text file
    virtual void datasaving( ofstream &)=0;
+   //Modify the attributes of the resource
+   virtual void ModifyResource()=0;
 
 };
 

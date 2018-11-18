@@ -44,3 +44,17 @@ FDP *FDP::readTxt(ifstream &read){
     read>>_name;
     return (new FDP(_name, _status,_ID,_idstudent));
 };
+void FDP::ModifyResource(){
+    cout<<"Please, enter the new name for the FDP: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new status for the FDP: ";
+    cin>>status;
+    cout<<"\n";
+    cout<<"Please, enter the new ID for the FDP: ";
+    cin>>ID;
+    cout<<"\n";
+    cout<<"Please, enter the new student for the FDP: ";
+    cin>>idstudent;
+    cout<<"\n";
+}

@@ -32,6 +32,9 @@ public:
     //To read the data on a text file that corresponds to one resource
     Seminar *readTxt(ifstream &);
 
+    //Modify the attributes of the seminar
+    void ModifyResource();
+
 };
 
 #endif // SEMINAR_H

@@ -25,6 +25,8 @@ public:
 
     //To read the data on a text file that corresponds to one resource
     FDP *readTxt(ifstream &);
+    //Modify the attributes of the fdp
+    void ModifyResource();
 
 };
 

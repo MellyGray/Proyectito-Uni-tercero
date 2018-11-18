@@ -54,9 +54,6 @@ void Administrator::CreateResource(){
     string _name,_status,_ID,_professor1id,_professor2id,_idstudent;
     int _credits,op=1,_maxSeats;
     Resource *res;
-    Course cour;
-    FDP fdp;
-    Seminar sem;
     do{
         system("cls");
         if(cin.fail()){
@@ -78,7 +75,6 @@ void Administrator::CreateResource(){
         cin>>op;
         switch (op) {
         case 1:
-            res=&cour;
             cout<<"Type the name: ";
             cin>>_name;
             cout<<"Type the status: ";
@@ -104,7 +100,6 @@ void Administrator::CreateResource(){
             }
             break;
         case 2:
-            res=&fdp;
             cout<<"Type the name: ";
             cin>>_name;
             cout<<"Type the status: ";
@@ -126,7 +121,6 @@ void Administrator::CreateResource(){
             }
             break;
         case 3:
-            res=&sem;
             cout<<"Type the name: ";
             cin>>_name;
             cout<<"Type the status: ";
@@ -176,31 +170,19 @@ void Administrator::DisplayResources(){
 }
 void Administrator::ModifyResource(){
     system("cls");
-    Resource *aux;
-    cout<<"-------MODIFY RESOURCE-------"<<endl;
-    string _name,_status,_ID;
-    cout<<list->toString();
-    cout<<"Type the ID of the resource you want to modify: "<<endl;
-    cin>>_ID;
-    aux=list->ResourcesOnList(_ID);//Checks if the resource is on the list
-    if(aux!=NULL){
-        cout<<"Please, enter the new name for the resource: ";
-        cin>>_name;
-        aux->SetName(_name);
-        cout<<"\n";
-        cout<<"Please, enter the new status for the resource: ";
-        cin>>_status;
-        aux->SetStatus(_status);
-        cout<<"\n";
-        cout<<"Please, enter the new ID for the resource: ";
-        cin>>_ID;
-        aux->SetID(_ID);
-        cout<<"\n";
-    }else{
-        cout<<"The resource does not exist"<<endl;
-        system("pause");
-    }
-
+       Resource *aux;
+       cout<<"-------MODIFY RESOURCE-------"<<endl;
+       string _ID;
+       cout<<list->toString();
+       cout<<"Type the ID of the resource you want to modify: "<<endl;
+       cin>>_ID;
+       aux=list->ResourcesOnList(_ID);//Checks if the resource is on the list
+       if(aux!=NULL){
+          aux->ModifyResource();
+       }else{
+           cout<<"The resource does not exist"<<endl;
+           system("pause");
+       }
 
 }
 void Administrator::administrate(){

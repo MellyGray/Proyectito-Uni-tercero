@@ -53,3 +53,18 @@ Seminar *Seminar::readTxt(ifstream &read){
     read>>_name;
     return (new Seminar(_name, _status,_ID,_maxSeats));
 };
+void Seminar::ModifyResource(){
+    cout<<"Please, enter the new name for the seminar: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new status for the seminar: ";
+    cin>>status;
+    cout<<"\n";
+    cout<<"Please, enter the new ID for the seminar: ";
+    cin>>ID;
+    cout<<"\n";
+    cout<<"Please, enter the new maximum number of seats for the seminar: ";
+    cin>>maxSeats;
+    cout<<"\n";
+
+}

@@ -32,6 +32,9 @@ public:
 
     //To read the data on a text file that corresponds to one resource
     Course *readTxt(ifstream &);
+
+    //Modify the attributes of the course
+    void ModifyResource();
 };
 
 #endif // COURSE_H

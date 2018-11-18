@@ -68,3 +68,24 @@ Course *Course::readTxt(ifstream &read){
     read>>_name;
     return (new Course(_name, _status,_ID,_credits,_professor1id,_professor2id));
 };
+
+void Course::ModifyResource(){
+    cout<<"Please, enter the new name for the course: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new status for the course: ";
+    cin>>status;
+    cout<<"\n";
+    cout<<"Please, enter the new ID for the course: ";
+    cin>>ID;
+    cout<<"\n";
+    cout<<"Please, enter the new number of credits for the course: ";
+    cin>>credits;
+    cout<<"\n";
+    cout<<"Please, enter the new proffesor 1 for the course: ";
+    cin>>professor1id;
+    cout<<"\n";
+    cout<<"Please, enter the new proffesor 2 for the course: ";
+    cin>>professor2id;
+    cout<<"\n";
+}
