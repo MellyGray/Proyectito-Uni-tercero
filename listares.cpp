@@ -135,3 +135,10 @@ void Listares::DeleteNodores(Nodores *aux,Nodores *get){
     }
     delete get;
 }
+void Listares::InsertNodeSelPosition(Resource *res,int position){
+    Nodores *get=actual;
+    for(int i=0;i<position;i++){
+        get=get->Getnext();
+    }
+     get->setnext(new Nodores(res,get->Getnext()));
+}

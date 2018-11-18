@@ -28,12 +28,16 @@ public:
     Resource *DeleteResource(string);
     //Method to delete a node from the list
     void DeleteNodores(Nodores *,Nodores *);
-    //Method to incrent the number of Courses on list
-    void IncrementCour(){num_cour++;}
-    //Method to incrent the number of FDPs on list
-    void IncrementFDP(){num_fdp++;}
-    //Method to incrent the number of Seminars on list
-    void IncrementSeminar(){num_sem++;}
+    //Method to insert a new element to the list on a selected position
+    void InsertNodeSelPosition(Resource *,int position);
+    //Gettes & Setters
+    int GetNum_cour(){return(num_cour);}
+    int GetNum_fdp(){return(num_fdp);}
+    int GetNum_sem(){return(num_sem);}
+    void SetNum_cour(int _num_cour){num_cour=_num_cour;}
+    void SetNum_fdp(int _num_fdp){num_fdp=_num_fdp;}
+    void SetNum_sem(int _num_sem){num_sem=_num_sem;}
+
 private:
     Nodores *actual;
     int num_cour; //Number of courses on list
