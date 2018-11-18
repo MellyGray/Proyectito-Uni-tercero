@@ -64,7 +64,7 @@ void Administrator::CreateResource(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         }
-        if (op!=1&&op!=2&&op!=3){
+        if (op!=1&&op!=2&&op!=3&&op!=4){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         }
@@ -73,6 +73,7 @@ void Administrator::CreateResource(){
         cout<<"1). Course"<<endl;
         cout<<"2). FDP"<<endl;
         cout<<"3). Seminar"<<endl;
+        cout<<"4). Back"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
@@ -92,8 +93,10 @@ void Administrator::CreateResource(){
             cin>>_professor2id;
             res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                list->selectresource(new Course(_name,_status,_ID,_credits,_professor1id,_professor2id));//Adds the resource to the list
-                list->IncrementCour();
+                list->InsertNodeSelPosition(new Course(_name,_status,_ID,_credits,_professor1id,_professor2id),list->GetNum_cour());
+                list->SetNum_cour((list->GetNum_cour()+1));
+                 system("pause");
+
             }else{
                 cout<<"\n";
                 cout<<"The resource already exists. INVALID OPTION."<<endl;
@@ -112,8 +115,10 @@ void Administrator::CreateResource(){
             cin>>_idstudent;
             res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                list->selectresource(new FDP(_name,_status,_ID,_idstudent));//Adds the resource to the list
-                list->IncrementFDP();
+                int position=((list->GetNum_cour()+list->GetNum_fdp())+1);
+                list->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent),position);
+                list->SetNum_fdp((list->GetNum_fdp()+1));
+                system("pause");
             }else{
                 cout<<"\n";
                 cout<<"The resource already exists. INVALID OPTION."<<endl;
@@ -132,15 +137,15 @@ void Administrator::CreateResource(){
             cin>>_maxSeats;
             res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                list->selectresource(new Seminar(_name,_status,_ID,_maxSeats));//Adds the resource to the list
-                list->IncrementSeminar();
+                int position=((list->GetNum_cour()+list->GetNum_fdp()+list->GetNum_sem())+2);
+                list->InsertNodeSelPosition(new Seminar(_name,_status,_ID,_maxSeats),position);//Adds the resource to the list
+                list->SetNum_sem((list->GetNum_sem()+1));
+                system("pause");
             }else{
                 cout<<"\n";
                 cout<<"The resource already exists. INVALID OPTION."<<endl;
             system("pause");
             }
-
-            break;
         }
     }while(op!=4);
 
