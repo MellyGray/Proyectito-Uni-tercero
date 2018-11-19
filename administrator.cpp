@@ -6,12 +6,7 @@ Administrator::Administrator()
 {
   list= new Listares;
 
-};
-Administrator::Administrator(string _IDCode, string _password, string _name):User(_IDCode,_password,_name)
-{
-
 }
-
 Administrator::~Administrator(){}
 
 int Administrator::menu(){

@@ -12,11 +12,11 @@ private:
 public:
     //Constructors
     FDP();
-    FDP(string _name, string _status, string _ID, string _idstudent);
+    FDP(string _name, string _status, string _ID, string _idstudent):Resource (_name,_status,_ID){idstudent=_idstudent;}
     ~FDP();
     //Get and set of the student SIN
-    string Getidstudent();
-    void Setidstudent(string _idstudent);
+    string Getidstudent(){return(idstudent);}
+    void Setidstudent(string _idstudent){idstudent=_idstudent;}
     //To print the atributes of the resource
     string toString();
 

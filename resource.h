@@ -18,12 +18,13 @@ public:
     Resource(string _name, string _status, string _ID);
    virtual ~Resource();
     //Getters & Setters
-   string GetName();
-   void SetName(string _name);
-   string Getstatus();
-   void SetStatus(string _status);
-   string GetID();
-   void SetID(string _ID);
+   string GetName(){ return (name);}
+   void SetName(string _name){name=_name;}
+   string Getstatus(){return(status);}
+   void SetStatus(string _status){status=_status;}
+   string GetID(){return (ID);}
+   void SetID(string _ID){ID=_ID;}
+
 
    //To print the atributes of the resource
    virtual string toString()=0;

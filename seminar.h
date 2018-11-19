@@ -14,13 +14,14 @@ private:
 public:
     //Constructors
     Seminar();
-    Seminar(string _name, string _status, string _ID, int _maxSeats);
+    Seminar(string _name, string _status, string _ID, int _maxSeats):Resource (_name,_status,_ID) {maxSeats=_maxSeats;}
     ~Seminar();
     //Getters and setters
-    int GetmaxSeats();
-    void SetmaxSeats(int _maxSeats);
-    Date Getdate();
-    void Setdate(Date *_date);
+    int GetmaxSeats(){return(maxSeats);}
+    void SetmaxSeats(int _maxSeats){maxSeats=_maxSeats;}
+    Date Getdate(){return(*date);}
+    void Setdate(Date *_date){date=_date;}
+
     //To display the date all together
     void DisplayDate();
     //To print the atributes of the resource

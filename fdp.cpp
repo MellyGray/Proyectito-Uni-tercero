@@ -9,17 +9,7 @@ FDP::FDP()
     ID="_ID";
     idstudent="_idstudent";
 };
-FDP::FDP(string _name, string _status, string _ID, string _idstudent):Resource (_name,_status,_ID)
-{
-    idstudent=_idstudent;
-};
 FDP::~FDP(){};
-string FDP::Getidstudent(){
-    return(idstudent);
-};
-void FDP::Setidstudent(string _idstudent){
-    idstudent=_idstudent;
-};
 string FDP::toString(){
     stringstream s;
     s<< "Name____________"<<name<<endl;

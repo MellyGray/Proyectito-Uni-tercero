@@ -19,24 +19,6 @@ Course::~Course()
     professor1id="";
     professor2id="";
    }
-int Course::Getcredits(){
-    return(credits);
-};
-string Course::Getprofessor1id(){
-    return(professor1id);
-};
-string Course::Getprofessor2id(){
-    return(professor2id);
-};
-void Course::Setcredits(int _credits){
-    credits=_credits;
-};
-void Course::Setprofessor1id(string _professor1id){
-    professor1id=_professor1id;
-};
-void Course::Setprofessor2id(string _professor2id){
-    professor2id=_professor2id;
-};
 string Course::toString(){
     stringstream s;
     s<< "Name____________"<<name<<endl;
