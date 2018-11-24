@@ -15,7 +15,7 @@ public:
     Professor();
     Professor(string _name, string _IDCode): User(_name,_IDCode){}
     Professor (string _IDCode, string _password, string _name): User(_IDCode,_password,_name){}
-    ~Professor();
+    ~Professor(); /*
     //To print the atributes of professor
     string toString();
 
@@ -26,7 +26,7 @@ public:
     Professor *readTxt(ifstream &);
 
     //Modify the attributes of the professor
-    void ModifyUser();
+    void ModifyUser();*/
 };
 
 #endif // PROFESSOR_H

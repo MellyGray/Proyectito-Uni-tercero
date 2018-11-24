@@ -4,7 +4,7 @@ using namespace std;
 
 Administrator::Administrator()
 {
-  list= new Listares;
+  list= new List;
 
 }
 Administrator::~Administrator(){}
@@ -185,3 +185,14 @@ void Administrator::administrate(){
     menu();
     list->keepresource();//Save the changes on the text
 }
+//To print the atributes of the administrator
+string Administrator::toString(){}
+
+//To save the atributes of the administrator on a text file
+void Administrator::datasaving( ofstream &){}
+
+//To read the data on a text file that corresponds to one administrator
+Administrator *Administrator::readTxt(ifstream &){}
+
+//Modify the attributes of the administrator
+void Administrator::ModifyUser(){}

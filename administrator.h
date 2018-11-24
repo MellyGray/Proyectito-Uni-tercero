@@ -2,7 +2,7 @@
 #define ADMINISTRATOR_H
 #include "user.h"
 #include <iostream>
-#include "listares.h"
+#include "list.h"
 #include <cstdlib> //To clean console
 using namespace std;
 
@@ -10,7 +10,7 @@ class Administrator : public User
 {
 private:
     //List of resources that the administrator can control
-    Listares *list;
+    List *list;
 public:
     //Constructors
     Administrator();
