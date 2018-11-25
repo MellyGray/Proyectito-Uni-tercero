@@ -2,15 +2,18 @@
 #define ADMINISTRATOR_H
 #include "user.h"
 #include <iostream>
-#include "list.h"
+#include "listares.h"
+
 #include <cstdlib> //To clean console
 using namespace std;
 
+class ListUsers;
 class Administrator : public User
 {
 private:
     //List of resources that the administrator can control
-    List *list;
+    Listares *listres;
+    ListUsers *listusers;
 public:
     //Constructors
     Administrator();
@@ -19,17 +22,22 @@ public:
     ~Administrator();
 
     //Menu of the administrator options
-    int  menu();
-    //Menu with file reading
-    void administrate();
+    int MainMenu();
+    int UserMenu();
+    int MenuResources();
+    int MenuUsers();
     //Menu function to display all the resources in the file
     void DisplayResources();
+    void DisplayUsers();
     //Menu function to create a new resource
     void CreateResource();
+    void CreateUser();
     //Menu function to delete an existing resource
-    void DeleteResource();
+    int DeleteResource();
+    int DeleteUser();
     //Menu function to modify an existing resource
     void ModifyResource();
+    void ModifyUsers();
 
     //To print the atributes of the administrator
     string toString();

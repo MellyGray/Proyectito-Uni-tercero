@@ -37,6 +37,9 @@ public:
     //Modify the attributes of the user
     virtual void ModifyUser()=0;
 
+    //Menu depending on the type of User
+    virtual int UserMenu()=0;
+
 
 };
 

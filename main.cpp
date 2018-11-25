@@ -2,13 +2,16 @@
 #include "virtualcampus.h"
 
 
+
 using namespace std;
 
 int main()
 {
-    Administrator *admin= new Administrator;
-               admin->administrate();
-               delete admin;
+
+          VirtualCampus *vc=new VirtualCampus;
+          vc->start();
+          delete vc;
+
 
     return 0;
 }

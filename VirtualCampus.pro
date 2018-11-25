@@ -17,12 +17,12 @@ SOURCES += \
     degree.cpp \
     date.cpp \
     lecture.cpp \
-    list.cpp \
-    nodo.cpp \
-    listiterator.cpp
+    listares.cpp \
+    nodores.cpp \
+    listusers.cpp \
+    nodousers.cpp
 
 HEADERS += \
-    virtualcampus.h \
     resource.h \
     user.h \
     course.h \
@@ -34,6 +34,8 @@ HEADERS += \
     degree.h \
     date.h \
     lecture.h \
-    list.h \
-    nodo.h \
-    listiterator.h
+    listares.h \
+    nodores.h \
+    listusers.h \
+    nodousers.h \
+    virtualcampus.h

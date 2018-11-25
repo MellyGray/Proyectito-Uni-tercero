@@ -26,6 +26,9 @@ public:
 
     //Modify the attributes of the student
     void ModifyUser();
+
+    //Student Menu
+    int UserMenu();
 };
 
 #endif // STUDENT_H
