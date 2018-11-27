@@ -3,10 +3,10 @@
 Seminar::Seminar()
 {
     name="";
-    status="";   //Y el constructor parametrizado?
+    status="";
     ID="";
     maxSeats=0;
-};
+}
 Seminar::~Seminar(){};
 
 void Seminar::DisplayDate(){
@@ -19,9 +19,7 @@ string Seminar::toString(){
     s<< "ID____________________"<<ID<<endl;
     s<< "Maximum seats_________"<<maxSeats<<endl;
     return s.str();
-};
-
-//TO string list
+}
 
 string Seminar::toStringList(){
     stringstream s;
@@ -34,25 +32,22 @@ string Seminar::toStringList(){
        };
     return s.str();
 }
-
 void Seminar::datasaving( ofstream &write){
     write<<maxSeats<<"\n";
    write<<ID<<"\n";
    write<<status<<"\n";
    write<<name<<"\n";
-};
 
-void Seminar::
-datasavinglist(ofstream &writel){
+
+}
+void Seminar::datasavinglist(ofstream &writel){
     writel<<name<<"\n";
     writel<<num_users<<"\n";
     writel<<maxSeats<<"\n";//TA HECHO ACA
     for(int i=num_users-1;i>=0;i--){
         writel<<lirray[i]<<"\n";
     };
-};
-
-
+}
 Seminar *Seminar::readTxt(ifstream &read){
     string _name, _status,_ID;
     int _maxSeats;
@@ -61,21 +56,20 @@ Seminar *Seminar::readTxt(ifstream &read){
     read>>_status;
     read>>_name;
     return (new Seminar(_name, _status,_ID,_maxSeats));
-};
-//Read for lista
+}
 Seminar *Seminar::readTXTlist(ifstream &readl){//tiene que leer de al reves que en RESOURCESTXT
-    string _name, _array;
-    int _num_users,i;
+    string _name;
+    int _num_users,i,_maxSeats;
+
     readl>>_name;
     readl>>_num_users;
-    readl>>maxSeats;//TA HECHO ACA QUE MAS FALTA ILLO??
+    readl>>_maxSeats;//TA HECHO ACA QUE MAS FALTA ILLO??
     //string *array=new a[_num_users];OTRA OPCION QUE NECESITA CONSTRUCTOR DIFRENTE CON ARRAY DINAMICO DE PARAMETRIZACIÓN
-    Seminar *d1= new Seminar(_name,_num_users);
-    i=_num_users-1;
-    for(i=_num_users-1;i>=0;i--){
-     readl>>d1->lirray[i];
+    Seminar *d1=new Seminar(_name,_num_users,_maxSeats);
+    for(i=0;i<_num_users;i++){
+        readl>>d1->lirray[i];
     };
-    return (d1);
+    return d1;
 }
 void Seminar::ModifyResource(){
     cout<<"Please, enter the new name for the seminar: ";
@@ -92,11 +86,15 @@ void Seminar::ModifyResource(){
     cout<<"\n";
 
 }
+
 void Seminar::searchinlist(string _id){//listo tiene que funcionar
     int i=num_users-1;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
             cout<<name<<endl;
+        }
+        if(lirray[k]!=_id){
+            cout<<"Las cagao pringao"<<endl;
         }
     }
 }

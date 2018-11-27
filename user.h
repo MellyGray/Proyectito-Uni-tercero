@@ -28,6 +28,17 @@ public:
     string GetName(){return (name);}
 
 
+    //To print the atributes of the user
+    virtual string toString()=0;
+
+    //To save the atributes of the user on a text file
+    virtual void datasaving( ofstream &)=0;
+
+    //Modify the attributes of the user
+    virtual void ModifyUser()=0;
+
+    //Menu depending on the type of User
+    virtual int UserMenu()=0;
 
 
 };

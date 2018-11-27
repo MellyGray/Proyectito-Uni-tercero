@@ -10,10 +10,11 @@ class FDP : public Resource
 private:
     string idstudent;
     string nametutor; //Nuevo parametro, añadir a todo
+
 public:
     //Constructors
     FDP();
-    FDP(string _name, string _status, string _ID, string _idstudent, string _nametutor);
+    FDP(string _name, string _status, string _ID, string _idstudent,string _nametutor):Resource (_name,_status,_ID){idstudent=_idstudent;nametutor=_nametutor;}
     ~FDP();
     //Get and set of the student SIN
     string Getidstudent(){return(idstudent);}
@@ -34,12 +35,14 @@ public:
     FDP *readTxt(ifstream &);
 
     FDP *readTxtList(ifstream &);
+
     //Modify the attributes of the fdp
     void ModifyResource();
 
     void searchinlist(string _id);
 
     bool checking();//Checks if it is posible to enroll in resource
+
 
 };
 

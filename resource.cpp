@@ -10,19 +10,20 @@ Resource::Resource()
     ID="";
     num_users=0;
     lirray=NULL;
-};
-Resource::Resource(string _ID, int _num_users)
-{
-    ID=_ID;
-    num_users=_num_users;
-    lirray=new string [num_users];
-};
+}
 Resource::Resource(string _name, string _status, string _ID)
 {
     name=_name;
     status=_status;
     ID=_ID;
-};
+}
+Resource::Resource(string _name, int _num_users)
+{
+    name=_name;
+    num_users=_num_users;
+    lirray=new string[num_users];
+}
+
 
 Resource::~Resource(){}
 
@@ -69,3 +70,4 @@ void Resource::DeleteUserinResource(string _id){
         cout<<"We are in program update, SERVER DOWN, try later"<<endl;
     }
 }
+

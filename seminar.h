@@ -14,8 +14,8 @@ private:
 public:
     //Constructors
     Seminar();
-    Seminar(string _name, string _status, string _ID,int _maxSeats):Resource (_name,_status,_ID){maxSeats=_maxSeats;}//Separar maxseats de constructor de info
-    Seminar(string _name, int _num_users):Resource ( _name,_num_users){}
+    Seminar(string _name, string _status, string _ID, int _maxSeats):Resource (_name,_status,_ID) {maxSeats=_maxSeats;}
+    Seminar(string _name, int _num_users,int _maxSeats):Resource ( _name,_num_users){maxSeats=_maxSeats;}
     ~Seminar();
     //Getters and setters
     int GetmaxSeats(){return(maxSeats);}

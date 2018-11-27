@@ -3,24 +3,49 @@
 using namespace std;
 
 Student::Student() : User(){
-    list= new Listares;
 }
 
 Student::~Student(){
 
 }
+
 string Student::toString(){
     stringstream s;
     s<< "Name____________"<<name<<endl;
-    s<< "SIN_____________"<<IDCode<<endl;
+    s<< "SIN______________"<<IDCode<<endl;
     return s.str();
-}
+};
 void Student::datasaving( ofstream &write){
-   write<<name<<"\n";
+    write<<password<<"\n";
    write<<IDCode<<"\n";
+   write<<name<<"\n";
+
+
+};
+Student *Student::readTxt(ifstream &read){
+    string _name, _IDCode,_password;
+    read>>_password;
+    read>>_IDCode;
+    read>>_name;
+    return (new Student(_IDCode, _password,_name));
+};
+
+void Student::ModifyUser(){
+    cout<<"Please, enter the new name for the student: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new SIN for the student: ";
+    cin>>IDCode;
+    cout<<"\n";
 }
-void Student::menu(){
-int op;
+
+int Student::UserMenu(){
+    list->chargeresourcelist();//Charge the list from the txt
+    MainMenu();
+    list->keepsourcelist();//Save the changes on the text
+}
+void Student::MainMenu(){
+int op=1;
 string give;
 cout<<name<< "Welcome to your account"<<endl;
 do{
@@ -30,7 +55,7 @@ do{
         cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
         cout<<" Only numerical values"<<endl;
     };
-    if (op!=0&&op!=1&&op!=2){
+    if (op!=0&&op!=1&&op!=3){
         cout<<"Select a possible option"<<endl;
         cout<<"\n";
     };
@@ -43,27 +68,15 @@ do{
     cin>>op;
 
     switch (op){
-    case 0: list->UserOnList(IDCode);//toStringCourses();        meter el comparador dentro de la nueva listares
+    case 0:
+
+        list->UserOnList(IDCode);//toStringCourses();        meter el comparador dentro de la nueva listares
             break;
     case 1:list->PrintResourcesOnList();
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode);
             break;
-    case 2://Quitarse de la lista
     };
-   }while(op!=2);
+   }while(op!=3);
 };
-
-
-void Student::studentate(){
-    list->chargeresourcelist();//Charge the list from the txt
-    menu();
-    list->keepsourcelist();//Save the changes on the text
-}
-
-
-
-
-
-
