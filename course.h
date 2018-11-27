@@ -15,6 +15,7 @@ public:
     //Constructors
     Course();
     Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id);
+    Course(string _name,int _num_users):Resource( _name, _num_users){}
     ~Course();
     //Getters & setters
     int Getcredits(){return(credits);}
@@ -27,14 +28,27 @@ public:
     //To print the atributes of the resource
     string toString();
 
+    string toStringList();
+
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
+
+    void datasavinglist( ofstream &);
+
 
     //To read the data on a text file that corresponds to one resource
     Course *readTxt(ifstream &);
 
+    Course *readTXTList(ifstream &);
+
     //Modify the attributes of the course
     void ModifyResource();
+
+    //CHecks if in the list is the name of a user and if it is print the name of the course
+    void searchinlist(string _id);
+
+   //Checks if it is posible to enroll
+    bool checking();
 };
 
 #endif // COURSE_H

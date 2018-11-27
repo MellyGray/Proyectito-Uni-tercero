@@ -40,7 +40,43 @@ void Student::ModifyUser(){
 }
 
 int Student::UserMenu(){
-    system("cls");
-    cout<<"------------------WELCOME "<<name<<" --------------------"<<endl;
-    return 0;
+    list->chargeresourcelist();//Charge the list from the txt
+    MainMenu();
+    list->keepsourcelist();//Save the changes on the text
 }
+void Student::MainMenu(){
+int op=1;
+string give;
+cout<<name<< "Welcome to your account"<<endl;
+do{
+    system ("cls");
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
+        cout<<" Only numerical values"<<endl;
+    };
+    if (op!=0&&op!=1&&op!=3){
+        cout<<"Select a possible option"<<endl;
+        cout<<"\n";
+    };
+    cout<<"--------STUDENT FUNCIONALITIES---------"<<endl;
+    cout<<"0)Show Seminars,FDP or cursed enrrolled"<<endl;
+    cout<<"1)Enroll course,seminar,fdp"<<endl;
+    cout<<"2) Drop a course"<<endl;
+    cout<<"3) Log out"<<endl;
+    cout<<endl<<"Type the number of the option"<<endl;
+    cin>>op;
+
+    switch (op){
+    case 0:
+        list->UserOnList(IDCode);//toStringCourses();        meter el comparador dentro de la nueva listares
+        system("pause");
+            break;
+    case 1:list->PrintResourcesOnList();
+        cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
+        cin>>give;
+        list->EnrollResource(give,IDCode);
+            break;
+    };
+   }while(op!=3);
+};

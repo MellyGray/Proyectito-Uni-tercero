@@ -156,7 +156,7 @@ int Administrator::MenuUsers(){
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor;
     int _credits,op=1,_maxSeats;
     Resource *res;
     do{
@@ -213,10 +213,12 @@ void Administrator::CreateResource(){
             cin>>_ID;
             cout<<"Type the student SIN: ";
             cin>>_idstudent;
+            cout<<"Type the name of the tutor: ";
+            cin>>_nametutor;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp())+1);
-                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent),position);
+                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent,_nametutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
                 system("pause");
             }else{

@@ -28,7 +28,18 @@ string Course::toString(){
     s<< "Professor 1 ID__"<<professor1id<<endl;
     s<< "Professor 2 ID__"<<professor2id<<endl;
     return s.str();
-};
+}
+
+string Course::toStringList(){
+    stringstream s;
+    s<<"Name-------------------"<<name<<endl;
+    s<<"Number of students----"<<num_users<<endl;
+    s<<"List of students:"<<endl;
+    for(int i=0; i<num_users; i++){
+        s<<lirray[i]<<endl;
+    };
+    return s.str();
+}
 void Course::datasaving( ofstream &write){
     write<<professor2id<<"\n";
     write<<professor1id<<"\n";
@@ -38,7 +49,16 @@ void Course::datasaving( ofstream &write){
    write<<name<<"\n";
 
 
-};
+}
+
+void Course::datasavinglist(ofstream &writel){
+    writel<<name<<"\n";
+    writel<<num_users<<"\n";
+    for(int i=num_users-1;i>=0;i--){
+        writel<<lirray[i]<<"\n";
+    };
+}
+
 Course *Course::readTxt(ifstream &read){
     string _name, _status,_ID,_professor1id,_professor2id;
     int _credits;
@@ -49,7 +69,19 @@ Course *Course::readTxt(ifstream &read){
     read>>_status;
     read>>_name;
     return (new Course(_name, _status,_ID,_credits,_professor1id,_professor2id));
-};
+}
+Course *Course::readTXTList(ifstream &read){
+    string _name, _array;
+    int _num_users,i;
+    read>>_name;
+    read>>_num_users;//NECESARIA UNA CONDICION PARA CUANDO NUM USER SEA 0, LO MIMSO EN SEMINAR
+    Course *d1=new Course(_name, _num_users);
+    i=_num_users-1;
+    for(i=_num_users-1;i>=0;i--){
+        read>>d1->lirray[i];
+        };
+    return (d1);
+}
 
 void Course::ModifyResource(){
     cout<<"Please, enter the new name for the course: ";
@@ -70,4 +102,15 @@ void Course::ModifyResource(){
     cout<<"Please, enter the new proffesor 2 for the course: ";
     cin>>professor2id;
     cout<<"\n";
+}
+void Course::searchinlist(string _id){
+    int i=num_users-1;
+    for(int k=0; k<=i;k++){
+        if (lirray[k]==_id){
+            cout<<name<<endl;
+        }
+    }
+}
+bool Course::checking(){
+    return true;
 }

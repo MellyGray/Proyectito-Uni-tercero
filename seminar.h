@@ -15,6 +15,7 @@ public:
     //Constructors
     Seminar();
     Seminar(string _name, string _status, string _ID, int _maxSeats):Resource (_name,_status,_ID) {maxSeats=_maxSeats;}
+    Seminar(string _name, int _num_users,int _maxSeats):Resource ( _name,_num_users){maxSeats=_maxSeats;}
     ~Seminar();
     //Getters and setters
     int GetmaxSeats(){return(maxSeats);}
@@ -27,14 +28,25 @@ public:
     //To print the atributes of the resource
     string toString();
 
+    //To print atributes list
+    string toStringList();
+
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
+
+    void datasavinglist( ofstream &);
 
     //To read the data on a text file that corresponds to one resource
     Seminar *readTxt(ifstream &);
 
+    Seminar *readTXTlist(ifstream &);//Para lista
+
     //Modify the attributes of the seminar
     void ModifyResource();
+
+    void searchinlist(string _id);
+
+    bool checking();//Cheack if it is posible to enroll in seminar
 
 };
 
