@@ -34,4 +34,5 @@ HEADERS += \
     date.h \
     lecture.h \
     listares.h \
-    nodores.h
+    nodores.h \
+    header.h

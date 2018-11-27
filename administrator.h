@@ -1,7 +1,7 @@
 #ifndef ADMINISTRATOR_H
 #define ADMINISTRATOR_H
 #include "user.h"
-#include <iostream>
+#include <iostream>//NO hace falta creo, esta en user.h
 #include "listares.h"
 #include <cstdlib> //To clean console
 using namespace std;
@@ -31,17 +31,7 @@ public:
     //Menu function to modify an existing resource
     void ModifyResource();
 
-    //To print the atributes of the administrator
-    string toString();
 
-    //To save the atributes of the administrator on a text file
-    void datasaving( ofstream &);
-
-    //To read the data on a text file that corresponds to one administrator
-    Administrator *readTxt(ifstream &);
-
-    //Modify the attributes of the administrator
-    void ModifyUser();
 };
 
 

@@ -42,11 +42,11 @@ int Administrator::menu(){
             break;
         }
     }while(op!=4);
-    return op;
+    return op;//Por que returna un integer, de que sirve con el case?
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor;
     int _credits,op=1,_maxSeats;
     Resource *res;
     do{
@@ -103,10 +103,12 @@ void Administrator::CreateResource(){
             cin>>_ID;
             cout<<"Type the student SIN: ";
             cin>>_idstudent;
+            cout<<"Type the Tutor name: ";
+            cin>>_nametutor;
             res=list->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 int position=((list->GetNum_cour()+list->GetNum_fdp())+1);
-                list->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent),position);
+                list->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent,_nametutor),position);
                 list->SetNum_fdp((list->GetNum_fdp()+1));
                 system("pause");
             }else{
