@@ -1,4 +1,4 @@
-1
+2
 2
 1
 150
@@ -9,14 +9,17 @@ Seminar1
 sdj9348
 created
 Seminar2
+Lila
 Sergio
 asd0493
 in_progress
 FDP1
+Chachinano
 Julio
 ssl1234
 created
 FDP2
+MarioNoEntranCatenarias
 Elena
 sdj0090
 created
@@ -33,3 +36,9 @@ Pepito
 sjd0029
 created
 Course2
+Juana
+Maria
+6
+sdf9458
+created
+Course3
