@@ -6,3 +6,8 @@ VirtualCampus::VirtualCampus()
 {
 
 }
+
+VirtualCampus::~VirtualCampus()
+{
+
+}

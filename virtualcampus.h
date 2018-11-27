@@ -1,9 +1,14 @@
 #ifndef VIRTUALCAMPUS_H
 #define VIRTUALCAMPUS_H
-#include "resource.h"
-#include "listofresources.h"
-#include "listofusers.h"
-#include "user.h"
+
+#include "course.h"
+#include "fdp.h"
+#include "seminar.h"
+#include "student.h"
+#include "professor.h"
+#include "administrator.h"
+#include "degree.h"
+#include "lecture.h"
 #include <iostream>
 using namespace std;
 
@@ -11,13 +16,11 @@ using namespace std;
 class VirtualCampus
 {
 private:
-    ListOfResources * LR;
-    ListOfUsers * LU;
+
 public:
     VirtualCampus();
-    VirtualCampus(ListOfResources *_LR, ListOfUsers *_LU);
     ~VirtualCampus();
-    void start();
+    //void start();
 };
 
 #endif // VIRTUALCAMPUS_H

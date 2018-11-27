@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Professor::Professor()
-{
-
+Professor::Professor():User(){
 }
+Professor::~Professor(){}
+

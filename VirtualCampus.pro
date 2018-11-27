@@ -14,20 +14,11 @@ SOURCES += \
     student.cpp \
     professor.cpp \
     administrator.cpp \
-    list.cpp \
-    listofstudents.cpp \
     degree.cpp \
-    listofmarks.cpp \
-    listofcourses.cpp \
-    listofseminars.cpp \
     date.cpp \
     lecture.cpp \
-    listofresources.cpp \
-    listofusers.cpp \
-    listoffdps.cpp \
-    listoflectures.cpp \
-    nodores.cpp \
-    listares.cpp
+    listares.cpp \
+    nodores.cpp
 
 HEADERS += \
     virtualcampus.h \
@@ -39,17 +30,8 @@ HEADERS += \
     student.h \
     professor.h \
     administrator.h \
-    list.h \
-    listofstudents.h \
     degree.h \
-    listofmarks.h \
-    listofcourses.h \
-    listofseminars.h \
     date.h \
     lecture.h \
-    listofresources.h \
-    listofusers.h \
-    listoffdps.h \
-    listoflectures.h \
-    nodores.h \
-    listares.h
+    listares.h \
+    nodores.h

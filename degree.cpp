@@ -2,15 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//Degree::Degree()
-//{
-
-//}
-Degree::Degree(/*ListOfCourses *_course, ListOfFDPs *_fdp, ListOfSeminars *_seminars, ListOfIds *_studentsids*/)
+Degree::Degree(string _name)
 {
-    //*course=*_course;
-    //*fdp=*_fdp;
-    //*seminars=*_seminars;
-    //*studentsids=*_studentsids;
-};
-Degree::~Degree(){};
+name=_name;
+}

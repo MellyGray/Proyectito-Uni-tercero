@@ -5,8 +5,8 @@ Nodores::Nodores()
 {
 
 };
-Nodores::Nodores(Resource *_res, Nodores *_next){
-    res=_res;
+Nodores::Nodores(Resource *_resource, Nodores *_next){
+    resource=_resource;
     next=_next;
 };
 Nodores::~Nodores(){
@@ -22,8 +22,8 @@ Nodores *Nodores::Getnext(){
 };
 
 Resource *Nodores::Getresource(){
-return res;
+return resource;
 };
-void Nodores::setrest(Resource *_res){
-    res=_res;
+void Nodores::SetResource(Resource *_resource){
+    resource=_resource;
 };

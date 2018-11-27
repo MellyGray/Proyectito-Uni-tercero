@@ -6,28 +6,49 @@ Seminar::Seminar()
     status="";
     ID="";
     maxSeats=0;
-    //date=_date; Como se haría?
-};
-Seminar::Seminar(string _name, string _status, string _ID, /*ListOFIds *_tutors,*/ int _maxSeats, Date *_date,/* ListOfIdS * _listofidstudents*/)
-{
-    name=_name;
-    status=_status;
-    ID=_ID;
-   // *tutors=*_tutors;
-    maxSeats=_maxSeats;
-    date=_date;
-    //*listofidstudents=*_listofidstudents;
 };
 Seminar::~Seminar(){};
-int Seminar::GetmaxSEats(){
-    return(maxSeats);
+
+void Seminar::DisplayDate(){
+    date->DisplayDate();
+}
+string Seminar::toString(){
+    stringstream s;
+    s<< "Name__________________"<<name<<endl;
+    s<< "Status________________"<< status<<endl;
+    s<< "ID____________________"<<ID<<endl;
+    s<< "Maximum seats_________"<<maxSeats<<endl;
+    return s.str();
 };
-Date Seminar::Getdate(){
-    return(*date);
+void Seminar::datasaving( ofstream &write){
+    write<<maxSeats<<"\n";
+   write<<ID<<"\n";
+   write<<status<<"\n";
+   write<<name<<"\n";
+
+
 };
-void Seminar::Setdate(Date *_date){
-    *date=*_date;
+Seminar *Seminar::readTxt(ifstream &read){
+    string _name, _status,_ID;
+    int _maxSeats;
+    read>>_maxSeats;
+    read>>_ID;
+    read>>_status;
+    read>>_name;
+    return (new Seminar(_name, _status,_ID,_maxSeats));
 };
-void Seminar::SetmaxSeats(int _maxSeats){
-    maxSeats=_maxSeats;
-};
+void Seminar::ModifyResource(){
+    cout<<"Please, enter the new name for the seminar: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new status for the seminar: ";
+    cin>>status;
+    cout<<"\n";
+    cout<<"Please, enter the new ID for the seminar: ";
+    cin>>ID;
+    cout<<"\n";
+    cout<<"Please, enter the new maximum number of seats for the seminar: ";
+    cin>>maxSeats;
+    cout<<"\n";
+
+}

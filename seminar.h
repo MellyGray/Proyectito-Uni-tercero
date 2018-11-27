@@ -1,28 +1,41 @@
 #ifndef SEMINAR_H
 #define SEMINAR_H
 #include "resource.h"
-#include "professor.h"
 #include "date.h"
-#include "listofstudents.h"
 #include <iostream>
 using namespace std;
 
 class Seminar : public Resource
 {
 private:
-    //ListOFIds *tutors;
     int maxSeats;
     Date *date;
-    //ListOfIdS* listofidstudents;
 
 public:
+    //Constructors
     Seminar();
-    Seminar(string _name, string _status, string _ID,/* ListOFIds * _tutors,*/ int _maxSeats,Date *_date/*, ListOfIdS * _listofidstudents*/);
+    Seminar(string _name, string _status, string _ID, int _maxSeats):Resource (_name,_status,_ID) {maxSeats=_maxSeats;}
     ~Seminar();
-    int GetmaxSEats();
-    void SetmaxSeats(int _maxSeats);
-    Date Getdate();
-    void Setdate(Date *_date);
+    //Getters and setters
+    int GetmaxSeats(){return(maxSeats);}
+    void SetmaxSeats(int _maxSeats){maxSeats=_maxSeats;}
+    Date Getdate(){return(*date);}
+    void Setdate(Date *_date){date=_date;}
+
+    //To display the date all together
+    void DisplayDate();
+    //To print the atributes of the resource
+    string toString();
+
+    //To save the atributes of the resource on a text file
+    void datasaving( ofstream &);
+
+    //To read the data on a text file that corresponds to one resource
+    Seminar *readTxt(ifstream &);
+
+    //Modify the attributes of the seminar
+    void ModifyResource();
+
 };
 
 #endif // SEMINAR_H

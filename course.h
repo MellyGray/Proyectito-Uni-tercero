@@ -1,43 +1,40 @@
 #ifndef COURSE_H
 #define COURSE_H
 #include "resource.h"
-#include "professor.h"
-#include "lecture.h"
-#include "listofstudents.h"
-#include "listofmarks.h"
 #include <iostream>
-#include <string>
-#include <sstream>
 using namespace std;
 
 class Course : public Resource
 {
 private:
     int credits;
-    string profesorid;  //relation between objects with no objects
-    string profesor2id;
-    //ListOfLectures *ll; //List of objects
-   // ListOfIDs *listofidstudents;///MIrar si se hace con clases o simples listas
-   // ListOfMarks *listofmarks;
-
+    string professor1id;
+    string professor2id;
 
 public:
+    //Constructors
     Course();
-    Course(string _name, string _status, string _ID,int _credits,string _profesorid,string _profesor2id /*,ListOfLectures *_ll,ListOfIds *_listofidstudents,ListOfMarks *_listofmarks*/);
-//Basic parameters to create a course. Can be completed between object interactions
+    Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id);
     ~Course();
-    int Getcredits();
-    void Setcredits(int _creedits);
-    string Getprofesorid();
-    void Setprofesorid(string _profesorid);
-    string Getprofesorid2();
-    void Setprofesorid2(string _profesorid2);
-    //ListOfLectures Getll();
-    //void Setll(ListOfLectures *_ll);
-    //ListOfIDs Getlistofidstudents();
-    //void Setlistofidstudents(ListOfIDs *_listofidstudents);
-    //ListOfMarks Getlistofmarks();
-    //void Setlistofmarks(ListOfMarks *_listofmarks);
+    //Getters & setters
+    int Getcredits(){return(credits);}
+    void Setcredits(int _credits){credits=_credits;}
+    string Getprofessor1id(){return(professor1id); }
+    void Setprofessor1id(string _professor1id){professor1id=_professor1id;}
+    string Getprofessor2id(){return(professor2id);}
+    void Setprofessor2id(string _professor2id){professor2id=_professor2id;}
+
+    //To print the atributes of the resource
+    string toString();
+
+    //To save the atributes of the resource on a text file
+    void datasaving( ofstream &);
+
+    //To read the data on a text file that corresponds to one resource
+    Course *readTxt(ifstream &);
+
+    //Modify the attributes of the course
+    void ModifyResource();
 };
 
 #endif // COURSE_H

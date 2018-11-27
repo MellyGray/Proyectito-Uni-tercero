@@ -16,16 +16,24 @@ class Resource
 public:
     Resource();
     Resource(string _name, string _status, string _ID);
-    ~Resource();
-   string GetName();
-   void SetName(string _name);
-   string Getstatus();
-   void SetStatus(string _status);
-   string GetID();
-   void SetID(string _ID);
-   string toString();
-   void datasaving( ofstream &);
-   Resource *readTxt(istream &);
+   virtual ~Resource();
+    //Getters & Setters
+   string GetName(){ return (name);}
+   void SetName(string _name){name=_name;}
+   string Getstatus(){return(status);}
+   void SetStatus(string _status){status=_status;}
+   string GetID(){return (ID);}
+   void SetID(string _ID){ID=_ID;}
+
+
+   //To print the atributes of the resource
+   virtual string toString()=0;
+
+   //To save the atributes of the resource on a text file
+   virtual void datasaving( ofstream &)=0;
+   //Modify the attributes of the resource
+   virtual void ModifyResource()=0;
+
 };
 
 #endif // RESOURCE_H

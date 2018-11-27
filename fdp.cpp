@@ -9,18 +9,42 @@ FDP::FDP()
     ID="_ID";
     idstudent="_idstudent";
 };
-FDP::FDP(string _name, string _status, string _ID, string _idstudent /*ListOFIds *_listofidprofessors /*ReadTxtString *_work(future upgrade)*/)
-{
-    name=_name;
-    status=_status;
-    ID=_ID;
-    idstudent=_idstudent;
-    //*listofidprofessors=*_listofidprofessors;
-};
 FDP::~FDP(){};
-string FDP::Getidstudent(){
-    return(idstudent);
+string FDP::toString(){
+    stringstream s;
+    s<< "Name____________"<<name<<endl;
+    s<< "Status__________"<< status<<endl;
+    s<< "ID______________"<<ID<<endl;
+    s<< "Student_________"<<idstudent<<endl;
+    return s.str();
 };
-void FDP::Setidstudent(string _idstudent){
-    idstudent=_idstudent;
+void FDP::datasaving( ofstream &write){
+    write<<idstudent<<"\n";
+   write<<ID<<"\n";
+   write<<status<<"\n";
+   write<<name<<"\n";
+
+
 };
+FDP *FDP::readTxt(ifstream &read){
+    string _name, _status,_ID,_idstudent;
+    read>>_idstudent;
+    read>>_ID;
+    read>>_status;
+    read>>_name;
+    return (new FDP(_name, _status,_ID,_idstudent));
+};
+void FDP::ModifyResource(){
+    cout<<"Please, enter the new name for the FDP: ";
+    cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new status for the FDP: ";
+    cin>>status;
+    cout<<"\n";
+    cout<<"Please, enter the new ID for the FDP: ";
+    cin>>ID;
+    cout<<"\n";
+    cout<<"Please, enter the new student for the FDP: ";
+    cin>>idstudent;
+    cout<<"\n";
+}
