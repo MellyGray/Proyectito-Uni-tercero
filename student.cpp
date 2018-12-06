@@ -40,9 +40,9 @@ void Student::ModifyUser(){
 }
 
 int Student::UserMenu(){
-    list->chargeresourcelist();//Charge the list from the txt
+    list->chargeresource();//Charge the list from the txt
     MainMenu();
-    list->keepsourcelist();//Save the changes on the text
+    list->keepresource();//Save the changes on the text
 }
 void Student::MainMenu(){
 int op=1;

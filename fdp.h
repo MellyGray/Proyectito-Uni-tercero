@@ -14,7 +14,7 @@ private:
 public:
     //Constructors
     FDP();
-    FDP(string _name, string _status, string _ID, string _idstudent,string _nametutor):Resource (_name,_status,_ID){idstudent=_idstudent;nametutor=_nametutor;}
+    FDP(string _name, string _status, string _ID,int _num_users, string _idstudent,string _nametutor):Resource (_name,_status,_ID,_num_users){idstudent=_idstudent;nametutor=_nametutor;}
     ~FDP();
     //Get and set of the student SIN
     string Getidstudent(){return(idstudent);}
@@ -28,13 +28,9 @@ public:
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
-    void datasavinglist( ofstream &);
-
 
     //To read the data on a text file that corresponds to one resource
     FDP *readTxt(ifstream &);
-
-    FDP *readTxtList(ifstream &);
 
     //Modify the attributes of the fdp
     void ModifyResource();

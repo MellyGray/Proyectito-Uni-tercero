@@ -38,40 +38,28 @@ void Seminar::datasaving( ofstream &write){
    write<<ID<<"\n";
    write<<status<<"\n";
    write<<name<<"\n";
-
-
-}
-void Seminar::datasavinglist(ofstream &writel){
-    writel<<name<<"\n";
-    writel<<num_users<<"\n";
-    writel<<maxSeats<<"\n";
+    write<<num_users<<"\n";
     for(int i=num_users-1;i>=0;i--){
-        writel<<lirray[i]<<"\n";
+        write<<lirray[i]<<"\n";
     };
+
+
 }
+
 Seminar *Seminar::readTxt(ifstream &read){
     string _name, _status,_ID,_SpeakerID;
-    int _maxSeats;
+    int _maxSeats,_num_users,i;
     read>>_SpeakerID;
     read>>_maxSeats;
     read>>_ID;
     read>>_status;
     read>>_name;
-    return (new Seminar(_name, _status,_ID,_maxSeats,_SpeakerID));
-}
-Seminar *Seminar::readTXTlist(ifstream &readl){//tiene que leer de al reves que en RESOURCESTXT
-    string _name;
-    int _num_users,i,_maxSeats;
-
-    readl>>_name;
-    readl>>_num_users;
-    readl>>_maxSeats;
-    //string *array=new a[_num_users];OTRA OPCION QUE NECESITA CONSTRUCTOR DIFRENTE CON ARRAY DINAMICO DE PARAMETRIZACIÓN
-    Seminar *d1=new Seminar(_name,_num_users,_maxSeats);
-    for(i=0;i<_num_users;i++){
-        readl>>d1->lirray[i];
-    };
-    return d1;
+    read>>_num_users;
+    Seminar *s1=new Seminar(_name, _status,_ID,_num_users,_maxSeats,_SpeakerID);
+            for(i=0;i<_num_users;i++){
+                read>>s1->lirray[i];
+            };
+    return (s1);
 }
 void Seminar::ModifyResource(){
     cout<<"Please, enter the new name for the seminar: ";
@@ -93,13 +81,13 @@ void Seminar::ModifyResource(){
 }
 
 void Seminar::searchinlist(string _id){
-    if(num_users!=0){
+
     int i=num_users-1;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
             cout<<name<<endl;
         }
-    }}
+    }
     if(SpeakerID==_id){
         cout<<name<<endl;
         cout<<ID<<endl;

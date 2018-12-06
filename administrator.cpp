@@ -157,7 +157,7 @@ int Administrator::MenuUsers(){
 
 void Administrator::CreateResource(){
     string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID;
-    int _credits,op=1,_maxSeats;
+    int _credits,op=1,_maxSeats,_num_users=0;
     Resource *res;
     do{
         system("cls");
@@ -194,7 +194,7 @@ void Administrator::CreateResource(){
             cin>>_professor2id;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                listres->InsertNodeSelPosition(new Course(_name,_status,_ID,_credits,_professor1id,_professor2id),listres->GetNum_cour());
+                listres->InsertNodeSelPosition(new Course(_name,_status,_ID,_num_users,_credits,_professor1id,_professor2id),listres->GetNum_cour());
                 listres->SetNum_cour((listres->GetNum_cour()+1));
                  system("pause");
 
@@ -218,7 +218,7 @@ void Administrator::CreateResource(){
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp())+1);
-                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent,_nametutor),position);
+                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
                 system("pause");
             }else{
@@ -241,7 +241,7 @@ void Administrator::CreateResource(){
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp()+listres->GetNum_sem())+2);
-                listres->InsertNodeSelPosition(new Seminar(_name,_status,_ID,_maxSeats,_SpeakerID),position);//Adds the resource to the list
+                listres->InsertNodeSelPosition(new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID),position);//Adds the resource to the list
                 listres->SetNum_sem((listres->GetNum_sem()+1));
                 system("pause");
             }else{

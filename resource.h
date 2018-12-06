@@ -17,8 +17,7 @@ class Resource
 
 public:
     Resource();
-    Resource(string _name, string _status, string _ID);
-    Resource(string _name, int _num_users);
+    Resource(string _name, string _status, string _ID, int _num_users);
    virtual ~Resource();
     //Getters & Setters
    string GetName(){ return (name);}
@@ -51,8 +50,6 @@ public:
    //To save the atributes of the resource on a text file
    virtual void datasaving( ofstream &)=0;
 
-   //To save atributes of list
-    virtual void datasavinglist( ofstream &)=0;
 
    //Modify the attributes of the resource
    virtual void ModifyResource()=0;

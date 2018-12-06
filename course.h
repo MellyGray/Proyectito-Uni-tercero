@@ -14,8 +14,7 @@ private:
 public:
     //Constructors
     Course();
-    Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id);
-    Course(string _name,int _num_users):Resource( _name, _num_users){}
+    Course(string _name, string _status, string _ID, int _num_users,int _credits,string _professor1id,string _professor2id);
     ~Course();
     //Getters & setters
     int Getcredits(){return(credits);}
@@ -33,13 +32,13 @@ public:
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
-    void datasavinglist( ofstream &);
+
 
 
     //To read the data on a text file that corresponds to one resource
     Course *readTxt(ifstream &);
 
-    Course *readTXTList(ifstream &);
+
 
     //Modify the attributes of the course
     void ModifyResource();

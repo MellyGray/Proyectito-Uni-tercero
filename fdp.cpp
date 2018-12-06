@@ -37,35 +37,16 @@ void FDP::datasaving( ofstream &write){
 
 
 }
-void FDP::datasavinglist( ofstream &writel){//Arreglo por virtual resource se puede arreglar 3 milestone
-    writel<<name<<"\n";
-    writel<<status<<"\n";
-    writel<<ID<<"\n";
-    writel<<idstudent<<"\n";
-   writel<<nametutor<<"\n";
 
-
-
-
-};
 FDP *FDP::readTxt(ifstream &read){
     string _name, _status,_ID,_idstudent,_nametutor;
+    int _num_users=0;
     read>>_nametutor;
     read>>_idstudent;
     read>>_ID;
     read>>_status;
     read>>_name;
-    return (new FDP(_name, _status,_ID,_idstudent,_nametutor));
-}
-FDP *FDP::readTxtList(ifstream &readl){
-    string _name, _status,_ID,_idstudent,_nametutor;
-    readl>>_name;
-    readl>>_status;
-    readl>>_ID;
-    readl>>_idstudent;
-    readl>>_nametutor;
-
-    return (new FDP(_name, _status,_ID,_idstudent,_nametutor));
+    return (new FDP(_name, _status,_ID,_num_users,_idstudent,_nametutor));
 }
 
 void FDP::ModifyResource(){

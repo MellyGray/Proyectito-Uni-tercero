@@ -73,40 +73,6 @@ void Listares::keepresource(){
     }
     write.close();
 }
-void Listares::keepsourcelist(){
-    Nodores *get=actual, *aux=actual;
-    int position_sem=((num_cour+num_fdp)+2);
-    Resource *res;
-    ofstream writel("Resourcelist.txt", ios::out);
-    writel<<num_cour<<endl;
-    writel<<num_fdp<<endl;
-    writel<<num_sem<<endl;
-    for(int i=0;i<position_sem;i++){
-        get= get->Getnext();
-}
-    for(int j=0;j<(num_sem+1);j++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-}
-    get=aux;
-    for(int k=0;k<(num_cour+1);k++){
-        get= get->Getnext();
-}
-    for(int l=0;l<(num_fdp+1);l++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-    }
-    get=aux;
-    for(int h=0;h<(num_cour+1);h++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-    }
-    writel.close();
-
-}
 void Listares::chargeresource(){
     ifstream read("Resources.txt", ios::in);
     Course cour;
@@ -142,39 +108,6 @@ void Listares::chargeresource(){
         selectresource(res);
 
     read.close();
-}
-void Listares::chargeresourcelist(){
-    ifstream readl("Resourcelist.txt", ios::in);
-    Seminar sem_aux;
-    Course cou_aux;
-    FDP fdp_aux;
-    Resource *res;
-    readl>>num_cour;
-    readl>>num_fdp;
-    readl>>num_sem;
-    res=&sem_aux;
-    res=sem_aux.readTXTlist(readl);
-    for (int k=0; k<num_sem;k++){
-        selectresource(res);
-        res=sem_aux.readTXTlist(readl);
-    };
-     selectresource(res);
-    res=&fdp_aux;
-    res=fdp_aux.readTxtList(readl);
-    for (int l=0; l<num_fdp; l++){
-        selectresource(res);
-        res=fdp_aux.readTxtList(readl);
-    };
-     selectresource(res);
-    res=&cou_aux;//Set type of memory
-    res=cou_aux.readTXTList(readl);
-    for (int i=0;i<num_cour;i++){
-                    selectresource(res);
-                    res=cou_aux.readTXTList(readl);
-               }
-        selectresource(res);
-
-    readl.close();
 }
 void Listares::PrintResourcesOnList(){//Printea los nombres de los resources en la lista
     Resource *aux;

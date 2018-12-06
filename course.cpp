@@ -4,12 +4,11 @@ using namespace std;
 
 Course::Course(){}
 
-Course::Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id):Resource (_name,_status,_ID)
+Course::Course(string _name, string _status, string _ID,int _num_users, int _credits,string _professor1id,string _professor2id):Resource (_name,_status,_ID,_num_users)
 {
     credits=_credits;
     professor1id=_professor1id;
     professor2id=_professor2id;
-    num_users=0;
 };
 
 Course::~Course()
@@ -42,46 +41,37 @@ string Course::toStringList(){
     return s.str();
 }
 void Course::datasaving( ofstream &write){
+
     write<<professor2id<<"\n";
     write<<professor1id<<"\n";
     write<<credits<<"\n";
    write<<ID<<"\n";
    write<<status<<"\n";
    write<<name<<"\n";
+    write<<num_users<<"\n";
+   for(int i=num_users-1;i>=0;i--){
+       write<<lirray[i]<<"\n";
+   }
 
 
-}
-
-void Course::datasavinglist(ofstream &writel){
-    writel<<name<<"\n";
-    writel<<num_users<<"\n";
-    for(int i=num_users-1;i>=0;i--){
-        writel<<lirray[i]<<"\n";
-    };
 }
 
 Course *Course::readTxt(ifstream &read){
     string _name, _status,_ID,_professor1id,_professor2id;
-    int _credits;
+    int _credits,_num_users,i;
+
     read>>_professor2id;
     read>>_professor1id;
     read>>_credits;
     read>>_ID;
     read>>_status;
     read>>_name;
-    return (new Course(_name, _status,_ID,_credits,_professor1id,_professor2id));
-}
-Course *Course::readTXTList(ifstream &read){
-    string _name, _array;
-    int _num_users,i;
-    read>>_name;
-    read>>_num_users;//NECESARIA UNA CONDICION PARA CUANDO NUM USER SEA 0, LO MIMSO EN SEMINAR
-    Course *d1=new Course(_name, _num_users);
-    i=_num_users-1;
+    read>>_num_users;
+    Course *c1=new Course(_name, _status,_ID,_num_users,_credits,_professor1id,_professor2id);
     for(i=_num_users-1;i>=0;i--){
-        read>>d1->lirray[i];
+        read>>c1->lirray[i];
         };
-    return (d1);
+    return (c1);
 }
 
 void Course::ModifyResource(){
@@ -105,13 +95,13 @@ void Course::ModifyResource(){
     cout<<"\n";
 }
 void Course::searchinlist(string _id){
-    if(num_users!=0){
+
     int i=num_users-1;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
             cout<<name<<endl;
         }
-    }}
+    }
     if (professor1id==_id){
         cout<<name<<endl;
         cout<<ID<<endl;
