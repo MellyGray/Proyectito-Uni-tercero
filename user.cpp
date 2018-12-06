@@ -18,21 +18,4 @@ name=_name;
 User::~User(){
 
 }
-void User::SetIDCode(string _IDCode){
-    IDCode=_IDCode;
-}
-void User::SetPassword(string _password){
-    password=_password;
-}
-void User::SetName(string _name){
-    name=_name;
-}
-string User::GetIDCode(){
-    return (IDCode);
-}
-string User::GetPassword(){
-    return (password);
-}
-string User::GetName(){
-    return (name);
-}
+

@@ -19,13 +19,21 @@ public:
     //Method to display the list
     string toString();
     //Method to keep a resource on the text file
+    string toStringList();
+    //Method to keep a resource on the text file
     void keepresource();
     //Method to charge the resources on the text file
+    void keepsourcelist();
+    //Method to charge the resources on the text file
     void chargeresource();
+    //Method to search for a resource on a list, typing the ID
+    void chargeresourcelist();
     //Method to search for a resource on a list, typing the ID
     Resource *ResourcesOnList(string);
     //Method to delete an object from the list
     Resource *DeleteResource(string);
+    //Printea los resources en los que está el user
+    Resource *UserOnList(string);
     //Method to delete a node from the list
     void DeleteNodores(Nodores *,Nodores *);
     //Method to insert a new element to the list on a selected position
@@ -37,6 +45,11 @@ public:
     void SetNum_cour(int _num_cour){num_cour=_num_cour;}
     void SetNum_fdp(int _num_fdp){num_fdp=_num_fdp;}
     void SetNum_sem(int _num_sem){num_sem=_num_sem;}
+    //Printea todos los recursos de la lista de lis
+    void PrintResourcesOnList();
+    //Needed to enroll goes to the resource which u want to enter
+    Resource *EnrollResource(string _name, string _id);
+
 
 private:
     Nodores *actual;

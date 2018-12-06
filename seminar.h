@@ -10,27 +10,47 @@ class Seminar : public Resource
 private:
     int maxSeats;
     Date *date;
+    string SpeakerID;
 
 public:
     //Constructors
     Seminar();
-    Seminar(string _name, string _status, string _ID, int _maxSeats);
+    //NUEVO
+    Seminar(string _name, string _status, string _ID, int _maxSeats, string _SpeakerID):Resource (_name,_status,_ID) {maxSeats=_maxSeats;SpeakerID=_SpeakerID;num_users=0;}
+    Seminar(string _name, int _num_users,int _maxSeats):Resource ( _name,_num_users){maxSeats=_maxSeats;}
     ~Seminar();
     //Getters and setters
-    int GetmaxSeats();
-    void SetmaxSeats(int _maxSeats);
-    Date Getdate();
-    void Setdate(Date *_date);
+    int GetmaxSeats(){return(maxSeats);}
+    void SetmaxSeats(int _maxSeats){maxSeats=_maxSeats;}
+    Date Getdate(){return(*date);}
+    void Setdate(Date *_date){date=_date;}
+    string GetSpeaker(){return(SpeakerID);}
+    void SetSpeaker(string _SpeakerID){SpeakerID=_SpeakerID;}
+
     //To display the date all together
     void DisplayDate();
     //To print the atributes of the resource
     string toString();
 
+    //To print atributes list
+    string toStringList();
+
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
+    void datasavinglist( ofstream &);
+
     //To read the data on a text file that corresponds to one resource
     Seminar *readTxt(ifstream &);
+
+    Seminar *readTXTlist(ifstream &);//Para lista
+
+    //Modify the attributes of the seminar
+    void ModifyResource();
+
+    void searchinlist(string _id);
+
+    bool checking();//Cheack if it is posible to enroll in seminar
 
 };
 

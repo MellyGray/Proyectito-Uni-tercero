@@ -9,10 +9,9 @@ class Lecture
 private:
    string name;
    Date date;
-    //ReadTxtString *knowledge;(Future upgrades)
 public:
    Lecture();
-   Lecture(string _name, Date _date/*,ReadTxtString *_knowledge*/);
+   Lecture(string _name, Date _date);
       ~Lecture();
       void Setname(string _name);
       string Getname();
