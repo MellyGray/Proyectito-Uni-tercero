@@ -30,6 +30,7 @@ public:
 
    //Return element x on lirray
    string getlirrayvalue(int x);
+   void Setlirrayvalue(int x, string s);
 
    //Introduce Id en la lista
    void IntroduceUserinResource(string _id);

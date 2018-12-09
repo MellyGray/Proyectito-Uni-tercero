@@ -21,7 +21,9 @@ Resource::Resource(string _name, string _status, string _ID,int _num_users)
 }
 
 Resource::~Resource(){}
-
+void Resource::Setlirrayvalue(int x, string s){
+    lirray[x]=s;
+}
 string Resource::getlirrayvalue(int x){
     string s;
     lirray[x]=s;

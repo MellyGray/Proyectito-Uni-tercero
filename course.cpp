@@ -77,24 +77,33 @@ Course *Course::readTxt(ifstream &read){
 }
 
 void Course::ModifyResource(){
+    char b;
     cout<<"Please, enter the new name for the course: ";
     cin>>name;
     cout<<"\n";
-    cout<<"Please, enter the new status for the course: ";
-    cin>>status;
+    cout<<"Please, Select the new status for the course: "<<endl;
+    cout<<"1.-Created"<<endl;
+    cout<<"2.-In progress"<<endl;
+    cout<<"3.-Completed"<<endl;
+    cin>>b;
+    switch (b) {
+    case 1: status="created";
+        break;
+    case 2: status="in_progress";
+        break;
+    case 3: status="completed";
+        break;
+    }
     cout<<"Please, enter the new degree for the course: ";
     cin>>degree;
-    cout<<"\n";
-    cout<<"Please, enter the new ID for the course: ";
-    cin>>ID;
     cout<<"\n";
     cout<<"Please, enter the new number of credits for the course: ";
     cin>>credits;
     cout<<"\n";
-    cout<<"Please, enter the new proffesor 1 for the course: ";
+    cout<<"Please, enter the new professor 1 ID for the course: ";
     cin>>professor1id;
     cout<<"\n";
-    cout<<"Please, enter the new proffesor 2 for the course: ";
+    cout<<"Please, enter the new professor 2 ID for the course: ";
     cin>>professor2id;
     cout<<"\n";
 }

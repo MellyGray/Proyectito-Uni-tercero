@@ -8,6 +8,7 @@ Listares::Listares()
 void Listares::selectresource(Resource *res){
     actual = new Nodores(res, actual);
 }
+
 string Listares::toString(){
     stringstream s;
     Nodores *get=actual;
