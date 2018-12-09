@@ -26,6 +26,7 @@ public:
     void Setdate(Date *_date){date=_date;}
     string GetSpeaker(){return(SpeakerID);}
     void SetSpeaker(string _SpeakerID){SpeakerID=_SpeakerID;}
+    string GetDegree(){return ("NONE");}
 
     //To display the date all together
     void DisplayDate();

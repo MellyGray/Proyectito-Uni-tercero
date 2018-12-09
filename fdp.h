@@ -10,15 +10,17 @@ class FDP : public Resource
 private:
     string idstudent;
     string nametutor;
+    string degree;
 
 public:
     //Constructors
     FDP();
-    FDP(string _name, string _status, string _ID,int _num_users, string _idstudent,string _nametutor):Resource (_name,_status,_ID,_num_users){idstudent=_idstudent;nametutor=_nametutor;}
+    FDP(string _name, string _status, string _ID,int _num_users, string _idstudent,string _nametutor,string _degree):Resource (_name,_status,_ID,_num_users){idstudent=_idstudent;nametutor=_nametutor;degree=_degree;}
     ~FDP();
     //Get and set of the student SIN
     string Getidstudent(){return(idstudent);}
     void Setidstudent(string _idstudent){idstudent=_idstudent;}
+    string GetDegree(){return degree;}
     //To print the atributes of the resource
     string toString();
 

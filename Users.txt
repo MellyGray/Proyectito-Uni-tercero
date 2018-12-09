@@ -14,8 +14,10 @@ password
 ASIDOWR
 Professor2
 password
+Electronics
 29374932
 Student1
 password
+Mechanics
 02836492
 Student2

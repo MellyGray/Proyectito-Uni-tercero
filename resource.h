@@ -26,6 +26,7 @@ public:
    void SetStatus(string _status){status=_status;}
    string GetID(){return (ID);}
    void SetID(string _ID){ID=_ID;}
+   virtual string GetDegree()=0;
 
    //Return element x on lirray
    string getlirrayvalue(int x);

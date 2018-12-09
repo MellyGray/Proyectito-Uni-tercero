@@ -12,12 +12,13 @@ using namespace std;
 class Student : public User
 {
    private:
+    string degree;
     Listares *list;//Needed to modify users.
 
 public:
     Student();
-    Student(string _name, string _IDCode): User(_name,_IDCode){}
-    Student(string _IDCode, string _password, string _name): User(_IDCode,_password,_name){list=new Listares;}
+    Student(string _name, string _IDCode,string _degree): User(_name,_IDCode){degree=_degree;}
+    Student(string _IDCode, string _password, string _name,string _degree): User(_IDCode,_password,_name){list=new Listares;degree=_degree;}
     ~Student();
     //To print the atributes of the student
     string toString();

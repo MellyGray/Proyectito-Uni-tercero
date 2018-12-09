@@ -4,11 +4,12 @@ using namespace std;
 
 Course::Course(){}
 
-Course::Course(string _name, string _status, string _ID,int _num_users, int _credits,string _professor1id,string _professor2id):Resource (_name,_status,_ID,_num_users)
+Course::Course(string _name, string _status, string _ID,int _num_users, int _credits,string _professor1id,string _professor2id, string _degree):Resource (_name,_status,_ID,_num_users)
 {
     credits=_credits;
     professor1id=_professor1id;
     professor2id=_professor2id;
+    degree=_degree;
 };
 
 Course::~Course()
@@ -22,8 +23,9 @@ Course::~Course()
 string Course::toString(){
     stringstream s;
     s<< "Name____________"<<name<<endl;
-    s<< "Status__________"<< status<<endl;
+    s<< "Degree__________"<<degree<<endl;
     s<< "ID______________"<<ID<<endl;
+    s<< "Status__________"<< status<<endl;
     s<< "Credits_________"<<credits<<endl;
     s<< "Professor 1 ID__"<<professor1id<<endl;
     s<< "Professor 2 ID__"<<professor2id<<endl;
@@ -41,7 +43,7 @@ string Course::toStringList(){
     return s.str();
 }
 void Course::datasaving( ofstream &write){
-
+    write<<degree<<"\n";
     write<<professor2id<<"\n";
     write<<professor1id<<"\n";
     write<<credits<<"\n";
@@ -57,9 +59,9 @@ void Course::datasaving( ofstream &write){
 }
 
 Course *Course::readTxt(ifstream &read){
-    string _name, _status,_ID,_professor1id,_professor2id;
+    string _name, _status,_ID,_professor1id,_professor2id,_degree;
     int _credits,_num_users,i;
-
+    read>>_degree;
     read>>_professor2id;
     read>>_professor1id;
     read>>_credits;
@@ -67,7 +69,7 @@ Course *Course::readTxt(ifstream &read){
     read>>_status;
     read>>_name;
     read>>_num_users;
-    Course *c1=new Course(_name, _status,_ID,_num_users,_credits,_professor1id,_professor2id);
+    Course *c1=new Course(_name, _status,_ID,_num_users,_credits,_professor1id,_professor2id,_degree);
     for(i=_num_users-1;i>=0;i--){
         read>>c1->lirray[i];
         };
@@ -80,6 +82,8 @@ void Course::ModifyResource(){
     cout<<"\n";
     cout<<"Please, enter the new status for the course: ";
     cin>>status;
+    cout<<"Please, enter the new degree for the course: ";
+    cin>>degree;
     cout<<"\n";
     cout<<"Please, enter the new ID for the course: ";
     cin>>ID;

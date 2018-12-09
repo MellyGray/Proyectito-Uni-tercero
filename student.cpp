@@ -12,27 +12,33 @@ Student::~Student(){
 string Student::toString(){
     stringstream s;
     s<< "Name____________"<<name<<endl;
+    s<< "Degree____________"<<degree<<endl;
     s<< "SIN______________"<<IDCode<<endl;
     return s.str();
 };
 void Student::datasaving( ofstream &write){
     write<<password<<"\n";
+    write<<degree<<"\n";
    write<<IDCode<<"\n";
    write<<name<<"\n";
 
 
 };
 Student *Student::readTxt(ifstream &read){
-    string _name, _IDCode,_password;
+    string _name, _IDCode,_password,_degree;
     read>>_password;
+    read>>_degree;
     read>>_IDCode;
     read>>_name;
-    return (new Student(_IDCode, _password,_name));
+    return (new Student(_IDCode, _password,_name,_degree));
 };
 
 void Student::ModifyUser(){
     cout<<"Please, enter the new name for the student: ";
     cin>>name;
+    cout<<"\n";
+    cout<<"Please, enter the new degree for the student: ";
+    cin>>degree;
     cout<<"\n";
     cout<<"Please, enter the new SIN for the student: ";
     cin>>IDCode;
@@ -72,7 +78,7 @@ do{
         list->UserOnList(IDCode);//toStringCourses();        meter el comparador dentro de la nueva listares
         system("pause");
             break;
-    case 1:list->PrintResourcesOnList();
+    case 1:list->PrintResourcesOnList(degree);
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode);

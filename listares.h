@@ -46,7 +46,7 @@ public:
     void SetNum_fdp(int _num_fdp){num_fdp=_num_fdp;}
     void SetNum_sem(int _num_sem){num_sem=_num_sem;}
     //Printea todos los recursos de la lista de lis
-    void PrintResourcesOnList();
+    void PrintResourcesOnList(string _degree);
     //Needed to enroll goes to the resource which u want to enter
     Resource *EnrollResource(string _name, string _id);
 

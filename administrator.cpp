@@ -156,7 +156,7 @@ int Administrator::MenuUsers(){
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree;
     int _credits,op=1,_maxSeats,_num_users=0;
     Resource *res;
     do{
@@ -182,6 +182,8 @@ void Administrator::CreateResource(){
         case 1:
             cout<<"Type the name: ";
             cin>>_name;
+            cout<<"Type the degree: ";
+            cin>>_degree;
             cout<<"Type the status: ";
             cin>>_status;
             cout<<"Type the ID: ";
@@ -194,7 +196,7 @@ void Administrator::CreateResource(){
             cin>>_professor2id;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                listres->InsertNodeSelPosition(new Course(_name,_status,_ID,_num_users,_credits,_professor1id,_professor2id),listres->GetNum_cour());
+                listres->InsertNodeSelPosition(new Course(_name,_status,_ID,_num_users,_credits,_professor1id,_professor2id,_degree),listres->GetNum_cour());
                 listres->SetNum_cour((listres->GetNum_cour()+1));
                  system("pause");
 
@@ -207,6 +209,8 @@ void Administrator::CreateResource(){
         case 2:
             cout<<"Type the name: ";
             cin>>_name;
+            cout<<"Type the degree: ";
+            cin>>_degree;
             cout<<"Type the status: ";
             cin>>_status;
             cout<<"Type the ID: ";
@@ -218,7 +222,7 @@ void Administrator::CreateResource(){
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp())+1);
-                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor),position);
+                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
                 system("pause");
             }else{
@@ -357,7 +361,7 @@ void Administrator::DisplayUsers(){
 }
 
 void Administrator::CreateUser(){
-    string _name,_IDCode;
+    string _name,_IDCode,_degree;
     int op=1;
     User *user;
     do{
@@ -383,11 +387,13 @@ void Administrator::CreateUser(){
         case 1:
             cout<<"Type the name: ";
             cin>>_name;
+            cout<<"Type the degree: ";
+            cin>>_degree;
             cout<<"Type the SIN: ";
             cin>>_IDCode;
             user=listusers->UsersOnList(_IDCode); //Checks if the resource ID is already on the list
             if(user==NULL){
-                listusers->InsertNodeSelPosition(new Student(_name,_IDCode),listusers->GetNum_stu());
+                listusers->InsertNodeSelPosition(new Student(_name,_IDCode,_degree),listusers->GetNum_stu());
                 listusers->SetNum_stu((listusers->GetNum_stu()+1));
                  system("pause");
 

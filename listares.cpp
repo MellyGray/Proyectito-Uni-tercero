@@ -109,14 +109,18 @@ void Listares::chargeresource(){
 
     read.close();
 }
-void Listares::PrintResourcesOnList(){//Printea los nombres de los resources en la lista
+void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los resources en la lista
     Resource *aux;
+    string saux="NONE";
     Nodores *get=actual;
     while(get!=NULL){
     aux=get->Getresource();
+    if((aux->GetDegree()==_degree)|(aux->GetDegree()==saux)){
     cout<<aux->GetName()<<endl;
     get=get->Getnext();
-    }
+    }else{
+        get=get->Getnext();
+    }}
 }
 Resource *Listares::UserOnList(string _id){//Printea los nombres de los resources en los que el user esta
     Resource *aux;
