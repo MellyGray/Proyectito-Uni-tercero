@@ -77,7 +77,7 @@ Course *Course::readTxt(ifstream &read){
 }
 
 void Course::ModifyResource(){
-    char b;
+    int b;
     cout<<"Please, enter the new name for the course: ";
     cin>>name;
     cout<<"\n";

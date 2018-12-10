@@ -1,7 +1,6 @@
 #ifndef SEMINAR_H
 #define SEMINAR_H
 #include "resource.h"
-#include "date.h"
 #include <iostream>
 using namespace std;
 
@@ -9,7 +8,7 @@ class Seminar : public Resource
 {
 private:
     int maxSeats;
-    Date *date;
+    string date;
     string SpeakerID;
     string coordinator;
 
@@ -17,14 +16,14 @@ public:
     //Constructors
     Seminar();
     //NUEVO
-    Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID, string _coordinator):Resource (_name,_status,_ID,_num_users) {maxSeats=_maxSeats;SpeakerID=_SpeakerID;num_users=_num_users;coordinator=_coordinator;}
+    Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID, string _coordinator, string _date);
 
     ~Seminar();
     //Getters and setters
     int GetmaxSeats(){return(maxSeats);}
     void SetmaxSeats(int _maxSeats){maxSeats=_maxSeats;}
-    Date Getdate(){return(*date);}
-    void Setdate(Date *_date){date=_date;}
+    string Getdate(){return(date);}
+    void Setdate(string _date){date=_date;}
     string GetSpeaker(){return(SpeakerID);}
     void SetSpeaker(string _SpeakerID){SpeakerID=_SpeakerID;}
     string GetDegree(){return ("NONE");}

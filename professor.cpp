@@ -31,9 +31,6 @@ void Professor::ModifyUser(){
     cout<<"Please, enter the new name for the professor: ";
     cin>>name;
     cout<<"\n";
-    cout<<"Please, enter the new ID for the professor: ";
-    cin>>IDCode;
-    cout<<"\n";
 }
 
 int Professor::UserMenu(){

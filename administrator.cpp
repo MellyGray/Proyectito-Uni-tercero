@@ -153,9 +153,9 @@ int Administrator::MenuUsers(){
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree,s,_cotutor,_coordinator;
-    char a,b,c;
-    int _credits,op=1,_maxSeats,_num_users;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree,s,_cotutor,_coordinator,_date;
+    char a,c;
+    int _credits,op=1,_maxSeats,_num_users,b;
     Resource *res,*aux;
     User *user=NULL;
     do{
@@ -342,6 +342,8 @@ void Administrator::CreateResource(){
             case 3: _status="completed";
                 break;
             }
+            cout<<"Type the date of the seminar (dd-mm-year): ";
+            cin>>_date;
             cout<<"Type the maximum number of seats: ";
             cin>>_maxSeats;
             do{
@@ -365,7 +367,7 @@ void Administrator::CreateResource(){
             cout<<"Type de number of students enrolled in the seminar:";
             cin>>_num_users;
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp()+listres->GetNum_sem())+2);
-                aux=new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator);
+                aux=new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator,_date);
                 listres->InsertNodeSelPosition(aux,position);//Adds the resource to the list
                 listres->SetNum_sem((listres->GetNum_sem()+1));
                 for(int i=_num_users-1;i>=0;i--){

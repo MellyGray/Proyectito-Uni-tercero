@@ -70,9 +70,6 @@ void FDP::ModifyResource(){
     cout<<"Please, enter the new status for the FDP: ";
     cin>>status;
     cout<<"\n";
-    cout<<"Please, enter the new ID for the FDP: ";
-    cin>>ID;
-    cout<<"\n";
     cout<<"Please, enter the new ID for the tutor of the FDP: ";
     cin>>ID;
     cout<<"\n";

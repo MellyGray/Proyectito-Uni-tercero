@@ -14,8 +14,6 @@ SOURCES += \
     student.cpp \
     professor.cpp \
     administrator.cpp \
-    date.cpp \
-    lecture.cpp \
     listares.cpp \
     nodores.cpp \
     listusers.cpp \
@@ -30,8 +28,6 @@ HEADERS += \
     student.h \
     professor.h \
     administrator.h \
-    date.h \
-    lecture.h \
     listares.h \
     nodores.h \
     listusers.h \

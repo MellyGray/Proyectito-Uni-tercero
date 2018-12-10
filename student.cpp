@@ -40,9 +40,6 @@ void Student::ModifyUser(){
     cout<<"Please, enter the new degree for the student: ";
     cin>>degree;
     cout<<"\n";
-    cout<<"Please, enter the new SIN for the student: ";
-    cin>>IDCode;
-    cout<<"\n";
 }
 
 int Student::UserMenu(){
