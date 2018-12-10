@@ -12,6 +12,7 @@ class Resource
     string name;
     string status;
     string ID;
+    string degree;
     int num_users;
     string *lirray;
 

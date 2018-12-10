@@ -11,12 +11,13 @@ private:
     int maxSeats;
     Date *date;
     string SpeakerID;
+    string coordinator;
 
 public:
     //Constructors
     Seminar();
     //NUEVO
-    Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID):Resource (_name,_status,_ID,_num_users) {maxSeats=_maxSeats;SpeakerID=_SpeakerID;num_users=_num_users;}
+    Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID, string _coordinator):Resource (_name,_status,_ID,_num_users) {maxSeats=_maxSeats;SpeakerID=_SpeakerID;num_users=_num_users;coordinator=_coordinator;}
 
     ~Seminar();
     //Getters and setters

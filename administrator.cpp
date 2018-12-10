@@ -153,8 +153,8 @@ int Administrator::MenuUsers(){
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree,s;
-    char a,b;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree,s,_cotutor,_coordinator;
+    char a,b,c;
     int _credits,op=1,_maxSeats,_num_users;
     Resource *res,*aux;
     User *user=NULL;
@@ -279,6 +279,22 @@ void Administrator::CreateResource(){
             }
             }while(user==NULL);
             user=NULL;
+            cout<<"Do you want to assig a co-tutor to this FDP? (Y/N)"<<endl;
+            cin>>c;
+            if(c==('y'|'Y')){
+                do{
+                    cout<<"Type the co-tutor ID: ";
+                    cin>>_cotutor;
+                user=listusers->UsersOnList(_cotutor);
+                if(user==NULL){
+                    cout<<"The professor does not exist."<<endl;
+                }
+                }while(user==NULL);
+                user=NULL;
+
+            }else{
+                _cotutor="NONE";
+            }
             cout<<"Do you want to assig a student to this FDP? (Y/N)"<<endl;
             cin>>a;
             if(a==('y'|'Y')){
@@ -297,7 +313,7 @@ void Administrator::CreateResource(){
             }
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp())+1);
                 _num_users=0;
-                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree),position);
+                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree,_cotutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
                 cout<<"The FDP was created successfuly."<<endl;
             }else{
@@ -337,10 +353,19 @@ void Administrator::CreateResource(){
             }
             }while(user==NULL);
             user=NULL;
+            do{
+                cout<<"Type the ID of the coordinator: ";
+                cin>>_coordinator;
+            user=listusers->UsersOnList(_coordinator);
+            if(user==NULL){
+                cout<<"The professor does not exist."<<endl;
+            }
+            }while(user==NULL);
+            user=NULL;
             cout<<"Type de number of students enrolled in the seminar:";
             cin>>_num_users;
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp()+listres->GetNum_sem())+2);
-                aux=new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID);
+                aux=new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator);
                 listres->InsertNodeSelPosition(aux,position);//Adds the resource to the list
                 listres->SetNum_sem((listres->GetNum_sem()+1));
                 for(int i=_num_users-1;i>=0;i--){
@@ -504,13 +529,14 @@ void Administrator::CreateUser(){
             if(user==NULL){
                 listusers->InsertNodeSelPosition(new Student(_name,_IDCode,_degree),listusers->GetNum_stu());
                 listusers->SetNum_stu((listusers->GetNum_stu()+1));
-                 system("pause");
+
 
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+            system("pause");
             break;
         case 2:
             cout<<"Type the name: ";
@@ -522,12 +548,13 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof())+1);
                 listusers->InsertNodeSelPosition(new Professor(_name,_IDCode),position);
                 listusers->SetNum_prof((listusers->GetNum_prof()+1));
-                system("pause");
+
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+            system("pause");
             break;
         case 3:
             cout<<"Type the name: ";
@@ -539,12 +566,13 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof()+listusers->GetNum_admin())+2);
                 listusers->InsertNodeSelPosition(new Administrator(_name,_IDCode),position);//Adds the resource to the list
                 listusers->SetNum_admin((listusers->GetNum_admin()+1));
-                system("pause");
+
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+             system("pause");
         }
     }while(op!=4);
 

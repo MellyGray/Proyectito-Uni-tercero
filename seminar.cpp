@@ -6,6 +6,8 @@ Seminar::Seminar()
     status="";
     ID="";
     maxSeats=0;
+    SpeakerID="-";
+    coordinator="-";
 }
 Seminar::~Seminar(){};
 
@@ -17,6 +19,8 @@ string Seminar::toString(){
     s<< "Name__________________"<<name<<endl;
     s<< "Status________________"<< status<<endl;
     s<< "ID____________________"<<ID<<endl;
+    s<< "Speaker ID____________"<<SpeakerID<<endl;
+    s<< "Coordinator ID________"<<coordinator<<endl;
     s<< "Maximum seats_________"<<maxSeats<<endl;
     return s.str();
 }
@@ -24,21 +28,22 @@ string Seminar::toString(){
 string Seminar::toStringList(){
     stringstream s;
     s<<"Name------------------"<<name<<endl;
-    s<<"Number of students----"<<num_users<<endl;
     s<<"Maximum seats----------"<<maxSeats<<endl;
-    s<<"List of students:-----"<<endl;
+    s<<"Speaker ID_____________"<<ID<<endl;
+    s<<"List of students:"<<endl;
        for(int i=0; i<num_users; i++){
            s<<lirray[i]<<endl;
        };
     return s.str();
 }
 void Seminar::datasaving( ofstream &write){
-    write<<SpeakerID<<"\n";
-    write<<maxSeats<<"\n";
+   write<<coordinator<<"\n";
+   write<<SpeakerID<<"\n";
+   write<<maxSeats<<"\n";
    write<<ID<<"\n";
    write<<status<<"\n";
    write<<name<<"\n";
-    write<<num_users<<"\n";
+   write<<num_users<<"\n";
     for(int i=num_users-1;i>=0;i--){
         write<<lirray[i]<<"\n";
     };
@@ -47,15 +52,16 @@ void Seminar::datasaving( ofstream &write){
 }
 
 Seminar *Seminar::readTxt(ifstream &read){
-    string _name, _status,_ID,_SpeakerID;
+    string _name, _status,_ID,_SpeakerID,_coordinator;
     int _maxSeats,_num_users,i;
+    read>>_coordinator;
     read>>_SpeakerID;
     read>>_maxSeats;
     read>>_ID;
     read>>_status;
     read>>_name;
     read>>_num_users;
-    Seminar *s1=new Seminar(_name, _status,_ID,_num_users,_maxSeats,_SpeakerID);
+    Seminar *s1=new Seminar(_name, _status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator);
             for(i=0;i<_num_users;i++){
                 read>>s1->lirray[i];
             };
@@ -76,6 +82,9 @@ void Seminar::ModifyResource(){
     cout<<"\n";
     cout<<"Please,enter the new Speaker ID: ";
     cin>>SpeakerID;
+    cout<<"\n";
+    cout<<"Please,enter the new Coordinator ID: ";
+    cin>>coordinator;
     cout<<"\n";
 
 }

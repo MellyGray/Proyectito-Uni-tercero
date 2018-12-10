@@ -8,7 +8,6 @@ class Course : public Resource
 {
 private:
     int credits;
-    string degree;
     string professor1id;
     string professor2id;
 
