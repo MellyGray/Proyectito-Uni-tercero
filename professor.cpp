@@ -21,9 +21,9 @@ void Professor::datasaving( ofstream &write){
 };
 Professor *Professor::readTxt(ifstream &read){
     string _name, _IDCode,_password;
-    getline(read,_password);
-    getline(read,_IDCode);
-    getline(read,_name);
+    read>>_password;
+    read>>_IDCode;
+    read>>_name;
     return (new Professor(_IDCode, _password,_name));
 };
 
@@ -63,7 +63,9 @@ int Professor::MainMenu(){
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 1:
+        case 1: cout << "Press enter to continue ...";
+            cin.get();
+
             cout<<"\033[2J\033[1;1H";
             cout<<"USER INFO"<<endl;
             cout<< "Name____________"<<name<<endl;
@@ -71,9 +73,12 @@ int Professor::MainMenu(){
              cout<<"\n";
             cout<<"RESOURCES INVOLVED IN"<<endl;
             listares->UserOnList(IDCode,1);
-            system("pause");
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 2:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             cout<<"\033[2J\033[1;1H";
             cout<<"These are the resources you are involved in: "<<endl;
             listares->UserOnList(IDCode,0);
@@ -84,8 +89,11 @@ int Professor::MainMenu(){
                aux->ModifyResource();
             }else{
                 cout<<"The resource does not exist"<<endl;
-                system("pause");
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         }
     }while(op!=3);

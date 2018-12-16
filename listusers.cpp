@@ -74,7 +74,6 @@ void ListUsers::ChargeUsers(){
     read>>num_stu;
     read>>num_prof;
     read>>num_admin;
-    read>>nothing;
     user=&admin;
     user=admin.readTxt(read);
         for (int k=0;k<num_admin;k++)
@@ -120,13 +119,13 @@ User *ListUsers::Logging(string _IDCode,string _password){
     string s,p;
     int x, ok,i;
     while (get!=NULL){
-        ok=1;
+        //ok=1;
         aux=get->GetUser();
-        s=aux->GetIDCode();
-        p=aux->GetPassword();
-        x=_IDCode.size();
-        i=_password.size();
-        for (int k=0;k<x&ok==1;k++){
+        //s=aux->GetIDCode();
+       // p=aux->GetPassword();
+       // x=_IDCode.size();
+        //i=_password.size();
+        /*for (int k=0;k<x&ok==1;k++){
             ok=0;
             if(s[k]==_IDCode[k]){
                 ok=1;
@@ -146,11 +145,11 @@ User *ListUsers::Logging(string _IDCode,string _password){
             }else {
                 get=get->Getnext();
             }
+        }*/
+        if((aux->GetIDCode()==_IDCode)&(aux->GetPassword()==_password)){
+            return aux;
         }
-        //if((aux->GetIDCode()==_IDCode)&(aux->GetPassword()==_password)){
-            //return aux;
-        //}
-        //get=get->Getnext();
+        get=get->Getnext();
     }
     return NULL;
 }

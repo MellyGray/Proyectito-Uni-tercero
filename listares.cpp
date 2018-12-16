@@ -84,7 +84,6 @@ void Listares::chargeresource(){
     read>>num_cour;
     read>>num_fdp;
     read>>num_sem;
-    read>>nothing;
     res=&sem;
     res=sem.readTxt(read);
         for (int k=0;k<num_sem;k++)
@@ -120,6 +119,7 @@ void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los
     aux=get->Getresource();
     if((aux->GetDegree()==_degree)|(aux->GetDegree()==saux)){
     cout<<aux->GetName()<<endl;
+    cout<<endl;
     get=get->Getnext();
     }else{
         get=get->Getnext();
@@ -154,15 +154,17 @@ Resource *Listares::EnrollResource(string _name, string _id, string _deg){//para
     Nodores *get=actual;
    while (get!=NULL){
         aux=get->Getresource();
-        if(aux->GetName()==_name){//FUNCIÓN CHEQUEO VIRTUAL
+        if(aux->GetName()==_name){
             check=aux->checking(_deg);
            if (check==true){
             aux->IntroduceUserinResource(_id);
-            cout<<"Enroll succeded";
+            cout<<"Enroll succeded"<<endl;
+            cout<<endl;
            return NULL;
             }
            if (check==false){
-               cout<<"Enroll is not posible";
+               cout<<"Enroll is not posible"<<endl;
+               cout<<endl;
            }
         }
         get=get->Getnext();

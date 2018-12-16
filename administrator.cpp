@@ -26,9 +26,9 @@ void Administrator::datasaving( ofstream &write){
 };
 Administrator *Administrator::readTxt(ifstream &read){
     string _name, _IDCode,_password;
-    getline(read,_password);
-    getline(read,_IDCode);
-    getline(read,_name);
+    read>>_password;
+    read>>_IDCode;
+    read>>_name;
     return (new Administrator(_IDCode, _password,_name));
 };
 
@@ -103,13 +103,33 @@ int Administrator::MenuResources(){
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 0: DisplayResources();
+        case 0:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            DisplayResources();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 1: CreateResource();
+        case 1:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            CreateResource();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 2: ModifyResource();
+        case 2:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            ModifyResource();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 3: DeleteResource();
+        case 3:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            DeleteResource();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         }
     }while(op!=4);
@@ -138,13 +158,33 @@ int Administrator::MenuUsers(){
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 0: DisplayUsers();
+        case 0:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            DisplayUsers();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 1: CreateUser();
+        case 1:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            CreateUser();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 2: ModifyUsers();
+        case 2:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            ModifyUsers();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
-        case 3: DeleteUser();
+        case 3:
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            DeleteUser();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         }
     }while(op!=4);
@@ -206,7 +246,7 @@ void Administrator::CreateResource(){
                     cin>>_professor1id;
                     user=listusers->UsersOnList(_professor1id);
                     if(user==NULL){
-                        cout<<"The professor does not exist."<<endl;
+                        cout<<"The professor does not exist."<<endl<<endl;
                     }
                 }while(user==NULL);
                 user=NULL;
@@ -215,7 +255,7 @@ void Administrator::CreateResource(){
                  cin>>_professor2id;
                 user=listusers->UsersOnList(_professor2id);
                 if(user==NULL){
-                    cout<<"The professor does not exist."<<endl;
+                    cout<<"The professor does not exist."<<endl<<endl;
                 }
                 }while(user==NULL);
                  user=NULL;
@@ -230,21 +270,22 @@ void Administrator::CreateResource(){
                      cin>>s;
                     user=listusers->UsersOnList(s);
                     if(user==NULL){
-                        cout<<"The student does not exist."<<endl;
+                        cout<<"The student does not exist."<<endl<<endl;
                     }
                     }while(user==NULL);
                      user=NULL;
                     aux->Setlirrayvalue(i,s);
                }
-                cout<<"The course was created successfuly."<<endl;
+                cout<<"The course was created successfuly."<<endl<<endl;
 
 
             }else{
                 cout<<"\n";
-                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
-
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
             }
-            system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 2:
             cout<<"Type the ID: ";
@@ -274,7 +315,7 @@ void Administrator::CreateResource(){
                 cin>>_nametutor;
             user=listusers->UsersOnList(_nametutor);
             if(user==NULL){
-                cout<<"The professor does not exist."<<endl;
+                cout<<"The professor does not exist."<<endl<<endl;
             }
             }while(user==NULL);
             user=NULL;
@@ -286,7 +327,7 @@ void Administrator::CreateResource(){
                     cin>>_cotutor;
                 user=listusers->UsersOnList(_cotutor);
                 if(user==NULL){
-                    cout<<"The professor does not exist."<<endl;
+                    cout<<"The professor does not exist."<<endl<<endl;
                 }
                 }while(user==NULL);
                 user=NULL;
@@ -302,7 +343,7 @@ void Administrator::CreateResource(){
                     cin>>_idstudent;
                 user=listusers->UsersOnList(_idstudent);
                 if(user==NULL){
-                    cout<<"The student does not exist."<<endl;
+                    cout<<"The student does not exist."<<endl<<endl;
                 }
                 }while(user==NULL);
                 user=NULL;
@@ -314,12 +355,14 @@ void Administrator::CreateResource(){
                 _num_users=0;
                 listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree,_cotutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
-                cout<<"The FDP was created successfuly."<<endl;
+                cout<<"The FDP was created successfuly."<<endl<<endl;
             }else{
                 cout<<"\n";
-                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
             }
-            system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 3:
             cout<<"Type the ID: ";
@@ -350,7 +393,7 @@ void Administrator::CreateResource(){
                 cin>>_SpeakerID;
             user=listusers->UsersOnList(_SpeakerID);
             if(user==NULL){
-                cout<<"The speaker does not exist."<<endl;
+                cout<<"The speaker does not exist."<<endl<<endl;
             }
             }while(user==NULL);
             user=NULL;
@@ -359,7 +402,7 @@ void Administrator::CreateResource(){
                 cin>>_coordinator;
             user=listusers->UsersOnList(_coordinator);
             if(user==NULL){
-                cout<<"The professor does not exist."<<endl;
+                cout<<"The professor does not exist."<<endl<<endl;
             }
             }while(user==NULL);
             user=NULL;
@@ -375,19 +418,22 @@ void Administrator::CreateResource(){
                      cin>>s;
                     user=listusers->UsersOnList(s);
                     if(user==NULL){
-                        cout<<"The student does not exist."<<endl;
+                        cout<<"The student does not exist."<<endl<<endl;
                     }
                     }while(user==NULL);
                      user=NULL;
                     aux->Setlirrayvalue(i,s);
                }
-                cout<<"The seminar was created successfuly."<<endl;
+                cout<<"The seminar was created successfuly."<<endl<<endl;
 
             }else{
                 cout<<"\n";
-                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
             }
-            system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+           break;
         }
     }while(op!=4);
 
@@ -418,46 +464,49 @@ int Administrator::DeleteResource(){
         cin>>op;
         switch (op) {
         case 1:
-            cout<<"Please, type the ID of the course you want to delete."<<endl;
+            cout<<"Please, type the ID of the course you want to delete."<<endl<<endl;
             cin>>_ID;
             res=listres->DeleteResource(_ID);
             if (res!=NULL){
                 delete res;
-                cout<<"The course was deleted succesfuly."<<endl;
+                cout<<"The course was deleted succesfuly."<<endl<<endl;
                 listres->SetNum_cour(listres->GetNum_cour()-1);
-                system("pause");
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl<<endl;
+            cin.get();
             break;
         case 2:
-            cout<<"Please, type the ID of the FDP you want to delete."<<endl;
+            cout<<"Please, type the ID of the FDP you want to delete."<<endl<<endl;
             cin>>_ID;
             res=listres->DeleteResource(_ID);
             if (res!=NULL){
                 delete res;
-                cout<<"The FDP was deleted succesfuly."<<endl;
+                cout<<"The FDP was deleted succesfuly."<<endl<<endl;
                 listres->SetNum_fdp(listres->GetNum_fdp()-1);
-                system("pause");
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl<<endl;
+            cin.get();
             break;
         case 3:
-            cout<<"Please, type the ID of the seminar you want to delete."<<endl;
+            cout<<"Please, type the ID of the seminar you want to delete."<<endl<<endl;
             cin>>_ID;
             res=listres->DeleteResource(_ID);
             if (res!=NULL){
                 delete res;
-                cout<<"The seminar was deleted succesfuly."<<endl;
+                cout<<"The seminar was deleted succesfuly."<<endl<<endl;
                 listres->SetNum_sem(listres->GetNum_sem()-1);
-                system("pause");
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl<<endl;
+            cin.get();
             break;
         }
     }while(op!=4);
@@ -468,7 +517,6 @@ void Administrator::DisplayResources(){
     cout<<"\033[2J\033[1;1H";
     cout<<"------RESOURCES-------"<<endl;
     cout<<listres->toString()<<endl;
-    system("pause");
 }
 void Administrator::ModifyResource(){
     cout<<"\033[2J\033[1;1H";
@@ -482,8 +530,7 @@ void Administrator::ModifyResource(){
        if(aux!=NULL){
           aux->ModifyResource();
        }else{
-           cout<<"The resource does not exist"<<endl;
-           system("pause");
+           cout<<"The resource does not exist"<<endl<<endl;
        }
 
 }
@@ -492,7 +539,6 @@ void Administrator::DisplayUsers(){
     cout<<"\033[2J\033[1;1H";
     cout<<"------USERS-------"<<endl;
     cout<<listusers->toString()<<endl;
-    system("pause");
 }
 
 void Administrator::CreateUser(){
@@ -530,14 +576,16 @@ void Administrator::CreateUser(){
             if(user==NULL){
                 listusers->InsertNodeSelPosition(new Student(_name,_IDCode,_degree),listusers->GetNum_stu());
                 listusers->SetNum_stu((listusers->GetNum_stu()+1));
-
-
+                cout<<"The Student has been created"<<endl<<endl;
             }else{
                 cout<<"\n";
-                cout<<"The user already exists. INVALID OPTION."<<endl;
+                cout<<"The user already exists. INVALID OPTION."<<endl<<endl;
 
             }
-            system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl<<endl;
+            cin.get();
+
             break;
         case 2:
             cout<<"Type the name: ";
@@ -549,13 +597,15 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof())+1);
                 listusers->InsertNodeSelPosition(new Professor(_name,_IDCode),position);
                 listusers->SetNum_prof((listusers->GetNum_prof()+1));
-
+                cout<<"The Professor has been created"<<endl<<endl;
             }else{
                 cout<<"\n";
-                cout<<"The user already exists. INVALID OPTION."<<endl;
+                cout<<"The user already exists. INVALID OPTION."<<endl<<endl;
 
             }
-            system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 3:
             cout<<"Type the name: ";
@@ -567,13 +617,16 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof()+listusers->GetNum_admin())+2);
                 listusers->InsertNodeSelPosition(new Administrator(_name,_IDCode),position);//Adds the resource to the list
                 listusers->SetNum_admin((listusers->GetNum_admin()+1));
+                cout<<"The Admin0 has been created"<<endl<<endl;
 
             }else{
                 cout<<"\n";
-                cout<<"The user already exists. INVALID OPTION."<<endl;
+                cout<<"The user already exists. INVALID OPTION."<<endl<<endl;
 
             }
-             system("pause");
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
         }
     }while(op!=4);
 
@@ -590,9 +643,13 @@ void Administrator::ModifyUsers(){
        aux=listusers->UsersOnList(_IDCode);//Checks if the user is on the list
        if(aux!=NULL){
           aux->ModifyUser();
+          cout<<"Modification suceed"<<endl<<endl;
+          cin.get();
+
        }else{
-           cout<<"The user does not exist"<<endl;
-           system("pause");
+           cout<<"The user does not exist"<<endl<<endl;
+           cin.get();
+
        }
 
 }
@@ -626,12 +683,16 @@ int Administrator::DeleteUser(){
             user=listusers->DeleteUser(_IDCode);
             if (user!=NULL){
                 delete user;
-                cout<<"The student was deleted succesfuly."<<endl;
+                cout<<"The student was deleted succesfuly."<<endl<<endl;
                 listusers->SetNum_stu(listusers->GetNum_stu()-1);
-                system("pause");
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }
             break;
         case 2:
@@ -642,10 +703,14 @@ int Administrator::DeleteUser(){
                 delete user;
                 cout<<"The professor was deleted succesfuly."<<endl;
                 listusers->SetNum_prof(listusers->GetNum_prof()-1);
-                system("pause");
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }
             break;
         case 3:
@@ -654,12 +719,16 @@ int Administrator::DeleteUser(){
             user=listusers->DeleteUser(_IDCode);
             if (user!=NULL){
                 delete user;
-                cout<<"The administrator was deleted succesfuly."<<endl;
+                cout<<"The administrator was deleted succesfuly."<<endl<<endl;
                 listusers->SetNum_admin(listusers->GetNum_admin()-1);
-                system("pause");
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }else{
-                cout<<"The resource does not exists."<<endl;
-                system("pause");
+                cout<<"The resource does not exists."<<endl<<endl;
+                cin.get();
+                cout << "Press enter to continue ..."<<endl;
+                cin.get();
             }
             break;
         }

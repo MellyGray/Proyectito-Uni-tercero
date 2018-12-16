@@ -3,25 +3,25 @@
 0
 password
 ADMIN0
-John Cramer
+John_Cramer
 password
 P333333
-Sheldon Cooper
+Sheldon_Cooper
 password
 P222222
 Miyagi
 password
 P111111
-Jesus Iñarrea
+Jesus_Iñarrea
 password
-Electrical, Electronic and Automation Engineering
+Electrical,_Electronic_and_Automation_Engineering
 1003333
-Elon Musk
+Elon_Musk
 password
-Computer Engineering
+Computer_Engineering
 1002222
-Nikola Tesla
+Nikola_Tesla
 password
-Electrical, Electronic and Automation Engineering
+Electrical,_Electronic_and_Automation_Engineering
 1001111
-Albert Einstein
+Albert_Einstein

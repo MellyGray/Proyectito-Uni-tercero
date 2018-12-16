@@ -42,6 +42,13 @@ public:
     //Checks if it is posible to enroll in resources
     bool checking(string);
 
+    //To introduce a user in the seminar
+    void IntroduceUserinResource(string _id);//Falta el cpp
+
+    //To clean a user form course
+    void DeleteUserinResource(string _id);
+
+
 };
 
 #endif // FDP_H

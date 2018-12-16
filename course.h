@@ -44,6 +44,10 @@ public:
 
    //Checks if it is posible to enroll
     bool checking(string);
+    //To introduce a user in the course
+    void IntroduceUserinResource(string _id);
+    //To clean a user form course
+    void DeleteUserinResource(string _id);
 };
 
 #endif // COURSE_H

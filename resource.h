@@ -34,9 +34,9 @@ public:
    void Setlirrayvalue(int x, string s);
 
    //Introduce Id en la lista
-   void IntroduceUserinResource(string _id);
-
-   void DeleteUserinResource(string _id);
+   virtual void IntroduceUserinResource(string _id)=0;//Necesito hacerla virtual
+//Borra usario de lista
+   virtual void DeleteUserinResource(string _id)=0;
 
    //CHeck if it is possible to enroll
    virtual bool checking(string)=0;

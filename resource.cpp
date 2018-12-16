@@ -48,6 +48,7 @@ void Resource::DeleteUserinResource(string _id){
     string aux[num_users-1];
     int k=0;
     int ok=0;
+    cout<<"jbhll"<<endl;
     for(int i=0; i<num_users;i++){
         if(lirray[i]!=_id){
            aux[k]=lirray[i];

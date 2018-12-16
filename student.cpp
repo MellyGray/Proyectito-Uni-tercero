@@ -14,7 +14,6 @@ string Student::toString(){
     s<< "Name____________"<<name<<endl;
     s<< "Degree____________"<<degree<<endl;
     s<< "SIN______________"<<IDCode<<endl;
-    s<<"password----------"<<password<<endl;
     return s.str();
 };
 void Student::datasaving( ofstream &write){
@@ -27,10 +26,10 @@ void Student::datasaving( ofstream &write){
 };
 Student *Student::readTxt(ifstream &read){
     string _name, _IDCode,_password,_degree;
-    getline(read,_password);
-    getline(read,_degree);
-    getline(read,_IDCode);
-    getline(read,_name);
+    read>>_password;
+    read>>_degree;
+    read>>_IDCode;
+    read>>_name;
     return (new Student(_IDCode, _password,_name,_degree));
 };
 
@@ -50,11 +49,14 @@ int Student::UserMenu(){
 }
 int Student::MainMenu(){
 int op=1;
-string give;
+string give,s;
 Resource *aux;
+char c;
 cout<<name<< "Welcome to your account"<<endl;
 do{
     cout<<"\033[2J\033[1;1H";
+    s=list->toString();
+    cout<<s<<endl;
     if(cin.fail()){
         cin.clear();
         cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -73,20 +75,34 @@ do{
     cin>>op;
     switch (op){
     case 0:
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
         list->UserOnList(IDCode,1);//toStringCourses();        meter el comparador dentro de la nueva listares
-        system("pause");
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
             break;
-    case 1:list->PrintResourcesOnList(degree);
+    case 1:
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
+        list->PrintResourcesOnList(degree);
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode,degree);
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
             break;
     case 2:
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
         list->UserOnList(IDCode,1);
-        cout<<"Those are your resources"<<endl<<"Please, introduce the name of the Resource that you want to drop"<<endl;
+        cout<<"Those are your resources"<<endl<<"Please, introduce the ID of the Resource that you want to drop"<<endl;
         cin>>give;
         aux=list->ResourcesOnList(give);
         aux->DeleteUserinResource(IDCode);
+        cout << "Press enter to continue ..."<<endl;
+        cin.get();
             break;
 
     }

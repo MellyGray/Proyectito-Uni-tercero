@@ -12,7 +12,7 @@ VirtualCampus::~VirtualCampus()
 int VirtualCampus::start(){
     User *aux;
     list->ChargeUsers();
-    string _IDCode,_password,listaca;
+    string _IDCode,_password;
     int op=1;//Gets the number typed by the user
     char c;
     do{
@@ -26,8 +26,6 @@ int VirtualCampus::start(){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         };
-        listaca=list->toString();
-        cout<<listaca<<endl;
         cout<<"--------WELCOME TO VIRTUAL CAMPUS!---------"<<endl;
         cout<<"You have to be registered to enter."<<endl;
         cout<<"1) CONTINUE"<<endl;
@@ -43,10 +41,12 @@ int VirtualCampus::start(){
         aux=list->Logging(_IDCode,_password);//Checks if the user is on the list
         if(aux!=NULL){
            aux->UserMenu();
-           cin>>c;
+           cout << "Press enter to continue ..."<<endl;
+           cin.get();
         }else{
             cout<<"Wrong password or ID!"<<endl;
-            cin>>c;
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             op=2;
         }
 

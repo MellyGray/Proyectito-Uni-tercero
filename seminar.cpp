@@ -61,15 +61,13 @@ void Seminar::datasaving( ofstream &write){
 Seminar *Seminar::readTxt(ifstream &read){
     string _name, _status,_ID,_SpeakerID,_coordinator,_date, nothing;
     int _maxSeats,_num_users,i;
-    getline(read,_coordinator);
-    getline(read,_SpeakerID);
+    read>>_coordinator;
+    read>>_SpeakerID;
     read>>_maxSeats;
-    read>>nothing;
-    getline(read,_ID);
-    getline(read,_status);
+    read>>_ID;
+    read>>_status;
     read>>_date;
-    read>>nothing;
-    getline(read,_name);
+    read>>_name;
     read>>_num_users;
     Seminar *s1=new Seminar(_name, _status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator,_date);
             for(i=0;i<_num_users;i++){
@@ -106,16 +104,19 @@ void Seminar::searchinlist(string _id, int x){
         if (lirray[k]==_id){
             cout<<name<<endl;
             cout<<ID<<endl;
+            cout<<endl;
         }
     }
     if(SpeakerID==_id){
         cout<<name<<endl;
         cout<<ID<<endl;
+        cout<<endl;
     }
     if(x==1){
         if(coordinator==_id){
             cout<<name<<endl;
             cout<<ID<<endl;
+            cout<<endl;
         }
     }
 }
@@ -124,9 +125,47 @@ bool Seminar::checking(string _deg){
     string s=_deg;
     if(num_users==maxSeats){
         cout<<"There are no free seats"<<endl;
+        cout<<endl;
         return false;
     }
     if(num_users<maxSeats){
         return true;
     }
 }
+void Seminar::IntroduceUserinResource(string _id){//Meter Id en la lista.
+    string aux[num_users];
+    for(int i=0; i<num_users;i++){
+        aux[i]=lirray[i];
+    }
+    num_users=num_users+1;
+    lirray=new string[num_users];
+    int t=num_users-1;
+    for (int k=0;k<t;k++){
+        lirray[k]=aux[k];
+    }
+    lirray[t]=_id;
+}
+void Seminar::DeleteUserinResource(string _id){
+    string aux[num_users-1];
+    int k=0;
+    int ok=0;
+    cout<<"jbhll"<<endl;
+    for(int i=0; i<num_users;i++){
+        if(lirray[i]!=_id){
+           aux[k]=lirray[i];
+           k++;
+        }if (lirray[i]==_id){
+            ok=1;
+        }
+}
+    if(ok==1){
+        num_users=num_users-1;
+        lirray=new string[num_users];
+        for(int t=0; t<num_users;t++){
+            lirray[t]=aux[t];
+}
+    }if(ok==0){
+        cout<<"Something worng happened, try again"<<endl;
+    }
+}
+

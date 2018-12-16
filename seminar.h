@@ -49,6 +49,12 @@ public:
 
     bool checking(string);//Cheack if it is posible to enroll in seminar
 
+    //To introduce a user in the seminar
+    void IntroduceUserinResource(string _id);
+
+    //To clean a user form seminar
+    void DeleteUserinResource(string _id);
+
 };
 
 #endif // SEMINAR_H

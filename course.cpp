@@ -61,21 +61,18 @@ void Course::datasaving( ofstream &write){
 Course *Course::readTxt(ifstream &read){
     string _name, _status,_ID,_professor1id,_professor2id,_degree,nothing;
     int _credits,_num_users,i;
-    getline(read,_degree);
-    getline(read,_professor2id);
-    getline(read,_professor1id);
+    read>>_degree;
+    read>>_professor2id;
+    read>>_professor1id;
     read>>_credits;
-    read>>nothing;
-    getline(read,_ID);
-    getline(read,_status);
-    getline(read,_name);
+    read>>_ID;
+    read>>_status;
+    read>>_name;
     read>>_num_users;
-    read>>nothing;
     Course *c1=new Course(_name, _status,_ID,_num_users,_credits,_professor1id,_professor2id,_degree);
     for(i=_num_users-1;i>=0;i--){
         read>>c1->lirray[i];
         };
-    read>>nothing;
     return (c1);
 }
 
@@ -116,15 +113,19 @@ int t=x;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
             cout<<name<<endl;
+            cout<<ID<<endl;
+            cout<<endl;
         }
     }
     if (professor1id==_id){
         cout<<name<<endl;
         cout<<ID<<endl;
+        cout<<endl;
     }
     if (professor2id==_id){
         cout<<name<<endl;
         cout<<ID<<endl;
+        cout<<endl;
     }
 }
 bool Course::checking(string _deg){
@@ -132,5 +133,43 @@ bool Course::checking(string _deg){
     return true;
     }else{
         return false;
+    }
+}
+
+void Course::IntroduceUserinResource(string _id){//Meter Id en la lista.
+    string aux[num_users];
+    for(int i=0; i<num_users;i++){
+        aux[i]=lirray[i];
+    }
+    num_users=num_users+1;
+    lirray=new string[num_users];
+    int t=num_users-1;
+    for (int k=0;k<t;k++){
+        lirray[k]=aux[k];
+    }
+    lirray[t]=_id;
+}
+
+void Course::DeleteUserinResource(string _id){
+    string aux[num_users-1];
+    int k=0;
+    int ok=0;
+    cout<<"jbhll"<<endl;
+    for(int i=0; i<num_users;i++){
+        if(lirray[i]!=_id){
+           aux[k]=lirray[i];
+           k++;
+        }if (lirray[i]==_id){
+            ok=1;
+        }
+}
+    if(ok==1){
+        num_users=num_users-1;
+        lirray=new string[num_users];
+        for(int t=0; t<num_users;t++){
+            lirray[t]=aux[t];
+}
+    }if(ok==0){
+        cout<<"Something worng happened, try again"<<endl;
     }
 }

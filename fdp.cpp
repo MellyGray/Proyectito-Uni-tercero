@@ -49,13 +49,13 @@ void FDP::datasaving( ofstream &write){
 FDP *FDP::readTxt(ifstream &read){
     string _name, _status,_ID,_idstudent,_nametutor,_degree,_idcotutor;
     int _num_users=0;
-    getline(read,_degree);
-    getline(read,_idcotutor);
-    getline(read,_nametutor);
-    getline(read,_idstudent);
-    getline(read,_ID);
-    getline(read,_status);
-    getline(read,_name);
+    read>>_degree;
+    read>>_idcotutor;
+    read>>_nametutor;
+    read>>_idstudent;
+    read>>_ID;
+    read>>_status;
+    read>>_name;
     return (new FDP(_name, _status,_ID,_num_users,_idstudent,_nametutor,_degree,_idcotutor));
 }
 
@@ -91,27 +91,38 @@ void FDP::ModifyResource(){
 void FDP::searchinlist(string _id, int x){
         if (idstudent==_id){
             cout<<name<<endl;
+            cout<<ID<<endl;
+            cout<<endl;
         }
         if(nametutor==_id){
             cout<<name<<endl;
             cout<<ID<<endl;
+            cout<<endl;
         }
          if(x==1){
              if(idcotutor==_id){
                  cout<<name<<endl;
                  cout<<ID<<endl;
+                 cout<<endl;
                 }
             }
     }
 bool FDP::checking(string _deg){
     if (degree==_deg){
-
         if(idstudent=="NONE"){
             return true;
         }else
             cout<<"This FDP is assigned to another student"<<endl;
+        cout<<endl;
             return false;
     }else{
         cout<<"This FDP is not available in your degree"<<endl;
+        cout<<endl;
     }
+}
+void FDP::IntroduceUserinResource(string _id){
+    idstudent=_id;
+}
+void FDP::DeleteUserinResource(string _id){
+    idstudent="NONE";
 }

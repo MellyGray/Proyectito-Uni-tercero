@@ -7,7 +7,7 @@ P111111
 SSS2222
 created
 21-12-2018
-Identification of Aurean Proportions in Nature
+Identification_of_Aurean_Proportions_in_Nature
 2
 1001111
 1003333
@@ -17,43 +17,43 @@ P333333
 SSS1111
 created
 12-01-2019
-Cuantic Bits in Digital Electronics	
+Cuantic_Bits_in_Digital_Electronics	
 2
 1001111
 1003333
-Electrical, Electronic and Automation Engineering
+Electrical,_Electronic_and_Automation_Engineering
 NONE
 P222222
 NONE
 TFE2222
 created
 FDP2
-Computer Engineering
+Computer_Engineering
 P333333
 P111111
 1002222
 TFE1111
 in_progress
 FDP1
-Electrical, Electronic and Automation Engineering
+Electrical,_Electronic_and_Automation_Engineering
 P222222
 P111111
 6
 AAA1111
 created
-Control Engineering
+Control_Engineering
 1
 1001111
-Electrical, Electronic and Automation Engineering
+Electrical,_Electronic_and_Automation_Engineering
 P333333
 P111111
 6
 AAA2222
 created
-Thermal Engineering
+Thermal_Engineering
 1
 1001111
-Computer Engineering
+Computer_Engineering
 P222222
 P111111
 6
