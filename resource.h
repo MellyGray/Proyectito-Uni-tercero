@@ -12,13 +12,13 @@ class Resource
     string name;
     string status;
     string ID;
-    int num_users;      //Faltan hacer sus constructores y destructores en fdp y seminar
+    string degree;
+    int num_users;
     string *lirray;
 
 public:
     Resource();
-    Resource(string _name, string _status, string _ID);
-    Resource(string _name, int _num_users);//Constructor listas, no necesito parametrizar lirray.EN cpps cambiar a name
+    Resource(string _name, string _status, string _ID, int _num_users);
    virtual ~Resource();
     //Getters & Setters
    string GetName(){ return (name);}
@@ -27,9 +27,11 @@ public:
    void SetStatus(string _status){status=_status;}
    string GetID(){return (ID);}
    void SetID(string _ID){ID=_ID;}
+   virtual string GetDegree()=0;
 
-   //Returna el valor de la string que se encuentra en lirray
+   //Return element x on lirray
    string getlirrayvalue(int x);
+   void Setlirrayvalue(int x, string s);
 
    //Introduce Id en la lista
    void IntroduceUserinResource(string _id);
@@ -37,10 +39,10 @@ public:
    void DeleteUserinResource(string _id);
 
    //CHeck if it is possible to enroll
-   virtual bool checking()=0; //SEminar fdp y course
+   virtual bool checking(string)=0;
 
    //Search in the list associated of users
-   virtual void searchinlist(string _user)=0;
+   virtual void searchinlist(string _user, int x)=0;
 
    //To print the atributes of the resource
    virtual string toString()=0;
@@ -51,8 +53,6 @@ public:
    //To save the atributes of the resource on a text file
    virtual void datasaving( ofstream &)=0;
 
-   //To save atributes of list
-    virtual void datasavinglist( ofstream &)=0;
 
    //Modify the attributes of the resource
    virtual void ModifyResource()=0;

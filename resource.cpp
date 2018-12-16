@@ -11,29 +11,26 @@ Resource::Resource()
     num_users=0;
     lirray=NULL;
 }
-Resource::Resource(string _name, string _status, string _ID)
+Resource::Resource(string _name, string _status, string _ID,int _num_users)
 {
     name=_name;
     status=_status;
     ID=_ID;
-}
-Resource::Resource(string _name, int _num_users)
-{
-    name=_name;
     num_users=_num_users;
     lirray=new string[num_users];
 }
 
-
 Resource::~Resource(){}
-
+void Resource::Setlirrayvalue(int x, string s){
+    lirray[x]=s;
+}
 string Resource::getlirrayvalue(int x){
     string s;
     lirray[x]=s;
     return s;
 }
 
-void Resource::IntroduceUserinResource(string _id){//Meter Id en la lista. TIene que funcionar.
+void Resource::IntroduceUserinResource(string _id){//Meter Id en la lista.
     string aux[num_users];
     for(int i=0; i<num_users;i++){
         aux[i]=lirray[i];
@@ -66,8 +63,7 @@ void Resource::DeleteUserinResource(string _id){
             lirray[t]=aux[t];
 }
     }if(ok==0){
-        cout<<"ERROR 402"<<endl; //Xdddddddddddddddd
-        cout<<"We are in program update, SERVER DOWN, try later"<<endl;
+        cout<<"Something worng happened, try again"<<endl;
     }
 }
 

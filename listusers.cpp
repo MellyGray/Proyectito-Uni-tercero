@@ -1,6 +1,7 @@
 #include "listusers.h"
 #include "administrator.h"
-
+#include "string.h"
+#include <stdio.h>
 
 ListUsers::ListUsers()
 {
@@ -68,10 +69,12 @@ void ListUsers::ChargeUsers(){
     Student stu;
     Professor prof;
     Administrator admin;
+    string nothing;
     User *user;
     read>>num_stu;
     read>>num_prof;
     read>>num_admin;
+    read>>nothing;
     user=&admin;
     user=admin.readTxt(read);
         for (int k=0;k<num_admin;k++)
@@ -114,12 +117,40 @@ User *ListUsers::UsersOnList(string _IDCode){
 User *ListUsers::Logging(string _IDCode,string _password){
     User *aux;
     NodoUsers *get=actual;
+    string s,p;
+    int x, ok,i;
     while (get!=NULL){
+        ok=1;
         aux=get->GetUser();
-        if((aux->GetIDCode()==_IDCode)&(aux->GetPassword()==_password)){
-            return aux;
+        s=aux->GetIDCode();
+        p=aux->GetPassword();
+        x=_IDCode.size();
+        i=_password.size();
+        for (int k=0;k<x&ok==1;k++){
+            ok=0;
+            if(s[k]==_IDCode[k]){
+                ok=1;
+            }
         }
-        get=get->Getnext();
+        if(ok==0){
+            get=get->Getnext();
+        }else{
+            for (int t=0;t<i&ok==1;t++){
+                ok=0;
+                if(p[t]==_password[t]){
+                    ok=1;
+                }
+            }
+            if(ok==1){
+                return aux;
+            }else {
+                get=get->Getnext();
+            }
+        }
+        //if((aux->GetIDCode()==_IDCode)&(aux->GetPassword()==_password)){
+            //return aux;
+        //}
+        //get=get->Getnext();
     }
     return NULL;
 }

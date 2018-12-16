@@ -19,26 +19,22 @@ string Administrator::toString(){
     return s.str();
 };
 void Administrator::datasaving( ofstream &write){
-    write<<password<<"\n";
+   write<<password<<"\n";
    write<<IDCode<<"\n";
    write<<name<<"\n";
-
 
 };
 Administrator *Administrator::readTxt(ifstream &read){
     string _name, _IDCode,_password;
-    read>>_password;
-    read>>_IDCode; 
-    read>>_name;
+    getline(read,_password);
+    getline(read,_IDCode);
+    getline(read,_name);
     return (new Administrator(_IDCode, _password,_name));
 };
 
 void Administrator::ModifyUser(){
     cout<<"Please, enter the new name for the administrator: ";
     cin>>name;
-    cout<<"\n";
-    cout<<"Please, enter the new ID for the administrator: ";
-    cin>>IDCode;
     cout<<"\n";
 }
 int Administrator::UserMenu(){
@@ -56,7 +52,7 @@ int Administrator::MainMenu(){
 
     int op=1;//Gets the number typed by the user
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -66,7 +62,7 @@ int Administrator::MainMenu(){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         };
-        cout<<"--------ADMINISTRATOR FUNCIONALITIES---------"<<endl;
+        cout<<"--------WELCOME ADMINISTRATOR "<<name<<"!---------"<<endl;
         cout<<"1). Resources"<<endl;
         cout<<"2). Users"<<endl;
         cout<<"3). Exit"<<endl;
@@ -87,7 +83,7 @@ int Administrator::MainMenu(){
 int Administrator::MenuResources(){
     int op=1;//Gets the number typed by the user
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -122,7 +118,7 @@ int Administrator::MenuResources(){
 int Administrator::MenuUsers(){
     int op=1;//Gets the number typed by the user
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -156,11 +152,13 @@ int Administrator::MenuUsers(){
 };
 
 void Administrator::CreateResource(){
-    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor;
-    int _credits,op=1,_maxSeats;
-    Resource *res;
+    string _name,_status,_ID,_professor1id,_professor2id,_idstudent,_nametutor,_SpeakerID,_degree,s,_cotutor,_coordinator,_date;
+    char a,c;
+    int _credits,op=1,_maxSeats,_num_users,b;
+    Resource *res,*aux;
+    User *user=NULL;
     do{
-        system("cls");
+       cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -180,73 +178,216 @@ void Administrator::CreateResource(){
         cin>>op;
         switch (op) {
         case 1:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the status: ";
-            cin>>_status;
             cout<<"Type the ID: ";
             cin>>_ID;
-            cout<<"Type the number of credits: ";
-            cin>>_credits;
-            cout<<"Type the Professor 1 ID: ";
-            cin>>_professor1id;
-            cout<<"Type the Professor 2 ID: ";
-            cin>>_professor2id;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
-                listres->InsertNodeSelPosition(new Course(_name,_status,_ID,_credits,_professor1id,_professor2id),listres->GetNum_cour());
+                cout<<"Type the name: ";
+                cin>>_name;
+                cout<<"Type the degree: ";
+                cin>>_degree;
+                cout<<"Select the status: "<<endl;
+                cout<<"1.-Created"<<endl;
+                cout<<"2.-In progress"<<endl;
+                cout<<"3.-Completed"<<endl;
+                cin>>b;
+                switch (b) {
+                case 1: _status="created";
+                    break;
+                case 2: _status="in_progress";
+                    break;
+                case 3: _status="completed";
+                    break;
+                }
+                cout<<"Type the number of credits: ";
+                cin>>_credits;
+                do{
+                    cout<<"Type the Professor 1 ID: ";
+                    cin>>_professor1id;
+                    user=listusers->UsersOnList(_professor1id);
+                    if(user==NULL){
+                        cout<<"The professor does not exist."<<endl;
+                    }
+                }while(user==NULL);
+                user=NULL;
+                do{
+                 cout<<"Type the Professor 2 ID: ";
+                 cin>>_professor2id;
+                user=listusers->UsersOnList(_professor2id);
+                if(user==NULL){
+                    cout<<"The professor does not exist."<<endl;
+                }
+                }while(user==NULL);
+                 user=NULL;
+                cout<<"Type the number of students enrolled in the course: ";
+                cin>>_num_users;
+                aux=new Course(_name,_status,_ID,_num_users,_credits,_professor1id,_professor2id,_degree);
+                listres->InsertNodeSelPosition(aux,listres->GetNum_cour());
                 listres->SetNum_cour((listres->GetNum_cour()+1));
-                 system("pause");
+                for(int i=_num_users-1;i>=0;i--){
+                    do{
+                     cout<<"Type the ID of the "<<(i+1)<<" student: ";
+                     cin>>s;
+                    user=listusers->UsersOnList(s);
+                    if(user==NULL){
+                        cout<<"The student does not exist."<<endl;
+                    }
+                    }while(user==NULL);
+                     user=NULL;
+                    aux->Setlirrayvalue(i,s);
+               }
+                cout<<"The course was created successfuly."<<endl;
+
 
             }else{
                 cout<<"\n";
-                cout<<"The resource already exists. INVALID OPTION."<<endl;
-            system("pause");
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
+
             }
+            system("pause");
             break;
         case 2:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the status: ";
-            cin>>_status;
             cout<<"Type the ID: ";
             cin>>_ID;
-            cout<<"Type the student SIN: ";
-            cin>>_idstudent;
-            cout<<"Type the name of the tutor: ";
-            cin>>_nametutor;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
+            cout<<"Type the name: ";
+            cin>>_name;
+            cout<<"Type the degree: ";
+            cin>>_degree;
+            cout<<"Select the status: "<<endl;
+            cout<<"1.-Created"<<endl;
+            cout<<"2.-In progress"<<endl;
+            cout<<"3.-Completed"<<endl;
+            cin>>b;
+            switch (b) {
+            case 1: _status="created";
+                break;
+            case 2: _status="in_progress";
+                break;
+            case 3: _status="completed";
+                break;
+            }
+
+            do{
+                cout<<"Type the ID of the tutor: ";
+                cin>>_nametutor;
+            user=listusers->UsersOnList(_nametutor);
+            if(user==NULL){
+                cout<<"The professor does not exist."<<endl;
+            }
+            }while(user==NULL);
+            user=NULL;
+            cout<<"Do you want to assig a co-tutor to this FDP? (Y/N)"<<endl;
+            cin>>c;
+            if(c==('y'|'Y')){
+                do{
+                    cout<<"Type the co-tutor ID: ";
+                    cin>>_cotutor;
+                user=listusers->UsersOnList(_cotutor);
+                if(user==NULL){
+                    cout<<"The professor does not exist."<<endl;
+                }
+                }while(user==NULL);
+                user=NULL;
+
+            }else{
+                _cotutor="NONE";
+            }
+            cout<<"Do you want to assig a student to this FDP? (Y/N)"<<endl;
+            cin>>a;
+            if(a==('y'|'Y')){
+                do{
+                    cout<<"Type the student SIN: ";
+                    cin>>_idstudent;
+                user=listusers->UsersOnList(_idstudent);
+                if(user==NULL){
+                    cout<<"The student does not exist."<<endl;
+                }
+                }while(user==NULL);
+                user=NULL;
+
+            }else{
+                _idstudent="NONE";
+            }
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp())+1);
-                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_idstudent,_nametutor),position);
+                _num_users=0;
+                listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree,_cotutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
-                system("pause");
+                cout<<"The FDP was created successfuly."<<endl;
             }else{
                 cout<<"\n";
-                cout<<"The resource already exists. INVALID OPTION."<<endl;
-            system("pause");
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
             }
+            system("pause");
             break;
         case 3:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the status: ";
-            cin>>_status;
             cout<<"Type the ID: ";
             cin>>_ID;
-            cout<<"Type the maximum number of seats: ";
-            cin>>_maxSeats;
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
+            cout<<"Type the name: ";
+            cin>>_name;
+            cout<<"Select the status: "<<endl;
+            cout<<"1.-Created"<<endl;
+            cout<<"2.-In progress"<<endl;
+            cout<<"3.-Completed"<<endl;
+            cin>>b;
+            switch (b) {
+            case 1: _status="created";
+                break;
+            case 2: _status="in_progress";
+                break;
+            case 3: _status="completed";
+                break;
+            }
+            cout<<"Type the date of the seminar (dd-mm-year): ";
+            cin>>_date;
+            cout<<"Type the maximum number of seats: ";
+            cin>>_maxSeats;
+            do{
+                cout<<"Type the ID of the speaker: ";
+                cin>>_SpeakerID;
+            user=listusers->UsersOnList(_SpeakerID);
+            if(user==NULL){
+                cout<<"The speaker does not exist."<<endl;
+            }
+            }while(user==NULL);
+            user=NULL;
+            do{
+                cout<<"Type the ID of the coordinator: ";
+                cin>>_coordinator;
+            user=listusers->UsersOnList(_coordinator);
+            if(user==NULL){
+                cout<<"The professor does not exist."<<endl;
+            }
+            }while(user==NULL);
+            user=NULL;
+            cout<<"Type de number of students enrolled in the seminar:";
+            cin>>_num_users;
                 int position=((listres->GetNum_cour()+listres->GetNum_fdp()+listres->GetNum_sem())+2);
-                listres->InsertNodeSelPosition(new Seminar(_name,_status,_ID,_maxSeats),position);//Adds the resource to the list
+                aux=new Seminar(_name,_status,_ID,_num_users,_maxSeats,_SpeakerID,_coordinator,_date);
+                listres->InsertNodeSelPosition(aux,position);//Adds the resource to the list
                 listres->SetNum_sem((listres->GetNum_sem()+1));
-                system("pause");
+                for(int i=_num_users-1;i>=0;i--){
+                    do{
+                     cout<<"Type the ID of the "<<(i+1)<<" student: ";
+                     cin>>s;
+                    user=listusers->UsersOnList(s);
+                    if(user==NULL){
+                        cout<<"The student does not exist."<<endl;
+                    }
+                    }while(user==NULL);
+                     user=NULL;
+                    aux->Setlirrayvalue(i,s);
+               }
+                cout<<"The seminar was created successfuly."<<endl;
+
             }else{
                 cout<<"\n";
-                cout<<"The resource already exists. INVALID OPTION."<<endl;
-            system("pause");
+                cout<<"The resource ID already exists. INVALID OPTION."<<endl;
             }
+            system("pause");
         }
     }while(op!=4);
 
@@ -257,7 +398,7 @@ int Administrator::DeleteResource(){
     string _ID;
     Resource *res;
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -324,13 +465,13 @@ int Administrator::DeleteResource(){
 
 }
 void Administrator::DisplayResources(){
-    system("cls");
+    cout<<"\033[2J\033[1;1H";
     cout<<"------RESOURCES-------"<<endl;
     cout<<listres->toString()<<endl;
     system("pause");
 }
 void Administrator::ModifyResource(){
-    system("cls");
+    cout<<"\033[2J\033[1;1H";
        Resource *aux;
        cout<<"-------MODIFY RESOURCE-------"<<endl;
        string _ID;
@@ -348,18 +489,18 @@ void Administrator::ModifyResource(){
 }
 
 void Administrator::DisplayUsers(){
-    system("cls");
+    cout<<"\033[2J\033[1;1H";
     cout<<"------USERS-------"<<endl;
     cout<<listusers->toString()<<endl;
     system("pause");
 }
 
 void Administrator::CreateUser(){
-    string _name,_IDCode;
+    string _name,_IDCode,_degree;
     int op=1;
     User *user;
     do{
-        system("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -381,19 +522,22 @@ void Administrator::CreateUser(){
         case 1:
             cout<<"Type the name: ";
             cin>>_name;
+            cout<<"Type the degree: ";
+            cin>>_degree;
             cout<<"Type the SIN: ";
             cin>>_IDCode;
             user=listusers->UsersOnList(_IDCode); //Checks if the resource ID is already on the list
             if(user==NULL){
-                listusers->InsertNodeSelPosition(new Student(_name,_IDCode),listusers->GetNum_stu());
+                listusers->InsertNodeSelPosition(new Student(_name,_IDCode,_degree),listusers->GetNum_stu());
                 listusers->SetNum_stu((listusers->GetNum_stu()+1));
-                 system("pause");
+
 
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+            system("pause");
             break;
         case 2:
             cout<<"Type the name: ";
@@ -405,12 +549,13 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof())+1);
                 listusers->InsertNodeSelPosition(new Professor(_name,_IDCode),position);
                 listusers->SetNum_prof((listusers->GetNum_prof()+1));
-                system("pause");
+
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+            system("pause");
             break;
         case 3:
             cout<<"Type the name: ";
@@ -422,19 +567,20 @@ void Administrator::CreateUser(){
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof()+listusers->GetNum_admin())+2);
                 listusers->InsertNodeSelPosition(new Administrator(_name,_IDCode),position);//Adds the resource to the list
                 listusers->SetNum_admin((listusers->GetNum_admin()+1));
-                system("pause");
+
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
-            system("pause");
+
             }
+             system("pause");
         }
     }while(op!=4);
 
 
 }
 void Administrator::ModifyUsers(){
-    system("cls");
+    cout<<"\033[2J\033[1;1H";
        User *aux;
        cout<<"-------MODIFY USER-------"<<endl;
        string _IDCode;
@@ -455,7 +601,7 @@ int Administrator::DeleteUser(){
     string _IDCode;
     User *user;
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
