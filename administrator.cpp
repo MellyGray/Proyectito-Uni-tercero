@@ -32,7 +32,46 @@ Administrator *Administrator::readTxt(ifstream &read){
     read>>_name;
     return (new Administrator(_IDCode, _password,_name));
 };
+bool Administrator::CheckResourceID(string _ID){
+    if(_ID.size()==0)
+    { return true;}
+    if(_ID.size()!=7)
+    { return true;}
+    for(int j=0;j<=2;j++) {
+          if(((_ID[j] <= 'z' && _ID[j] >= 'a') || (_ID[j]<= 'Z' && _ID[j] >= 'A'))==false){
+            return true;
+    }}
+    for(int i=3;i<=6;i++) {
+           if(((_ID[i]>='0') && (_ID[i]<='9'))==false) {
+               return true;
+           }
+           }
 
+       return false;
+
+}
+bool Administrator::CheckSIN(string _IDCode){
+    if(_IDCode.size()==0)
+    { return true;}
+    if(_IDCode.size()!=7)
+    { return true;}
+    for(int i=0;i<=6;i++) {
+           if(((_IDCode[i]>='0') && (_IDCode[i]<='9'))==false) {
+               return true;
+           }}
+       return false;
+}
+bool Administrator::CheckUserID(string _IDCode){
+    if(_IDCode.size()==0)
+    { return true;}
+    if(_IDCode.size()!=7)
+    { return true;}
+    for(int i=0;i<=6;i++) {
+        if(((_IDCode[i] <= 'z' && _IDCode[i] >= 'a') || (_IDCode[i]<= 'Z' && _IDCode[i] >= 'A'))==false){
+          return true;
+           }}
+       return false;
+}
 void Administrator::ModifyUser(){
     cout<<"Please, enter the new name for the administrator: ";
     cin>>name;
@@ -179,8 +218,13 @@ void Administrator::CreateResource(){
         cin>>op;
         switch (op) {
         case 1:
+           do{
             cout<<"Type the ID: ";
             cin>>_ID;
+            if(CheckResourceID(_ID)){
+                cout<<"Invalid ID. Please, try again."<<endl;
+            }
+            }while(CheckResourceID(_ID)); //Checks if the typed ID has the format LLLNNNN
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
                 cout<<"Type the name: ";
@@ -248,8 +292,13 @@ void Administrator::CreateResource(){
             system("pause");
             break;
         case 2:
-            cout<<"Type the ID: ";
-            cin>>_ID;
+            do{
+             cout<<"Type the ID: ";
+             cin>>_ID;
+             if(CheckResourceID(_ID)){
+                 cout<<"Invalid ID. Please, try again."<<endl;
+             }
+             }while(CheckResourceID(_ID)); //Checks if the typed ID has the format LLLNNNN
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
             cout<<"Type the name: ";
@@ -323,8 +372,13 @@ void Administrator::CreateResource(){
             system("pause");
             break;
         case 3:
-            cout<<"Type the ID: ";
-            cin>>_ID;
+            do{
+             cout<<"Type the ID: ";
+             cin>>_ID;
+             if(CheckResourceID(_ID)){
+                 cout<<"Invalid ID. Please, try again."<<endl;
+             }
+             }while(CheckResourceID(_ID)); //Checks if the typed ID has the format LLLNNNN
             res=listres->ResourcesOnList(_ID); //Checks if the resource ID is already on the list
             if(res==NULL){
             cout<<"Type the name: ";
@@ -521,18 +575,21 @@ void Administrator::CreateUser(){
         cin>>op;
         switch (op) {
         case 1:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the degree: ";
-            cin>>_degree;
-            cout<<"Type the SIN: ";
-            cin>>_IDCode;
+            do{
+             cout<<"Type the student SIN: ";
+             cin>>_IDCode;
+             if(CheckSIN(_IDCode)){
+                 cout<<"Invalid SIN. Please, try again."<<endl;
+             }
+             }while(CheckSIN(_IDCode)); //Checks if the typed SIN has 7 digits
             user=listusers->UsersOnList(_IDCode); //Checks if the resource ID is already on the list
             if(user==NULL){
+                cout<<"Type the name: ";
+                cin>>_name;
+                cout<<"Type the degree: ";
+                cin>>_degree;
                 listusers->InsertNodeSelPosition(new Student(_name,_IDCode,_degree),listusers->GetNum_stu());
                 listusers->SetNum_stu((listusers->GetNum_stu()+1));
-
-
             }else{
                 cout<<"\n";
                 cout<<"The user already exists. INVALID OPTION."<<endl;
@@ -541,12 +598,17 @@ void Administrator::CreateUser(){
             system("pause");
             break;
         case 2:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the ID: ";
-            cin>>_IDCode;
+            do{
+             cout<<"Type the ID: ";
+             cin>>_IDCode;
+             if(CheckUserID(_IDCode)){
+                 cout<<"Invalid ID. Please, try again."<<endl;
+             }
+             }while(CheckUserID(_IDCode)); //Checks if the typed ID has 7 letters
             user=listusers->UsersOnList(_IDCode); //Checks if the resource ID is already on the list
             if(user==NULL){
+                cout<<"Type the name: ";
+                cin>>_name;
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof())+1);
                 listusers->InsertNodeSelPosition(new Professor(_name,_IDCode),position);
                 listusers->SetNum_prof((listusers->GetNum_prof()+1));
@@ -559,12 +621,17 @@ void Administrator::CreateUser(){
             system("pause");
             break;
         case 3:
-            cout<<"Type the name: ";
-            cin>>_name;
-            cout<<"Type the ID: ";
-            cin>>_IDCode;
+            do{
+             cout<<"Type the ID: ";
+             cin>>_IDCode;
+             if(CheckUserID(_IDCode)){
+                 cout<<"Invalid ID. Please, try again."<<endl;
+             }
+             }while(CheckUserID(_IDCode)); //Checks if the typed ID has 7 letters
             user=listusers->UsersOnList(_IDCode); //Checks if the resource ID is already on the list
             if(user==NULL){
+                cout<<"Type the name: ";
+                cin>>_name;
                 int position=((listusers->GetNum_stu()+listusers->GetNum_prof()+listusers->GetNum_admin())+2);
                 listusers->InsertNodeSelPosition(new Administrator(_name,_IDCode),position);//Adds the resource to the list
                 listusers->SetNum_admin((listusers->GetNum_admin()+1));
@@ -577,8 +644,6 @@ void Administrator::CreateUser(){
              system("pause");
         }
     }while(op!=4);
-
-
 }
 void Administrator::ModifyUsers(){
     system("cls");
