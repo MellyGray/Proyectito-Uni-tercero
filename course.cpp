@@ -163,16 +163,25 @@ x=0;
     }
 }
 
-bool Course::checking(string _deg){
+int Course::checking(string _deg){
     if(degree==_deg){
-    return true;
+    return 1;
     }else{
-        return false;
+        return 0;
     }
 }
 
 void Course::IntroduceUserinResource(string _id){//Meter Id en la lista.
     string aux[num_users];
+    int ok=1;
+    for(int t=0; (t<num_users)&(ok==1);t++){
+        ok=1;
+        if(lirray[t]==_id){
+                ok=0;
+                cout<<"You are already enrrolled in this Course"<<endl<<endl;
+    }
+    }
+    if(ok==1){
     for(int i=0; i<num_users;i++){
         aux[i]=lirray[i];
     }
@@ -183,6 +192,7 @@ void Course::IntroduceUserinResource(string _id){//Meter Id en la lista.
         lirray[k]=aux[k];
     }
     lirray[t]=_id;
+    }
 }
 
 void Course::DeleteUserinResource(string _id){

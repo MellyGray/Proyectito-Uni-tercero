@@ -52,13 +52,15 @@ public:
 
     void searchinlist(string _id, int x);
 
-    bool checking(string);//Cheack if it is posible to enroll in seminar
+    int checking(string);//Cheack if it is posible to enroll in seminar
 
     //To introduce a user in the seminar
     void IntroduceUserinResource(string _id);
 
     //To clean a user form seminar
     void DeleteUserinResource(string _id);
+
+    int onlyonefdp(string){return 0;}
 
 };
 

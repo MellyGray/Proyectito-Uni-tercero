@@ -53,11 +53,13 @@ public:
     void searchinlist(string _id, int x);
 
    //Checks if it is posible to enroll
-    bool checking(string);
+    int checking(string);
     //To introduce a user in the course
     void IntroduceUserinResource(string _id);
     //To clean a user form course
     void DeleteUserinResource(string _id);
+
+    int onlyonefdp(string){return 0;}
 };
 
 #endif // COURSE_H

@@ -44,13 +44,15 @@ public:
     void searchinlist(string _id, int x);
 
     //Checks if it is posible to enroll in resources
-    bool checking(string);
+    int checking(string);
 
     //To introduce a user in the seminar
     void IntroduceUserinResource(string _id);//Falta el cpp
 
     //To clean a user form course
     void DeleteUserinResource(string _id);
+    //To ensure that 1 student can only enroll 1 seminar
+    int onlyonefdp(string);
 
 
 };

@@ -149,22 +149,42 @@ Resource *Listares::ResourcesOnList(string _ID){
     return NULL;
 }
 Resource *Listares::EnrollResource(string _name, string _id, string _deg){//para estudiante enrolllar en resource.
-    Resource *aux;
-    bool check;
+    Resource *aux,*aux2;
+    int check;
+    int fdps=0;
     Nodores *get=actual;
    while (get!=NULL){
         aux=get->Getresource();
-        if(aux->GetName()==_name){
+        if(aux->GetName()==_name){                                  //Meter aqui lo de que no puedas ni 2fdps ni meterte en si ya estas
             check=aux->checking(_deg);
-           if (check==true){
+           if (check==1){
             aux->IntroduceUserinResource(_id);
             cout<<"Enroll succeded"<<endl;
             cout<<endl;
            return NULL;
             }
-           if (check==false){
+           if (check==0){
                cout<<"Enroll is not posible"<<endl;
                cout<<endl;
+           }
+           if(check==2){//Analyze if the id is in other fdp
+              aux2=aux;
+              get=actual;
+              while (get!=NULL) {
+                  aux=get->Getresource();
+                  fdps=fdps+aux->onlyonefdp(_id);
+                  get=get->Getnext();
+              }
+              if(fdps==0){
+                  aux2->IntroduceUserinResource(_id);
+                  cout<<"Enroll succeded"<<endl;
+                  cout<<endl;
+                  return NULL;
+              }else{
+                  cout<<"Enroll is not posible"<<endl;
+                  cout<<endl;
+                  return NULL;
+              }
            }
         }
         get=get->Getnext();

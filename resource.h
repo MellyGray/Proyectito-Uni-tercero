@@ -39,7 +39,7 @@ public:
    virtual void DeleteUserinResource(string _id)=0;
 
    //CHeck if it is possible to enroll
-   virtual bool checking(string)=0;
+   virtual int checking(string)=0;
 
    //Search in the list associated of users
    virtual void searchinlist(string _user, int x)=0;
@@ -64,6 +64,8 @@ public:
 
    //Modify the marks of the course
    virtual void ModifyMarks()=0;
+
+   virtual int onlyonefdp(string)=0;
 
 };
 

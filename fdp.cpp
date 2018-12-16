@@ -102,17 +102,18 @@ void FDP::searchinlist(string _id, int x){
                 }
             }
     }
-bool FDP::checking(string _deg){
+int FDP::checking(string _deg){
     if (degree==_deg){
         if(idstudent=="NONE"){
-            return true;
+            return 2;
         }else
             cout<<"This FDP is assigned to another student"<<endl;
         cout<<endl;
-            return false;
+            return 0;
     }else{
         cout<<"This FDP is not available in your degree"<<endl;
         cout<<endl;
+        return 0;
     }
 }
 void FDP::IntroduceUserinResource(string _id){
@@ -120,4 +121,12 @@ void FDP::IntroduceUserinResource(string _id){
 }
 void FDP::DeleteUserinResource(string _id){
     idstudent="NONE";
+}
+
+int FDP::onlyonefdp(string _id){
+    if(idstudent==_id){
+        return 1;
+    }else{
+        return 0;
+    }
 }

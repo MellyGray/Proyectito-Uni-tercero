@@ -121,19 +121,28 @@ void Seminar::searchinlist(string _id, int x){
     }
 }
 
-bool Seminar::checking(string _deg){
+int Seminar::checking(string _deg){
     string s=_deg;
     if(num_users==maxSeats){
         cout<<"There are no free seats"<<endl;
         cout<<endl;
-        return false;
+        return 0;
     }
     if(num_users<maxSeats){
-        return true;
+        return 1;
     }
 }
 void Seminar::IntroduceUserinResource(string _id){//Meter Id en la lista.
     string aux[num_users];
+    int ok=1;
+    for(int t=0; (t<num_users)&(ok==1);t++){
+        ok=1;
+        if(lirray[t]==_id){
+                ok=0;
+                cout<<"You are already enrrolled in this Course"<<endl<<endl;
+    }
+    }
+    if(ok==1){
     for(int i=0; i<num_users;i++){
         aux[i]=lirray[i];
     }
@@ -144,6 +153,7 @@ void Seminar::IntroduceUserinResource(string _id){//Meter Id en la lista.
         lirray[k]=aux[k];
     }
     lirray[t]=_id;
+    }
 }
 void Seminar::DeleteUserinResource(string _id){
     string aux[num_users-1];

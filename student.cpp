@@ -98,7 +98,6 @@ do{
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode,degree);
-        cout << "Press enter to continue ..."<<endl;
         cin.get();
         cout << "Press enter to continue ..."<<endl;
         cin.get();
