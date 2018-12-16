@@ -1,4 +1,4 @@
-#include "listares.h"
+﻿#include "listares.h"
 
 
 Listares::Listares()
@@ -202,15 +202,27 @@ void Listares::InsertNodeSelPosition(Resource *res,int position){
     }
      get->setnext(new Nodores(res,get->Getnext()));
 }
-/*string Listares::toStringCourses(){
+string Listares::MarksToString(string _IDCode){
     stringstream s;
-    Nodores *get=actual;
     Resource *res;
-    for(int h=0;h<(num_cour+1);h++){
-        res= get->Getresource();
-        s<<res->toString()<<endl;
+    Nodores *get=actual;
+    s<<"-----------YOUR MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->ToStringMark(_IDCode)<<endl;
         get=get->Getnext();
     }
     return s.str();
-};
-*/
+}
+string Listares::PrintAllMarks(string _IDCode){
+    stringstream s;
+    Resource *res;
+    Nodores *get=actual;
+    s<<"-----------COURSE MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->AllMarks(_IDCode)<<endl;
+        get=get->Getnext();
+    }
+    return s.str();
+}

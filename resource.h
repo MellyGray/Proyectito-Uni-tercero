@@ -47,6 +47,11 @@ public:
    //To print the atributes of the resource
    virtual string toString()=0;
 
+   //To print the marks of the courses
+   virtual string ToStringMark(string _IDCode)=0;
+
+   virtual string AllMarks(string _IDCode)=0;
+
    //To print the atributes of the resource list
    virtual string toStringList()=0;
 
@@ -56,6 +61,9 @@ public:
 
    //Modify the attributes of the resource
    virtual void ModifyResource()=0;
+
+   //Modify the marks of the course
+   virtual void ModifyMarks()=0;
 
 };
 

@@ -11,9 +11,9 @@ Student::~Student(){
 
 string Student::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "Student___________"<<name<<endl;
     s<< "Degree____________"<<degree<<endl;
-    s<< "SIN______________"<<IDCode<<endl;
+    s<< "SIN_______________"<<IDCode<<endl;
     return s.str();
 };
 void Student::datasaving( ofstream &write){
@@ -58,15 +58,16 @@ do{
         cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
         cout<<" Only numerical values"<<endl;
     };
-    if (op!=0&&op!=1&&op!=3){
+    if (op!=0&&op!=1&&op!=3&&op!=4){
         cout<<"Select a possible option"<<endl;
         cout<<"\n";
     };
     cout<<"--------STUDENT FUNCIONALITIES---------"<<endl;
-    cout<<"0)Show Seminars,FDP or cursed enrrolled"<<endl;
-    cout<<"1)Enroll course,seminar,fdp"<<endl;
-    cout<<"2) Drop a course"<<endl;
-    cout<<"3) Log out"<<endl;
+    cout<<"0)Show Seminars,FDP and course enrrolled"<<endl;
+    cout<<"1)See my grades."<<endl;
+    cout<<"2)Enroll course,seminar or fdp."<<endl;
+    cout<<"3) Drop a course, seminar or fdp."<<endl;
+    cout<<"4) Log out"<<endl;
     cout<<endl<<"Type the number of the option"<<endl;
     cin>>op;
 
@@ -75,7 +76,11 @@ do{
         list->UserOnList(IDCode);//toStringCourses();        meter el comparador dentro de la nueva listares
         system("pause");
             break;
-    case 1:list->PrintResourcesOnList(degree);
+    case 1:
+        cout<<list->MarksToString(IDCode);
+        system("pause");
+            break;
+    case 2:list->PrintResourcesOnList(degree);
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode);

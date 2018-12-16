@@ -26,6 +26,8 @@ public:
 
     //To print atributes list
     string toStringList();
+    string ToStringMark(string _IDCode){}
+    string AllMarks(string _IDCode){}
 
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
@@ -36,6 +38,8 @@ public:
 
     //Modify the attributes of the fdp
     void ModifyResource();
+
+    void ModifyMarks(){}
 
     void searchinlist(string _id);
 

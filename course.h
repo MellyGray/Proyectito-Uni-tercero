@@ -10,6 +10,7 @@ private:
     int credits;
     string professor1id;
     string professor2id;
+    string *marks;
 
 public:
     //Constructors
@@ -33,16 +34,20 @@ public:
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
+    //Display the mark of an specific student
+    string ToStringMark(string _IDCode);
 
-
+    string AllMarks(string _IDCode);
 
     //To read the data on a text file that corresponds to one resource
     Course *readTxt(ifstream &);
 
 
-
     //Modify the attributes of the course
     void ModifyResource();
+
+    //Modify the marks of the course
+    void ModifyMarks();
 
     //CHecks if in the list is the name of a user and if it is print the name of the course
     void searchinlist(string _id);

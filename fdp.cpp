@@ -15,7 +15,7 @@ FDP::FDP()
 FDP::~FDP(){};
 string FDP::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "FDP_____________"<<name<<endl;
     s<< "Degree__________"<<degree<<endl;
     s<< "ID______________"<<ID<<endl;
     s<< "Status__________"<< status<<endl;
@@ -89,12 +89,10 @@ void FDP::ModifyResource(){
         }
 }
 void FDP::searchinlist(string _id){
-        if (idstudent==_id){
-            cout<<name<<endl;
-        }
-        if(nametutor==_id){
-            cout<<name<<endl;
-            cout<<ID<<endl;
+        if ((idstudent==_id)||(nametutor==_id)){
+            cout<<"FDP__________"<<name<<endl;
+            cout<<"ID___________"<<ID<<endl;
+            cout<<"\n";
         }
     }
 bool FDP::checking(){

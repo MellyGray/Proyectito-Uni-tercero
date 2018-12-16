@@ -14,7 +14,7 @@ Administrator::~Administrator(){}
 
 string Administrator::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "Administrator___"<<name<<endl;
     s<< "ID______________"<<IDCode<<endl;
     return s.str();
 };

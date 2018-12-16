@@ -8,8 +8,8 @@ Professor::~Professor(){}
 
 string Professor::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
-    s<< "SIN______________"<<IDCode<<endl;
+    s<< "Professor________"<<name<<endl;
+    s<< "ID_______________"<<IDCode<<endl;
     return s.str();
 };
 void Professor::datasaving( ofstream &write){
@@ -57,24 +57,26 @@ int Professor::MainMenu(){
             cout<<"\n";
         };
         cout<<"--------WELCOME PROFESSOR "<<name<<"!---------"<<endl;
-        cout<<"1). Show Info"<<endl;
-        cout<<"2). Modify Resource"<<endl;
+        cout<<"0). Show Info"<<endl;
+        cout<<"1). Modify Resource"<<endl;
+        cout<<"2). Set Marks"<<endl;
         cout<<"3). Exit"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 1:
-            system("cls");
-            cout<<"USER INFO"<<endl;
+        case 0:
+            cout<<"\033[2J\033[1;1H";
+            cout<<"---------USER INFO----------"<<endl;
             cout<< "Name____________"<<name<<endl;
             cout<< "SIN_____________"<<IDCode<<endl;
              cout<<"\n";
-            cout<<"RESOURCES INVOLVED IN"<<endl;
+            cout<<"----RESOURCES INVOLVED IN---"<<endl;
             listares->UserOnList(IDCode);
-            system("pause");
+            cin.get();
+            cin.get();
             break;
-        case 2:
-            system("cls");
+        case 1:
+            cout<<"\033[2J\033[1;1H";
             cout<<"These are the resources you are involved in: "<<endl;
             listares->UserOnList(IDCode);
             cout<<"Type the ID of the resource you want to modify: "<<endl;
@@ -84,7 +86,23 @@ int Professor::MainMenu(){
                aux->ModifyResource();
             }else{
                 cout<<"The resource does not exist"<<endl;
-                system("pause");
+                cin.get();
+                cin.get();
+            }
+            break;
+        case 2:
+            cout<<"\033[2J\033[1;1H";
+            cout<<listares->PrintAllMarks(IDCode);
+            cout<<"Type the ID of the Course to modify the marks: "<<endl;
+            cin>>_ID;
+            aux=listares->ResourcesOnList(_ID);//Checks if the resource is on the list
+            if(aux!=NULL){
+               cout<<"\n";
+               aux->ModifyMarks();
+            }else{
+                cout<<"The Course does not exist"<<endl;
+                cin.get();
+                cin.get();
             }
             break;
         }

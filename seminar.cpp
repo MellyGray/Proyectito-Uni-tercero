@@ -21,7 +21,7 @@ Seminar::~Seminar(){};
 
 string Seminar::toString(){
     stringstream s;
-    s<< "Name__________________"<<name<<endl;
+    s<< "Seminar_______________"<<name<<endl;
     s<< "Status________________"<< status<<endl;
     s<< "ID____________________"<<ID<<endl;
     s<< "Date__________________"<<date<<endl;
@@ -103,12 +103,15 @@ void Seminar::searchinlist(string _id){
     int i=num_users-1;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
-            cout<<name<<endl;
+            cout<<"Seminar_________"<<name<<endl;
+            cout<<"ID______________"<<ID<<endl;
+            cout<<"\n";
         }
     }
     if(SpeakerID==_id){
-        cout<<name<<endl;
-        cout<<ID<<endl;
+        cout<<"Seminar__________"<<name<<endl;
+        cout<<"ID______________"<<ID<<endl;
+        cout<<"\n";
     }
 }
 

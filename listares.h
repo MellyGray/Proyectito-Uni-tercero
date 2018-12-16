@@ -20,6 +20,10 @@ public:
     string toString();
     //Method to keep a resource on the text file
     string toStringList();
+    //Method to show the marks of a student
+    string MarksToString(string _IDCode);
+    //Method to show all the marks of the courses the professor
+    string PrintAllMarks(string _IDCode);
     //Method to keep a resource on the text file
     void keepresource();
     //Method to charge the resources on the text file
