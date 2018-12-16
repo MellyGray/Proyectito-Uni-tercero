@@ -20,20 +20,20 @@ public:
     string toString();
     //Method to keep a resource on the text file
     string toStringList();
+    //Method to show the marks of a student
+    string MarksToString(string _IDCode);
+   //Method to show all the marks of the courses the professor
+   string PrintAllMarks(string _IDCode);
     //Method to keep a resource on the text file
     void keepresource();
     //Method to charge the resources on the text file
-    void keepsourcelist();
-    //Method to charge the resources on the text file
     void chargeresource();
-    //Method to search for a resource on a list, typing the ID
-    void chargeresourcelist();
     //Method to search for a resource on a list, typing the ID
     Resource *ResourcesOnList(string);
     //Method to delete an object from the list
     Resource *DeleteResource(string);
     //Printea los resources en los que está el user
-    Resource *UserOnList(string);
+    Resource *UserOnList(string, int);
     //Method to delete a node from the list
     void DeleteNodores(Nodores *,Nodores *);
     //Method to insert a new element to the list on a selected position
@@ -46,9 +46,9 @@ public:
     void SetNum_fdp(int _num_fdp){num_fdp=_num_fdp;}
     void SetNum_sem(int _num_sem){num_sem=_num_sem;}
     //Printea todos los recursos de la lista de lis
-    void PrintResourcesOnList();
+    void PrintResourcesOnList(string _degree);
     //Needed to enroll goes to the resource which u want to enter
-    Resource *EnrollResource(string _name, string _id);
+    Resource *EnrollResource(string _name, string _id, string _deg);
 
 
 private:

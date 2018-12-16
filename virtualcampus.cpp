@@ -14,8 +14,9 @@ int VirtualCampus::start(){
     list->ChargeUsers();
     string _IDCode,_password;
     int op=1;//Gets the number typed by the user
+    char c;
     do{
-        system ("cls");
+        cout<<"\033[2J\033[1;1H";
         if(cin.fail()){
             cin.clear();
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
@@ -40,13 +41,16 @@ int VirtualCampus::start(){
         aux=list->Logging(_IDCode,_password);//Checks if the user is on the list
         if(aux!=NULL){
            aux->UserMenu();
-           system("pause");
+           cout << "Press enter to continue ..."<<endl;
+           cin.get();
         }else{
             cout<<"Wrong password or ID!"<<endl;
-            system("pause");
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+            op=2;
         }
 
        }
-    }while(op!=2);
+    }while(op!=1);
     return op;
 }

@@ -1,6 +1,7 @@
 #ifndef PROFESSOR_H
 #define PROFESSOR_H
 #include "user.h"
+#include "listares.h"
 
 
 #include <iostream>
@@ -9,8 +10,7 @@ using namespace std;
 class Professor : public User
 {
 private:
-
-
+     Listares *listares;
 public:
     Professor();
     Professor(string _name, string _IDCode): User(_name,_IDCode){}
@@ -30,6 +30,7 @@ public:
 
     //Professor Menu
     int UserMenu();
+    int MainMenu();
 };
 
 #endif // PROFESSOR_H

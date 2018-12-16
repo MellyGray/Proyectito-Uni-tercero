@@ -26,6 +26,14 @@ public:
     int UserMenu();
     int MenuResources();
     int MenuUsers();
+
+    //Checks if the typed ID has the format LLLNNNN
+    bool CheckResourceID(string _ID);
+    //Checks if the typed SIN has 7 digits
+    bool CheckSIN(string _IDCode);
+    //Checks if the typed ID has 7 letters
+    bool CheckUserID(string _IDCode);
+
     //Menu function to display all the resources in the file
     void DisplayResources();
     void DisplayUsers();

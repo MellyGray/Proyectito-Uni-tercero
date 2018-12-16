@@ -10,12 +10,12 @@ private:
     int credits;
     string professor1id;
     string professor2id;
+    string *marks;
 
 public:
     //Constructors
     Course();
-    Course(string _name, string _status, string _ID,int _credits,string _professor1id,string _professor2id);
-    Course(string _name,int _num_users):Resource( _name, _num_users){}
+    Course(string _name, string _status, string _ID, int _num_users,int _credits,string _professor1id,string _professor2id,string _degree);
     ~Course();
     //Getters & setters
     int Getcredits(){return(credits);}
@@ -24,6 +24,7 @@ public:
     void Setprofessor1id(string _professor1id){professor1id=_professor1id;}
     string Getprofessor2id(){return(professor2id);}
     void Setprofessor2id(string _professor2id){professor2id=_professor2id;}
+    string GetDegree(){return degree;}
 
     //To print the atributes of the resource
     string toString();
@@ -33,22 +34,30 @@ public:
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
-    void datasavinglist( ofstream &);
+    //Display the mark of an specific student
+        string ToStringMark(string _IDCode);
+
+        string AllMarks(string _IDCode);
 
 
     //To read the data on a text file that corresponds to one resource
     Course *readTxt(ifstream &);
 
-    Course *readTXTList(ifstream &);
-
     //Modify the attributes of the course
     void ModifyResource();
 
+    //Modify the marks of the course
+    void ModifyMarks();
+
     //CHecks if in the list is the name of a user and if it is print the name of the course
-    void searchinlist(string _id);
+    void searchinlist(string _id, int x);
 
    //Checks if it is posible to enroll
-    bool checking();
+    bool checking(string);
+    //To introduce a user in the course
+    void IntroduceUserinResource(string _id);
+    //To clean a user form course
+    void DeleteUserinResource(string _id);
 };
 
 #endif // COURSE_H

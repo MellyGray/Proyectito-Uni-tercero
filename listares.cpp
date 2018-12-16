@@ -8,6 +8,7 @@ Listares::Listares()
 void Listares::selectresource(Resource *res){
     actual = new Nodores(res, actual);
 }
+
 string Listares::toString(){
     stringstream s;
     Nodores *get=actual;
@@ -73,45 +74,12 @@ void Listares::keepresource(){
     }
     write.close();
 }
-void Listares::keepsourcelist(){
-    Nodores *get=actual, *aux=actual;
-    int position_sem=((num_cour+num_fdp)+2);
-    Resource *res;
-    ofstream writel("Resourcelist.txt", ios::out);
-    writel<<num_cour<<endl;
-    writel<<num_fdp<<endl;
-    writel<<num_sem<<endl;
-    for(int i=0;i<position_sem;i++){
-        get= get->Getnext();
-}
-    for(int j=0;j<(num_sem+1);j++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-}
-    get=aux;
-    for(int k=0;k<(num_cour+1);k++){
-        get= get->Getnext();
-}
-    for(int l=0;l<(num_fdp+1);l++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-    }
-    get=aux;
-    for(int h=0;h<(num_cour+1);h++){
-        res= get->Getresource();
-        res->datasavinglist(writel);
-        get=get->Getnext();
-    }
-    writel.close();
-
-}
 void Listares::chargeresource(){
     ifstream read("Resources.txt", ios::in);
     Course cour;
     FDP fdp;
     Seminar sem;
+    string nothing;
     Resource *res;
     read>>num_cour;
     read>>num_fdp;
@@ -143,54 +111,26 @@ void Listares::chargeresource(){
 
     read.close();
 }
-void Listares::chargeresourcelist(){
-    ifstream readl("Resourcelist.txt", ios::in);
-    Seminar sem_aux;
-    Course cou_aux;
-    FDP fdp_aux;
-    Resource *res;
-    readl>>num_cour;
-    readl>>num_fdp;
-    readl>>num_sem;
-    res=&sem_aux;
-    res=sem_aux.readTXTlist(readl);
-    for (int k=0; k<num_sem;k++){
-        selectresource(res);
-        res=sem_aux.readTXTlist(readl);
-    };
-     selectresource(res);
-    res=&fdp_aux;
-    res=fdp_aux.readTxtList(readl);
-    for (int l=0; l<num_fdp; l++){
-        selectresource(res);
-        res=fdp_aux.readTxtList(readl);
-    };
-     selectresource(res);
-    res=&cou_aux;//Set type of memory
-    res=cou_aux.readTXTList(readl);
-    for (int i=0;i<num_cour;i++){
-                    selectresource(res);
-                    res=cou_aux.readTXTList(readl);
-               }
-        selectresource(res);
-
-    readl.close();
-}
-void Listares::PrintResourcesOnList(){//Printea los nombres de los resources en la lista
+void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los resources en la lista
     Resource *aux;
+    string saux="NONE";
     Nodores *get=actual;
     while(get!=NULL){
     aux=get->Getresource();
+    if((aux->GetDegree()==_degree)|(aux->GetDegree()==saux)){
     cout<<aux->GetName()<<endl;
+    cout<<endl;
     get=get->Getnext();
-    }
+    }else{
+        get=get->Getnext();
+    }}
 }
-Resource *Listares::UserOnList(string _id){//Printea los nombres de los resources en los que el user esta
+Resource *Listares::UserOnList(string _id, int x){//Printea los nombres de los resources en los que el user esta
     Resource *aux;
     Nodores *get=actual;
     while(get!=NULL){
         aux=get->Getresource();
-        aux->searchinlist(_id);
+        aux->searchinlist(_id,x);
         get=get->Getnext();
     }
     return NULL;
@@ -208,22 +148,24 @@ Resource *Listares::ResourcesOnList(string _ID){
     }
     return NULL;
 }
-Resource *Listares::EnrollResource(string _name, string _id){//para estudiante enrolllar en resource.
+Resource *Listares::EnrollResource(string _name, string _id, string _deg){//para estudiante enrolllar en resource.
     Resource *aux;
     bool check;
-    Nodores *get=actual, *naux=actual;
+    Nodores *get=actual;
    while (get!=NULL){
         aux=get->Getresource();
-        if(aux->GetName()==_name){//FUNCIÓN CHEQUEO VIRTUAL
-            check=aux->checking();
-            if (check==true){
+        if(aux->GetName()==_name){
+            check=aux->checking(_deg);
+           if (check==true){
             aux->IntroduceUserinResource(_id);
-            cout<<"Enroll succeded";
-            return NULL;
+            cout<<"Enroll succeded"<<endl;
+            cout<<endl;
+           return NULL;
             }
-            if (check==false){
-                cout<<"Enroll is not posible";
-            }
+           if (check==false){
+               cout<<"Enroll is not posible"<<endl;
+               cout<<endl;
+           }
         }
         get=get->Getnext();
     }
@@ -261,6 +203,30 @@ void Listares::InsertNodeSelPosition(Resource *res,int position){
         get=get->Getnext();
     }
      get->setnext(new Nodores(res,get->Getnext()));
+}
+string Listares::MarksToString(string _IDCode){
+    stringstream s;
+    Resource *res;
+    Nodores *get=actual;
+    s<<"-----------YOUR MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->ToStringMark(_IDCode)<<endl;
+        get=get->Getnext();
+    }
+    return s.str();
+}
+string Listares::PrintAllMarks(string _IDCode){
+    stringstream s;
+    Resource *res;
+    Nodores *get=actual;
+    s<<"-----------COURSE MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->AllMarks(_IDCode)<<endl;
+        get=get->Getnext();
+    }
+    return s.str();
 }
 /*string Listares::toStringCourses(){
     stringstream s;
