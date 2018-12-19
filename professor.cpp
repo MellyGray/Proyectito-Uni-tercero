@@ -8,7 +8,7 @@ Professor::~Professor(){}
 
 string Professor::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "Professor________"<<name<<endl;
     s<< "SIN______________"<<IDCode<<endl;
     return s.str();
 };
@@ -57,46 +57,58 @@ int Professor::MainMenu(){
             cout<<"\n";
         };
         cout<<"--------WELCOME PROFESSOR "<<name<<"!---------"<<endl;
-        cout<<"1). Show Info"<<endl;
-        cout<<"2). Modify Resource"<<endl;
-        cout<<"3). Exit"<<endl;
-        cout<<"Type the number of the option"<<endl;
-        cin>>op;
-        switch (op) {
-        case 1: cout << "Press enter to continue ...";
-            cin.get();
-
-            cout<<"\033[2J\033[1;1H";
-            cout<<"USER INFO"<<endl;
-            cout<< "Name____________"<<name<<endl;
-            cout<< "SIN_____________"<<IDCode<<endl;
-             cout<<"\n";
-            cout<<"RESOURCES INVOLVED IN"<<endl;
-            listares->UserOnList(IDCode,1);
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            break;
-        case 2:
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            cout<<"\033[2J\033[1;1H";
-            cout<<"These are the resources you are involved in: "<<endl;
-            listares->UserOnList(IDCode,0);
-            cout<<"Type the ID of the resource you want to modify: "<<endl;
-            cin>>_ID;
-            aux=listares->ResourcesOnList(_ID);//Checks if the resource is on the list
-            if(aux!=NULL){
-               aux->ModifyResource();
-            }else{
-                cout<<"The resource does not exist"<<endl;
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
-            }
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            break;
-        }
-    }while(op!=3);
+                cout<<"1). Show Info"<<endl;
+                cout<<"2). Modify Resource"<<endl;
+                cout<<"3). Set Marks"<<endl;
+                cout<<"0). Log out & Save changes"<<endl;
+                cout<<"Type the number of the option"<<endl;
+                cin>>op;
+                switch (op) {
+                case 1:
+                    cout<<"\033[2J\033[1;1H";
+                    cout<<"---------USER INFO----------"<<endl;
+                    cout<< "Name____________"<<name<<endl;
+                    cout<< "SIN_____________"<<IDCode<<endl;
+                     cout<<"\n";
+                    cout<<"----RESOURCES INVOLVED IN---"<<endl;
+                    listares->UserOnList(IDCode,1);
+                    cin.get();
+                    cin.get();
+                    break;
+                case 2:
+                    cout<<"\033[2J\033[1;1H";
+                    cout<<"These are the resources you can modify: "<<endl;
+                    listares->UserOnList(IDCode,0);
+                    cout<<"Type the ID of the resource you want to modify: "<<endl;
+                    cin>>_ID;
+                    aux=listares->ResourcesOnList(_ID);//Checks if the resource is on the list
+                    if(aux!=NULL){
+                       aux->ModifyResource();
+                    }else{
+                        cout<<"The resource does not exist"<<endl;
+                        cin.get();
+                        cout << "Press enter to continue ..."<<endl;
+                        cin.get();
+                    }
+                    break;
+                case 3:
+                    cout<<"\033[2J\033[1;1H";
+                    cout<<listares->PrintAllMarks(IDCode);
+                    cout<<"Type the ID of the Course to modify the marks: "<<endl;
+                    cin>>_ID;
+                    aux=listares->ResourcesOnList(_ID);//Checks if the resource is on the list
+                    if(aux!=NULL){
+                       cout<<"\n";
+                       aux->ModifyMarks();
+                    }else{
+                        cout<<"The Course does not exist"<<endl;
+                        cin.get();
+                        cout << "Press enter to continue ..."<<endl;
+                        cin.get();
+                    }
+                    break;
+                }
+            }while(op!=0);
 
     return op;
 

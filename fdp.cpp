@@ -15,7 +15,7 @@ FDP::FDP()
 FDP::~FDP(){};
 string FDP::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "FDP_____________"<<name<<endl;
     s<< "Degree__________"<<degree<<endl;
     s<< "ID______________"<<ID<<endl;
     s<< "Status__________"<< status<<endl;
@@ -26,7 +26,7 @@ string FDP::toString(){
 }
 string FDP::toStringList(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "FDP_____________"<<name<<endl;
     s<< "Degree__________"<<degree<<endl;
     s<< "Status__________"<< status<<endl;
     s<< "ID______________"<<ID<<endl;
@@ -89,35 +89,31 @@ void FDP::ModifyResource(){
         }
 }
 void FDP::searchinlist(string _id, int x){
-        if (idstudent==_id){
-            cout<<name<<endl;
-            cout<<ID<<endl;
-            cout<<endl;
-        }
-        if(nametutor==_id){
-            cout<<name<<endl;
-            cout<<ID<<endl;
-            cout<<endl;
-        }
+    if ((idstudent==_id)||(nametutor==_id)){
+                cout<<"FDP__________"<<name<<endl;
+                cout<<"ID___________"<<ID<<endl;
+                cout<<"\n";
+    }
          if(x==1){
              if(idcotutor==_id){
-                 cout<<name<<endl;
-                 cout<<ID<<endl;
-                 cout<<endl;
+                 cout<<"FDP__________"<<name<<endl;
+                 cout<<"ID___________"<<ID<<endl;
+                 cout<<"\n";
                 }
             }
     }
-bool FDP::checking(string _deg){
+int FDP::checking(string _deg){
     if (degree==_deg){
         if(idstudent=="NONE"){
-            return true;
+            return 2;
         }else
             cout<<"This FDP is assigned to another student"<<endl;
         cout<<endl;
-            return false;
+            return 0;
     }else{
         cout<<"This FDP is not available in your degree"<<endl;
         cout<<endl;
+        return 0;
     }
 }
 void FDP::IntroduceUserinResource(string _id){
@@ -125,4 +121,12 @@ void FDP::IntroduceUserinResource(string _id){
 }
 void FDP::DeleteUserinResource(string _id){
     idstudent="NONE";
+}
+
+int FDP::onlyonefdp(string _id){
+    if(idstudent==_id){
+        return 1;
+    }else{
+        return 0;
+    }
 }

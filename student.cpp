@@ -11,7 +11,7 @@ Student::~Student(){
 
 string Student::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "Student___________"<<name<<endl;
     s<< "Degree____________"<<degree<<endl;
     s<< "SIN______________"<<IDCode<<endl;
     return s.str();
@@ -49,63 +49,80 @@ int Student::UserMenu(){
 }
 int Student::MainMenu(){
 int op=1;
-string give,s;
+string give;
 Resource *aux;
 char c;
 cout<<name<< "Welcome to your account"<<endl;
 do{
     cout<<"\033[2J\033[1;1H";
-    s=list->toString();
-    cout<<s<<endl;
     if(cin.fail()){
         cin.clear();
         cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
         cout<<" Only numerical values"<<endl;
     };
-    if (op!=0&&op!=1&&op!=3){
+    if (op!=0&&op!=1&&op!=3&&op!=4){
         cout<<"Select a possible option"<<endl;
         cout<<"\n";
     };
-    cout<<"--------STUDENT FUNCIONALITIES---------"<<endl;
-    cout<<"0)Show Seminars,FDP or cursed enrrolled"<<endl;
-    cout<<"1)Enroll course,seminar,fdp"<<endl;
-    cout<<"2) Drop a course"<<endl;
-    cout<<"3) Log out"<<endl;
+    cout<<"--------WELCOME STUDENT "<<name<<"!---------"<<endl;
+    cout<<"1)Show Seminars,FDP and course enrrolled"<<endl;
+    cout<<"2)See my grades."<<endl;
+    cout<<"3)Enroll course,seminar or fdp."<<endl;
+    cout<<"4) Drop a course, seminar or fdp."<<endl;
+    cout<<"0) Log out & Save changes"<<endl;
     cout<<endl<<"Type the number of the option"<<endl;
     cin>>op;
     switch (op){
-    case 0:
-        cout << "Press enter to continue ..."<<endl;
+    case 1:
+        cout<<"\033[2J\033[1;1H";
+        cout << ""<<endl;
         cin.get();
-        list->UserOnList(IDCode,1);//toStringCourses();        meter el comparador dentro de la nueva listares
+        list->UserOnList(IDCode,1);
         cout << "Press enter to continue ..."<<endl;
         cin.get();
             break;
-    case 1:
+
+    case 2:
+        cout<<"\033[2J\033[1;1H";
+        cout << ""<<endl;
+        cin.get();
+        cout<<list->MarksToString(IDCode);
         cout << "Press enter to continue ..."<<endl;
+        cin.get();
+            break;
+    case 3:
+        cout<<"\033[2J\033[1;1H";
+        cout << ""<<endl;
         cin.get();
         list->PrintResourcesOnList(degree);
         cout<<"Introduce the name of the Course, Seminar or FDP that you want to enter"<<endl;
         cin>>give;
         list->EnrollResource(give,IDCode,degree);
-        cout << "Press enter to continue ..."<<endl;
         cin.get();
         cout << "Press enter to continue ..."<<endl;
         cin.get();
             break;
-    case 2:
-        cout << "Press enter to continue ..."<<endl;
+    case 4:
+        cout<<"\033[2J\033[1;1H";
+        cout << ""<<endl;
         cin.get();
         list->UserOnList(IDCode,1);
         cout<<"Those are your resources"<<endl<<"Please, introduce the ID of the Resource that you want to drop"<<endl;
         cin>>give;
         aux=list->ResourcesOnList(give);
+        if(aux!=NULL){
         aux->DeleteUserinResource(IDCode);
         cout << "Press enter to continue ..."<<endl;
         cin.get();
-            break;
+        }else{
+            cout<<"The resource does not exist."<<endl<<endl;
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
+           }
+        break;
 
     }
-   }while(op!=3);
+   }while(op!=0);
 return op;
 };

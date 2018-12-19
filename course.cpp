@@ -10,6 +10,7 @@ Course::Course(string _name, string _status, string _ID,int _num_users, int _cre
     professor1id=_professor1id;
     professor2id=_professor2id;
     degree=_degree;
+    marks=new string[num_users];
 };
 
 Course::~Course()
@@ -19,10 +20,11 @@ Course::~Course()
     credits=0;
     professor1id="";
     professor2id="";
+    marks=NULL;
    }
 string Course::toString(){
     stringstream s;
-    s<< "Name____________"<<name<<endl;
+    s<< "Course__________"<<name<<endl;
     s<< "Degree__________"<<degree<<endl;
     s<< "ID______________"<<ID<<endl;
     s<< "Status__________"<< status<<endl;
@@ -34,12 +36,34 @@ string Course::toString(){
 
 string Course::toStringList(){
     stringstream s;
-    s<<"Name-------------------"<<name<<endl;
+    s<<"Course----------------"<<name<<endl;
     s<<"Number of students----"<<num_users<<endl;
     s<<"List of students:"<<endl;
     for(int i=0; i<num_users; i++){
         s<<lirray[i]<<endl;
     };
+    return s.str();
+}
+string Course::ToStringMark(string _IDCode){
+    stringstream s;
+    for(int i=0; i<=(num_users-1);i++){
+        if (lirray[i]==_IDCode){
+            s<<"Course__________"<<name<<endl;
+            s<<"Mark____________"<<marks[i]<<endl;
+        }}
+    return s.str();
+}
+
+string Course::AllMarks(string _IDCode){
+    stringstream s;
+        if ((professor1id==_IDCode)||(professor2id==_IDCode)){
+            s<<"Course__________"<<name<<endl;
+            s<<"Course ID_______"<<ID<<endl;
+            s<<"MARKS:"<<endl;
+            for(int i=0; i<num_users; i++){
+            s<<"Student SIN_____"<<lirray[i]<<endl;
+            s<<"Mark____________"<<marks[i]<<endl;
+            }}
     return s.str();
 }
 void Course::datasaving( ofstream &write){
@@ -54,13 +78,16 @@ void Course::datasaving( ofstream &write){
    for(int i=num_users-1;i>=0;i--){
        write<<lirray[i]<<"\n";
    }
+   for(int i=num_users-1;i>=0;i--){
+          write<<marks[i]<<"\n";
+   }
 
 
 }
 
 Course *Course::readTxt(ifstream &read){
     string _name, _status,_ID,_professor1id,_professor2id,_degree,nothing;
-    int _credits,_num_users,i;
+    int _credits,_num_users,i,j;
     read>>_degree;
     read>>_professor2id;
     read>>_professor1id;
@@ -73,6 +100,9 @@ Course *Course::readTxt(ifstream &read){
     for(i=_num_users-1;i>=0;i--){
         read>>c1->lirray[i];
         };
+    for(j=_num_users-1;j>=0;j--){
+            read>>c1->marks[j];
+    }
     return (c1);
 }
 
@@ -107,37 +137,51 @@ void Course::ModifyResource(){
     cin>>professor2id;
     cout<<"\n";
 }
+void Course::ModifyMarks(){
+    cout<<"Course__________"<<name<<endl;
+    for(int i=0; i<num_users; i++){
+    cout<<"Student SIN_____"<<lirray[i]<<endl;
+    cout<<"Mark____________";
+    cin>>marks[i];
+    cout<<"\n";
+    }
+}
 void Course::searchinlist(string _id, int x){
-int t=x;
+x=0;
     int i=num_users-1;
     for(int k=0; k<=i;k++){
         if (lirray[k]==_id){
-            cout<<name<<endl;
-            cout<<ID<<endl;
-            cout<<endl;
+            cout<<"Course__________"<<name<<endl;
+            cout<<"ID______________"<<ID<<endl;
+            cout<<"\n";
         }
     }
-    if (professor1id==_id){
-        cout<<name<<endl;
-        cout<<ID<<endl;
-        cout<<endl;
-    }
-    if (professor2id==_id){
-        cout<<name<<endl;
-        cout<<ID<<endl;
-        cout<<endl;
-    }
-}
-bool Course::checking(string _deg){
-    if(degree==_deg){
-    return true;
-    }else{
-        return false;
+    if ((professor1id==_id)||(professor2id==_id)){
+        cout<<"Course__________"<<name<<endl;
+        cout<<"ID______________"<<ID<<endl;
+        cout<<"\n";
     }
 }
 
-void Course::IntroduceUserinResource(string _id){//Meter Id en la lista.
+int Course::checking(string _deg){
+    if(degree==_deg){
+    return 1;
+    }else{
+        return 0;
+    }
+}
+
+void Course::IntroduceUserinResource(string _id){
     string aux[num_users];
+    int ok=1;
+    for(int t=0; (t<num_users)&(ok==1);t++){
+        ok=1;
+        if(lirray[t]==_id){
+                ok=0;
+                cout<<"You are already enrrolled in this Course"<<endl<<endl;
+    }
+    }
+    if(ok==1){
     for(int i=0; i<num_users;i++){
         aux[i]=lirray[i];
     }
@@ -148,6 +192,7 @@ void Course::IntroduceUserinResource(string _id){//Meter Id en la lista.
         lirray[k]=aux[k];
     }
     lirray[t]=_id;
+    }
 }
 
 void Course::DeleteUserinResource(string _id){

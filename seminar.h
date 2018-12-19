@@ -15,7 +15,6 @@ private:
 public:
     //Constructors
     Seminar();
-    //NUEVO
     Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID, string _coordinator, string _date);
 
     ~Seminar();
@@ -36,6 +35,9 @@ public:
     //To print atributes list
     string toStringList();
 
+    string ToStringMark(string _IDCode){}
+    string AllMarks(string _IDCode){}
+
     //To save the atributes of the resource on a text file
     void datasaving( ofstream &);
 
@@ -45,15 +47,19 @@ public:
     //Modify the attributes of the seminar
     void ModifyResource();
 
+    void ModifyMarks(){}
+
     void searchinlist(string _id, int x);
 
-    bool checking(string);//Cheack if it is posible to enroll in seminar
+    int checking(string);//Cheack if it is posible to enroll in seminar
 
     //To introduce a user in the seminar
     void IntroduceUserinResource(string _id);
 
     //To clean a user form seminar
     void DeleteUserinResource(string _id);
+
+    int onlyonefdp(string){return 0;}
 
 };
 

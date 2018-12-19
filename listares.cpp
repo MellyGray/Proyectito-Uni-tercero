@@ -36,7 +36,7 @@ string Listares::toStringList(){
     Resource *res;
     while (get!= NULL){
         res= get->Getresource();
-        s<<res->toStringList()<<endl;//Tostring de listas de usuarios en las resources
+        s<<res->toStringList()<<endl;
         get= get->Getnext();
     }
     return s.str();
@@ -111,7 +111,7 @@ void Listares::chargeresource(){
 
     read.close();
 }
-void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los resources en la lista
+void Listares::PrintResourcesOnList(string _degree){
     Resource *aux;
     string saux="NONE";
     Nodores *get=actual;
@@ -125,7 +125,7 @@ void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los
         get=get->Getnext();
     }}
 }
-Resource *Listares::UserOnList(string _id, int x){//Printea los nombres de los resources en los que el user esta
+Resource *Listares::UserOnList(string _id, int x){
     Resource *aux;
     Nodores *get=actual;
     while(get!=NULL){
@@ -148,23 +148,43 @@ Resource *Listares::ResourcesOnList(string _ID){
     }
     return NULL;
 }
-Resource *Listares::EnrollResource(string _name, string _id, string _deg){//para estudiante enrolllar en resource.
-    Resource *aux;
-    bool check;
+Resource *Listares::EnrollResource(string _name, string _id, string _deg){
+    Resource *aux,*aux2;
+    int check;
+    int fdps=0;
     Nodores *get=actual;
    while (get!=NULL){
         aux=get->Getresource();
         if(aux->GetName()==_name){
             check=aux->checking(_deg);
-           if (check==true){
+           if (check==1){
             aux->IntroduceUserinResource(_id);
             cout<<"Enroll succeded"<<endl;
             cout<<endl;
            return NULL;
             }
-           if (check==false){
+           if (check==0){
                cout<<"Enroll is not posible"<<endl;
                cout<<endl;
+           }
+           if(check==2){//Analyze if the id is in other fdp
+              aux2=aux;
+              get=actual;
+              while (get!=NULL) {
+                  aux=get->Getresource();
+                  fdps=fdps+aux->onlyonefdp(_id);
+                  get=get->Getnext();
+              }
+              if(fdps==0){
+                  aux2->IntroduceUserinResource(_id);
+                  cout<<"Enroll succeded"<<endl;
+                  cout<<endl;
+                  return NULL;
+              }else{
+                  cout<<"Enroll is not posible"<<endl;
+                  cout<<endl;
+                  return NULL;
+              }
            }
         }
         get=get->Getnext();
@@ -204,15 +224,27 @@ void Listares::InsertNodeSelPosition(Resource *res,int position){
     }
      get->setnext(new Nodores(res,get->Getnext()));
 }
-/*string Listares::toStringCourses(){
+string Listares::MarksToString(string _IDCode){
     stringstream s;
-    Nodores *get=actual;
     Resource *res;
-    for(int h=0;h<(num_cour+1);h++){
-        res= get->Getresource();
-        s<<res->toString()<<endl;
+    Nodores *get=actual;
+    s<<"-----------YOUR MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->ToStringMark(_IDCode)<<endl;
         get=get->Getnext();
     }
     return s.str();
-};
-*/
+}
+string Listares::PrintAllMarks(string _IDCode){
+    stringstream s;
+    Resource *res;
+    Nodores *get=actual;
+    s<<"-----------COURSE MARKS-------------"<<endl;
+    for(int i=0;i<(num_cour+1);i++){
+        res=get->Getresource();
+        s<<res->AllMarks(_IDCode)<<endl;
+        get=get->Getnext();
+    }
+    return s.str();
+}
