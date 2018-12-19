@@ -98,14 +98,14 @@ int Administrator::MainMenu(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         };
-        if (op!=1&&op!=2&&op!=3){
+        if (op!=1&&op!=2&&op!=0){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         };
         cout<<"--------WELCOME ADMINISTRATOR "<<name<<"!---------"<<endl;
         cout<<"1). Resources"<<endl;
         cout<<"2). Users"<<endl;
-        cout<<"3). Exit"<<endl;
+        cout<<"0). Log out & Save changes"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
@@ -114,7 +114,7 @@ int Administrator::MainMenu(){
         case 2: MenuUsers();
             break;
         }
-    }while(op!=3);
+    }while(op!=0);
 
     return op;
 
@@ -135,44 +135,43 @@ int Administrator::MenuResources(){
         };
         cout<<"--------ADMINISTRATOR FUNCIONALITIES---------"<<endl;
         cout<<" Create, Modify or Delete resources."<<endl;
-        cout<<"0). See Resources"<<endl;
-        cout<<"1). Create"<<endl;
-        cout<<"2). Modify"<<endl;
-        cout<<"3). Delete"<<endl;
-        cout<<"4). Exit"<<endl;
+        cout<<"1). See Resources"<<endl;
+        cout<<"2). Create"<<endl;
+        cout<<"3). Modify"<<endl;
+        cout<<"4). Delete"<<endl;
+        cout<<"0). Exit"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 0:
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            DisplayResources();
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            break;
         case 1:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            CreateResource();
+            DisplayResources();
+            cin.get();
             cout << "Press enter to continue ..."<<endl;
             cin.get();
+
             break;
         case 2:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            ModifyResource();
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
+            CreateResource();
+
             break;
         case 3:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            DeleteResource();
+            ModifyResource();
+
+            break;
+        case 4:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
+            DeleteResource();
+
             break;
         }
-    }while(op!=4);
+    }while(op!=0);
     return op;
 };
 int Administrator::MenuUsers(){
@@ -190,44 +189,41 @@ int Administrator::MenuUsers(){
         };
         cout<<"--------ADMINISTRATOR FUNCIONALITIES---------"<<endl;
         cout<<" Create, Modify or Delete users."<<endl;
-        cout<<"0). See Users"<<endl;
-        cout<<"1). Create"<<endl;
-        cout<<"2). Modify"<<endl;
-        cout<<"3). Delete"<<endl;
-        cout<<"4). Exit"<<endl;
+        cout<<"1). See Users"<<endl;
+        cout<<"2). Create"<<endl;
+        cout<<"3). Modify"<<endl;
+        cout<<"4). Delete"<<endl;
+        cout<<"0). Exit"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
-        case 0:
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            DisplayUsers();
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
-            break;
         case 1:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            CreateUser();
+            DisplayUsers();
+            cin.get();
             cout << "Press enter to continue ..."<<endl;
             cin.get();
+
             break;
         case 2:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            ModifyUsers();
-            cout << "Press enter to continue ..."<<endl;
-            cin.get();
+            CreateUser();
+
             break;
         case 3:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
-            DeleteUser();
+            ModifyUsers();
+            break;
+        case 4:
             cout << "Press enter to continue ..."<<endl;
             cin.get();
+            DeleteUser();
             break;
         }
-    }while(op!=4);
+    }while(op!=0);
     return op;
 };
 
@@ -244,7 +240,7 @@ void Administrator::CreateResource(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         }
-        if (op!=1&&op!=2&&op!=3&&op!=4){
+        if (op!=1&&op!=2&&op!=3&&op!=0){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         }
@@ -253,7 +249,7 @@ void Administrator::CreateResource(){
         cout<<"1). Course"<<endl;
         cout<<"2). FDP"<<endl;
         cout<<"3). Seminar"<<endl;
-        cout<<"4). Back"<<endl;
+        cout<<"0). Back"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
@@ -292,6 +288,8 @@ void Administrator::CreateResource(){
                     user=listusers->UsersOnList(_professor1id);
                     if(user==NULL){
                         cout<<"The professor does not exist."<<endl<<endl;
+
+
                     }
                 }while(user==NULL);
                 user=NULL;
@@ -301,6 +299,7 @@ void Administrator::CreateResource(){
                 user=listusers->UsersOnList(_professor2id);
                 if(user==NULL){
                     cout<<"The professor does not exist."<<endl<<endl;
+
                 }
                 }while(user==NULL);
                  user=NULL;
@@ -316,6 +315,8 @@ void Administrator::CreateResource(){
                     user=listusers->UsersOnList(s);
                     if(user==NULL){
                         cout<<"The student does not exist."<<endl<<endl;
+                        cin.get();
+
                     }
                     }while(user==NULL);
                      user=NULL;
@@ -324,9 +325,11 @@ void Administrator::CreateResource(){
                 cout<<"The course was created successfuly."<<endl<<endl;
 
 
+
             }else{
                 cout<<"\n";
                 cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
+
             }
             cin.get();
             cout << "Press enter to continue ..."<<endl;
@@ -366,6 +369,8 @@ void Administrator::CreateResource(){
             user=listusers->UsersOnList(_nametutor);
             if(user==NULL){
                 cout<<"The professor does not exist."<<endl<<endl;
+
+
             }
             }while(user==NULL);
             user=NULL;
@@ -394,6 +399,7 @@ void Administrator::CreateResource(){
                 user=listusers->UsersOnList(_idstudent);
                 if(user==NULL){
                     cout<<"The student does not exist."<<endl<<endl;
+
                 }
                 }while(user==NULL);
                 user=NULL;
@@ -406,9 +412,11 @@ void Administrator::CreateResource(){
                 listres->InsertNodeSelPosition(new FDP(_name,_status,_ID,_num_users,_idstudent,_nametutor,_degree,_cotutor),position);
                 listres->SetNum_fdp((listres->GetNum_fdp()+1));
                 cout<<"The FDP was created successfuly."<<endl<<endl;
+
             }else{
                 cout<<"\n";
                 cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
+
             }
             cin.get();
             cout << "Press enter to continue ..."<<endl;
@@ -481,17 +489,18 @@ void Administrator::CreateResource(){
                }
                 cout<<"The seminar was created successfuly."<<endl<<endl;
 
+
             }else{
                 cout<<"\n";
                 cout<<"The resource ID already exists. INVALID OPTION."<<endl<<endl;
+
             }
             cin.get();
             cout << "Press enter to continue ..."<<endl;
             cin.get();
            break;
         }
-    }while(op!=4);
-
+    }while(op!=0);
 
 }
 int Administrator::DeleteResource(){
@@ -505,7 +514,7 @@ int Administrator::DeleteResource(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         };
-        if (op!=1&&op!=2&&op!=3&&op!=4){
+        if (op!=1&&op!=2&&op!=3&&op!=0){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         };
@@ -514,7 +523,7 @@ int Administrator::DeleteResource(){
         cout<<"1). Delete Course"<<endl;
         cout<<"2). Delete FDP"<<endl;
         cout<<"3). Delete Seminar"<<endl;
-        cout<<"4). Back"<<endl;
+        cout<<"0). Back"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
@@ -525,6 +534,7 @@ int Administrator::DeleteResource(){
             if (res!=NULL){
                 delete res;
                 cout<<"The course was deleted succesfuly."<<endl<<endl;
+
                 listres->SetNum_cour(listres->GetNum_cour()-1);
             }else{
                 cout<<"The resource does not exists."<<endl<<endl;
@@ -564,7 +574,7 @@ int Administrator::DeleteResource(){
             cin.get();
             break;
         }
-    }while(op!=4);
+    }while(op!=0);
     return op;
 
 }
@@ -586,7 +596,11 @@ void Administrator::ModifyResource(){
           aux->ModifyResource();
        }else{
            cout<<"The resource does not exist"<<endl<<endl;
+
        }
+       cin.get();
+       cout << "Press enter to continue ..."<<endl;
+       cin.get();
 
 }
 
@@ -607,7 +621,7 @@ void Administrator::CreateUser(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         }
-        if (op!=1&&op!=2&&op!=3&&op!=4){
+        if (op!=1&&op!=2&&op!=3&&op!=0){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         }
@@ -616,16 +630,16 @@ void Administrator::CreateUser(){
         cout<<"1). Student"<<endl;
         cout<<"2). Professor"<<endl;
         cout<<"3). Administrator"<<endl;
-        cout<<"4). Back"<<endl;
+        cout<<"0). Back"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
         case 1:
             do{
-                         cout<<"Type the student SIN: ";
-                         cin>>_IDCode;
-                         if(CheckSIN(_IDCode)){
-                             cout<<"Invalid SIN. Please, try again."<<endl;
+               cout<<"Type the student SIN: ";
+               cin>>_IDCode;
+              if(CheckSIN(_IDCode)){
+              cout<<"Invalid SIN. Please, try again."<<endl;
                          }
             }while(CheckSIN(_IDCode)); //Checks if the typed SIN has 7 digits
             if(user==NULL){
@@ -697,7 +711,7 @@ void Administrator::CreateUser(){
             cout << "Press enter to continue ..."<<endl;
             cin.get();
         }
-    }while(op!=4);
+    }while(op!=0);
 
 
 }
@@ -713,13 +727,16 @@ void Administrator::ModifyUsers(){
        if(aux!=NULL){
           aux->ModifyUser();
           cout<<"Modification suceed"<<endl<<endl;
-          cin.get();
+
 
        }else{
            cout<<"The user does not exist"<<endl<<endl;
-           cin.get();
+
 
        }
+       cin.get();
+       cout << "Press enter to continue ..."<<endl;
+       cin.get();
 
 }
 int Administrator::DeleteUser(){
@@ -733,7 +750,7 @@ int Administrator::DeleteUser(){
             cin.ignore(1024, '\n'); //Cleaning cin. from 1024 to NUll
             cout<<" Only numerical values"<<endl;
         };
-        if (op!=1&&op!=2&&op!=3&&op!=4){
+        if (op!=1&&op!=2&&op!=3&&op!=0){
             cout<<"Select a possible option"<<endl;
             cout<<"\n";
         };
@@ -742,7 +759,7 @@ int Administrator::DeleteUser(){
         cout<<"1). Delete Student"<<endl;
         cout<<"2). Delete Professor"<<endl;
         cout<<"3). Delete Administrator"<<endl;
-        cout<<"4). Back"<<endl;
+        cout<<"0). Back"<<endl;
         cout<<"Type the number of the option"<<endl;
         cin>>op;
         switch (op) {
@@ -754,15 +771,14 @@ int Administrator::DeleteUser(){
                 delete user;
                 cout<<"The student was deleted succesfuly."<<endl<<endl;
                 listusers->SetNum_stu(listusers->GetNum_stu()-1);
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }else{
                 cout<<"The user does not exists."<<endl<<endl;
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 2:
             cout<<"Please, type the ID of the professor you want to delete."<<endl;
@@ -772,15 +788,14 @@ int Administrator::DeleteUser(){
                 delete user;
                 cout<<"The professor was deleted succesfuly."<<endl;
                 listusers->SetNum_prof(listusers->GetNum_prof()-1);
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }else{
                 cout<<"The user does not exists."<<endl<<endl;
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         case 3:
             cout<<"Please, type the ID of the administrator you want to delete."<<endl;
@@ -790,17 +805,16 @@ int Administrator::DeleteUser(){
                 delete user;
                 cout<<"The administrator was deleted succesfuly."<<endl<<endl;
                 listusers->SetNum_admin(listusers->GetNum_admin()-1);
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }else{
                 cout<<"The user does not exists."<<endl<<endl;
-                cin.get();
-                cout << "Press enter to continue ..."<<endl;
-                cin.get();
+
             }
+            cin.get();
+            cout << "Press enter to continue ..."<<endl;
+            cin.get();
             break;
         }
-    }while(op!=4);
+    }while(op!=0);
     return op;
 }

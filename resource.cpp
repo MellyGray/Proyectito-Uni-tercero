@@ -30,7 +30,7 @@ string Resource::getlirrayvalue(int x){
     return s;
 }
 
-void Resource::IntroduceUserinResource(string _id){//Meter Id en la lista.
+void Resource::IntroduceUserinResource(string _id){
     string aux[num_users];
     for(int i=0; i<num_users;i++){
         aux[i]=lirray[i];

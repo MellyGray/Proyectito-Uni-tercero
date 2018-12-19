@@ -57,14 +57,14 @@ int Professor::MainMenu(){
             cout<<"\n";
         };
         cout<<"--------WELCOME PROFESSOR "<<name<<"!---------"<<endl;
-                cout<<"0). Show Info"<<endl;
-                cout<<"1). Modify Resource"<<endl;
-                cout<<"2). Set Marks"<<endl;
-                cout<<"3). Exit"<<endl;
+                cout<<"1). Show Info"<<endl;
+                cout<<"2). Modify Resource"<<endl;
+                cout<<"3). Set Marks"<<endl;
+                cout<<"0). Log out & Save changes"<<endl;
                 cout<<"Type the number of the option"<<endl;
                 cin>>op;
                 switch (op) {
-                case 0:
+                case 1:
                     cout<<"\033[2J\033[1;1H";
                     cout<<"---------USER INFO----------"<<endl;
                     cout<< "Name____________"<<name<<endl;
@@ -75,7 +75,7 @@ int Professor::MainMenu(){
                     cin.get();
                     cin.get();
                     break;
-                case 1:
+                case 2:
                     cout<<"\033[2J\033[1;1H";
                     cout<<"These are the resources you can modify: "<<endl;
                     listares->UserOnList(IDCode,0);
@@ -87,10 +87,11 @@ int Professor::MainMenu(){
                     }else{
                         cout<<"The resource does not exist"<<endl;
                         cin.get();
+                        cout << "Press enter to continue ..."<<endl;
                         cin.get();
                     }
                     break;
-                case 2:
+                case 3:
                     cout<<"\033[2J\033[1;1H";
                     cout<<listares->PrintAllMarks(IDCode);
                     cout<<"Type the ID of the Course to modify the marks: "<<endl;
@@ -102,11 +103,12 @@ int Professor::MainMenu(){
                     }else{
                         cout<<"The Course does not exist"<<endl;
                         cin.get();
+                        cout << "Press enter to continue ..."<<endl;
                         cin.get();
                     }
                     break;
                 }
-            }while(op!=3);
+            }while(op!=0);
 
     return op;
 

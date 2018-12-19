@@ -15,7 +15,6 @@ private:
 public:
     //Constructors
     Seminar();
-    //NUEVO
     Seminar(string _name, string _status, string _ID,int _num_users, int _maxSeats, string _SpeakerID, string _coordinator, string _date);
 
     ~Seminar();

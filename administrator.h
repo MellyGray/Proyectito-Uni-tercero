@@ -4,7 +4,6 @@
 #include <iostream>
 #include "listares.h"
 
-#include <cstdlib> //To clean console
 using namespace std;
 
 class ListUsers;

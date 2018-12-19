@@ -132,7 +132,7 @@ int Seminar::checking(string _deg){
         return 1;
     }
 }
-void Seminar::IntroduceUserinResource(string _id){//Meter Id en la lista.
+void Seminar::IntroduceUserinResource(string _id){
     string aux[num_users];
     int ok=1;
     for(int t=0; (t<num_users)&(ok==1);t++){

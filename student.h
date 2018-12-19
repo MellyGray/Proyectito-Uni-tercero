@@ -13,7 +13,7 @@ class Student : public User
 {
    private:
     string degree;
-    Listares *list;//Needed to modify users.
+    Listares *list;//list of reources courses, seminars etc
 
 public:
     Student();

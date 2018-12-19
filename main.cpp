@@ -6,7 +6,7 @@
 using namespace std;
 
 int main()
-{         /*MILESTON 2. Please, when you run the application, if you want to end it, press every "EXIT" or "BACK" posible,
+{         /*Please, when you run the application, if you want to end it, press every "EXIT" as posible,
             otherwise the modifications performed during the program would not be saved in the txts. Thank you.*/
 
           VirtualCampus *vc=new VirtualCampus;

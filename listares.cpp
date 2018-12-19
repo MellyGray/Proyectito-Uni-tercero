@@ -36,7 +36,7 @@ string Listares::toStringList(){
     Resource *res;
     while (get!= NULL){
         res= get->Getresource();
-        s<<res->toStringList()<<endl;//Tostring de listas de usuarios en las resources
+        s<<res->toStringList()<<endl;
         get= get->Getnext();
     }
     return s.str();
@@ -111,7 +111,7 @@ void Listares::chargeresource(){
 
     read.close();
 }
-void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los resources en la lista
+void Listares::PrintResourcesOnList(string _degree){
     Resource *aux;
     string saux="NONE";
     Nodores *get=actual;
@@ -125,7 +125,7 @@ void Listares::PrintResourcesOnList(string _degree){//Printea los nombres de los
         get=get->Getnext();
     }}
 }
-Resource *Listares::UserOnList(string _id, int x){//Printea los nombres de los resources en los que el user esta
+Resource *Listares::UserOnList(string _id, int x){
     Resource *aux;
     Nodores *get=actual;
     while(get!=NULL){
@@ -148,14 +148,14 @@ Resource *Listares::ResourcesOnList(string _ID){
     }
     return NULL;
 }
-Resource *Listares::EnrollResource(string _name, string _id, string _deg){//para estudiante enrolllar en resource.
+Resource *Listares::EnrollResource(string _name, string _id, string _deg){
     Resource *aux,*aux2;
     int check;
     int fdps=0;
     Nodores *get=actual;
    while (get!=NULL){
         aux=get->Getresource();
-        if(aux->GetName()==_name){                                  //Meter aqui lo de que no puedas ni 2fdps ni meterte en si ya estas
+        if(aux->GetName()==_name){
             check=aux->checking(_deg);
            if (check==1){
             aux->IntroduceUserinResource(_id);
@@ -248,15 +248,3 @@ string Listares::PrintAllMarks(string _IDCode){
     }
     return s.str();
 }
-/*string Listares::toStringCourses(){
-    stringstream s;
-    Nodores *get=actual;
-    Resource *res;
-    for(int h=0;h<(num_cour+1);h++){
-        res= get->Getresource();
-        s<<res->toString()<<endl;
-        get=get->Getnext();
-    }
-    return s.str();
-};
-*/
