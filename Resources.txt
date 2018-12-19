@@ -1,5 +1,5 @@
 2
-2
+1
 1
 P333333
 P111111
@@ -7,7 +7,7 @@ P111111
 SSS2222
 created
 21-12-2018
-Identification_of_Aurean_Proportions_in_Nature
+Aurean
 2
 1001111
 1003333
@@ -17,10 +17,10 @@ P333333
 SSS1111
 created
 12-01-2019
-Cuantic_Bits_in_Digital_Electronics	
+Cuantic
 2
-1001111
 1003333
+1001111
 Electrical,_Electronic_and_Automation_Engineering
 NONE
 P222222
@@ -44,6 +44,7 @@ created
 Control_Engineering
 1
 1001111
+6
 Electrical,_Electronic_and_Automation_Engineering
 P333333
 P111111
@@ -53,6 +54,7 @@ created
 Thermal_Engineering
 1
 1001111
+8
 Computer_Engineering
 P222222
 P111111
@@ -62,3 +64,4 @@ created
 Calculus
 1
 1002222
+8
